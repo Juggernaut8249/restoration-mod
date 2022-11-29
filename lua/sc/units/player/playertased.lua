@@ -154,3 +154,15 @@ function PlayerTased:_give_shock_to_taser(taser_unit)
 	taser_unit:character_damage():damage_melee(action_data)
 	self._unit:sound():play("tase_counter_attack") --Add sound
 end	
+
+
+function PlayerTased:update(t, dt)
+	if self._equipped_unit then
+		local weap_base = self._equipped_unit:base()
+		local fire_mode = weap_base:fire_mode()
+		if fire_mode == "volley" then
+			self:_check_action_weapon_firemode(t, { btn_weapon_firemode_press = true }) --volley currently just DUMPS your ammo anf bypasses refire delays, so force firemode switch to not dump ammo as fast
+		end
+	end
+	PlayerTased.super.update(self, t, dt)
+end

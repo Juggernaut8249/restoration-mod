@@ -131,8 +131,10 @@ Hooks:Add("LocalizationManagerPostInit", "ResMod_english_Localization", function
 		["RestorationModADSTransitionStyleDescID"] = "Change the \"animation\" style of aiming down your sights.",
 		["RestorationModGCGPYPMMSACTitleID"] = "Super Cereal Mode",
 		["RestorationModGCGPYPMMSACDescID"] = "Disables tracers and ammo regen that some attachments provide. Requires restart if toggled in-heist.",
+		["RestorationModStaticAimTitleID"] = "No Weapon Movement While ADS",
+		["RestorationModStaticAimDescID"] = "Enables/Disables cosmetic sway and drift while aiming. Requires restart. WARNING: MAY MAKE SOME OPTICS UNUSABLE IF UNCHECKED",
 		["RestorationModWpnCatTitleID"] = "Buy Menu Organization",
-		["RestorationModWpnCatDescID"] = "Change weapon organization method used when buying a weapon from the black market menu. Requires reload.",
+		["RestorationModWpnCatDescID"] = "Change weapon organization method used when buying a weapon from the black market menu. Requires restart.",
 		["RestorationModAutoDMRsTitleID"] = "Marksmen Rifles Start Full-Auto",
 		["RestorationModAutoDMRsDescID"] = "Toggle whether or not Marksmen Rifles start off on full-auto.",
 		["RestorationModSprintCancelTitleID"] = "Evasion Aced Sprint Cancels Reload",
@@ -141,10 +143,14 @@ Hooks:Add("LocalizationManagerPostInit", "ResMod_english_Localization", function
 		["RestorationModSevenHoldDescID"] = "Enable/disable whether or not the interact key acts as a toggle.",
 		["RestorationModSevenHoldDeployCancelTitleID"] = "Deployable Cancels Interact",
 		["RestorationModSevenHoldDeployCancelDescID"] = "Enable/disable whether or not the deployable key is what's used to cancel an active toggle interaction. Requires Toggle Interactions to be enabled to have any effect.",
+		["RestorationModNoADSRecoilAnimsTitleID"] = "No ADS Recoil Animations",
+		["RestorationModNoADSRecoilAnimsDescID"] = "Enable/disable ADS recoil animations. Some weapons are not affected by this option (i.e. Manually operated guns, bows, flamethrowers)",
 		["RestorationModAimDeploysBipodTitleID"] = "ADS Deploys Bipod",
 		["RestorationModAimDeploysBipodDescID"] = "Enable/disable bipods auto-mounting when ADSing over a valid surface.",
 		["RestorationModMoveCancelBipodTitleID"] = "Movement Dismounts Bipod",
 		["RestorationModMoveCancelBipodDescID"] = "Enable/disable basic movement inputs dismounting bipods.",
+		["RestorationModSeparateBowADSTitleID"] = "Separate Bow Aiming",
+		["RestorationModSeparateBowADSDescID"] = "Disables forced aiming with bows when drawing an arrow. While enabled, your reload key is used to let down your drawn arrow.",
 		["RestorationModClassicMoviesTitleID"] = "Classic Loadout Backgrounds",
 		["RestorationModClassicMoviesDescID"] = "Enable or disable PD:TH loadout backgrounds when playing on Classic heists.",
 
@@ -223,6 +229,8 @@ Hooks:Add("LocalizationManagerPostInit", "ResMod_english_Localization", function
 		["RestorationModSCDescID"] = "Enable or disable Restoration's complete game overhaul. Toggling this option will automatically exit your game to prevent save corruption.",
 		["RestorationModHolidayTitleID"] = "Holiday Effects",
 		["RestorationModHolidayDescID"] = "Enable or disable Holiday effects for the overhaul.",
+		["RestorationModCloakerTurnTitleID"] = "Cloaker Kick Camera Turn",
+		["RestorationModCloakerTurnDescID"] = "Enable or disable the Cloaker Camera Turn behavior from Vanilla when getting Cloaker kicked.",		
 		["RestorationModRestoreHitFlashTitleID"] = "Restore Hit Flash",
 		["RestorationModRestoreHitFlashDescID"] = "Enable or disable the restored hit flash when taking damage.",	
 		["RestorationModNotifyTitleID"] = "Feature Notification",
@@ -355,6 +363,7 @@ Hooks:Add("LocalizationManagerPostInit", "ResMod_english_Localization", function
 		["restoration_level_data_tag"] = "12:43 AM, J. Edgar Hoover Building",
 		["restoration_level_data_bph"] = "TIME CLASSIFIED, Fort Clatsop Prison",
 		["restoration_level_data_nmh"] = "8:24 PM, Mercy Hospital - Isolation Ward",
+		["restoration_level_data_nmh_res"] = "8:24 PM, Mercy Hospital - Isolation Ward",
 		["restoration_level_data_vit"] = "1:07 PM, Washington D.C. - The White House",
 		["restoration_level_data_mex"] = "TIME CLASSIFIED, United States - Southern Border",
 		["restoration_level_data_mex_cooking"] = "TIME CLASSIFIED, Mexico - Coyopa Compound",
@@ -366,6 +375,7 @@ Hooks:Add("LocalizationManagerPostInit", "ResMod_english_Localization", function
 		["restoration_level_data_chca"] = "9:24 PM, San Francisco Bay - The Black Cat",
 		["restoration_level_data_pent"] = "11:30 PM, San Francisco - Yufu Wang's Penthouse",
 		["restoration_level_data_ranc"] = "6:24 PM, Texas - Midland Ranch",
+		["restoration_level_data_trai"] = "7:40 PM, Fort Worth - Dalton Yard",
 		["restoration_level_data_wetwork"] = "TIME CLASSIFIED, LOCATION CLASSIFIED",
 		["restoration_level_data_junk"] = "TIME CLASSIFIED, LOCATION CLASSIFIED",
 		["restoration_level_data_holly"] = "5:00 PM, Los Angeles - Lukas' Mansion",
@@ -752,8 +762,8 @@ Hooks:Add("LocalizationManagerPostInit", "ResMod_english_Localization", function
 		["pdth_hud_completed_challenges"] = "Completed Challenges",
 		["pdth_hud_completed_challenges_hint"] = "Completed and rewarded challenges.",
 
-		["ch_vs_desc"] = "Using $weapon, defeat $count $eneType. Using melee does not contribute to this challenge.",
-		["ch_vs_head_shots_desc"] = "Using the $weapon, defeat $count $eneType with Headshots.",
+		["ch_vs_desc"] = "Using a $weapon, defeat $count $eneType. Using melee does not contribute to this challenge.",
+		["ch_vs_head_shots_desc"] = "Using a $weapon, defeat $count $eneType with Headshots.",
 		["ch_vs"] = "$weapon VS. $eneType $no",
 		["ch_vs_head_shots"] = "$weapon VS. $eneType HEADSHOTS $no",
 
@@ -809,26 +819,7 @@ Hooks:Add("LocalizationManagerPostInit", "ResMod_english_Localization", function
 		["bm_melee_halloween_sword"] = "Headless Bulldozer's Sword",
 		["menu_l_global_value_halloween_sword"] = "This is a Halloween 2013 item!",
 		
-		--S&W .500
-		["bm_w_shatters_fury"] = "Phoenix .500 Revolver",
-		
-		["bm_wp_wpn_fps_pis_shatters_fury_b_comp1"] = "Horus Barrel",
-		["bm_wp_wpn_fps_pis_shatters_fury_b_comp2"] = "Shatter Barrel",
-		["bm_wp_wpn_fps_pis_shatters_fury_b_long"] = "Hathor Barrel",
-		["bm_wp_wpn_fps_pis_shatters_fury_b_short"] = "Firebird Barrel",
-		
-		["bm_wp_wpn_fps_pis_shatters_fury_g_ergo"] = "Ergo Grip",
-		
-		["bm_wp_wpn_fps_pis_shatters_fury_body_smooth"] = "Smooth Cylinder",
-
 		["menu_l_global_value_shatters_fury"] = "This is a VERITAS item!",
-		
-		--MK-23
-		--Semi-automatic pistol. Hold down ■ to aim. Release to fire.
-		["bm_w_socom"] = "Anubis .45 Pistol",
-		["bm_w_x_socom"] = "Akimbo Anubis .45's",
-		["bm_wp_wpn_fps_upg_fl_pis_socomlam"] = "Ra Combined Module",
-		["bm_wp_wpn_fps_upg_fl_pis_socomlam_desc"] = "Turn it on/off by pressing #{skill_color}#$BTN_GADGET##",
 
 		--Ranted NMH
 		["heist_no_mercy_ranted_name"] = "No Mercy",
@@ -845,10 +836,6 @@ Hooks:Add("LocalizationManagerPostInit", "ResMod_english_Localization", function
 		
 		["heist_nmh_new3"] = "Call the elevator",
 		["heist_nmh_new3_desc"] = "Press the button and wait for the elevator",	
-		
-		--OICW--
-		["bm_w_osipr"] = "SABR Rifle",
-		["bm_w_osipr_gl"] = "SABR Grenade Launcher",
 		
 		--GO Bank remastered
 		["menu_nh_mod_gobank_v2"] = "GO Bank Remastered",
@@ -898,50 +885,6 @@ Hooks:Add("LocalizationManagerPostInit", "ResMod_english_Localization", function
 		
 		--Rats Zipline
 		["menu_alex_1_zipline_desc"] = "Bag Zipline for quick bag transport",
-		
-		--Watchdogs Early Boat Driver Restoration
-		["bot_watchdogs_new_stage2_01_any_02"] = "This is the boat. I see the signal, will be there soon.",
-		["bot_watchdogs_new_stage2_01_any_03"] = "This is the boat. Signal on sight, I'm on my way.",
-		
-		["bot_watchdogs_new_stage2_05_any_02"] = "Ok I'm here, now throw the bags into the boat!",
-		["bot_watchdogs_new_stage2_05_any_03"] = "Ok guys, get the god damn bags into the boat!",
-		["bot_watchdogs_new_stage2_05_any_04"] = "Ok everyone, get the fucking bags into the boat!",
-		
-		["bot_watchdogs_new_stage2_06_any_01"] = "I can only take four at the time! Fill it up and I come back for more.",
-		["bot_watchdogs_new_stage2_06_any_02"] = "Four at the time! Sorry...I come back for the rest.",
-		["bot_watchdogs_new_stage2_06_any_03"] = "Only four at the time, I come back for the rest!",
-		
-		["bot_watchdogs_new_stage2_07_any_01"] = "Come on, fill the barrels!",
-		["bot_watchdogs_new_stage2_07_any_02"] = "Get the barrels filled! GO! GO! GO!",
-		["bot_watchdogs_new_stage2_07_any_03"] = "Fill up those barrels, guys!",
-		
-		
-		["bot_watchdogs_new_stage2_08_any_02"] = "Ok that's four!",
-		["bot_watchdogs_new_stage2_08_any_03"] = "Ok, that's four!", 
-		
-		["bot_watchdogs_new_stage2_09_any_01"] = "Ok I'm taking this shit, then I'm coming back for the rest!",
-		["bot_watchdogs_new_stage2_09_any_02"] = "I'm taking the stuff, but I be back for the rest as soon as I can if you whine up getting more stuff for me.",
-		["bot_watchdogs_new_stage2_09_any_03"] = "So I'm taking these now but don't worry, I be back if you get more stuff.",
-		
-		["bot_watchdogs_new_stage2_10_any_01"] = "Alright, it's unloaded. I be back in a bit.",
-		["bot_watchdogs_new_stage2_10_any_02"] = "It's unloaded! I be back.",
-		["bot_watchdogs_new_stage2_10_any_03"] = "Hold on....I be back!",
-		
-		["bot_watchdogs_new_stage2_11_any_01"] = "Man, I said into the barrels, not the water!",
-		["bot_watchdogs_new_stage2_11_any_02"] = "What did I say? INTO THE BARRELS, RIGHT?!",
-		["bot_watchdogs_new_stage2_11_any_03"] = "Into the barrels! Fill it in a fucking barrels!",
-		
-		["bot_watchdogs_new_stage2_12_any_01"] = "Roger! I'm coming in at Dock 7.",
-		["bot_watchdogs_new_stage2_12_any_02"] = "Roger! Coming in at Dock 7.",
-		["bot_watchdogs_new_stage2_12_any_03"] = "Copy that, coming in at Dock 7!",
-		
-		["bot_watchdogs_new_stage2_13_any_01"] = "Roger! I'm coming in at Dock 8.",
-		["bot_watchdogs_new_stage2_13_any_02"] = "Roger! Coming in at Dock 8.",
-		["bot_watchdogs_new_stage2_13_any_03"] = "Copy that, coming in at Dock 8!",
-		
-		["bot_watchdogs_new_stage2_14_any_01"] = "Confirmed! I'm coming in at Dock 9.",
-		["bot_watchdogs_new_stage2_14_any_02"] = "Copy that, coming in at Dock 9!",
-		["bot_watchdogs_new_stage2_14_any_03"] = "Copy, coming in at Dock 9!",
 		
 		--Watchdogs Holdout
 		["heist_skm_watchdogs_stage2_briefing"] = "Mia Calienté is a real piece of work, friends. For years she's been the brains behind the Murkywater's operations in DC. Not too long ago, Murkywater took over a warehouse at the docks and they've using it as an additional distribution point. Our target is there checking in on some loot recently plundered from abroard. We're going to get in there, grab the dwankie and take her hostage. The Murkies can't afford to lose her, they will pay for her release, maybe with the aforementioned and rather valuable plunder, what do you say gang?"
@@ -1107,18 +1050,27 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization", function(loc)
 		["bm_wp_ns_duck_desc_sc"] = "Causes pellets to #{risk}#spread horizontally## instead of clustering.",
 		["bm_wp_ns_ultima_desc_sc"] = "Increases overall spread of pellets by 75%.",
 		["bm_wp_upg_a_slug_sc"] = "AP Slug",
-		["bm_wp_upg_a_slug_desc"] = "Fire a lead slug that #{skill_color}#pierces body armor, enemies, shields and thin walls.##",
-		["bm_wp_upg_a_slug_spam_desc"] = "Fire a lead slug that #{skill_color}#deals 80% of its damage through body armor and pierces enemies and thin walls.##",
-		["bm_wp_upg_a_explosive_desc_sc"] = "Fire an #{heat_warm_color}#explosive## slug with a blast radius of #{skill_color}#1.5## meters.\nRounds have #{skill_color}#no falloff## but #{important_1}#cannot headshot.##",
-		["bm_wp_upg_a_custom_desc"] = "Fire larger pellets that #{skill_color}#increase## damage at the cost of a #{important_1}#reduction in pellet count, effectiveness at range, pickup and total ammo.##",
-		["bm_wp_upg_a_dragons_breath_auto_desc_sc"] = "Fires pellets that have a #{skill_color}#60%## chance to #{heat_warm_color}#set enemies on fire##, potentially stunning them and dealing #{heat_warm_color}#96## damage over #{skill_color}#3## seconds.",
-		["bm_wp_upg_a_dragons_breath_semi_desc_sc"] = "Fires pellets that have a #{skill_color}#60%## chance to #{heat_warm_color}#set enemies on fire##, potentially stunning them and dealing #{heat_warm_color}#120## damage over #{skill_color}#3## seconds.",
-		["bm_wp_upg_a_dragons_breath_pump_desc_sc"] = "Fires pellets that have a #{skill_color}#60%## chance to #{heat_warm_color}#set enemies on fire##, potentially stunning them and dealing #{heat_warm_color}#180## damage over #{skill_color}#3## seconds.",
-		["bm_wp_upg_a_dragons_breath_heavy_desc_sc"] = "Fires pellets that have a #{skill_color}#60%## chance to #{heat_warm_color}#set enemies on fire##, potentially stunning them and dealing #{heat_warm_color}#240## damage over #{skill_color}#3## seconds.",
-		["bm_wp_upg_a_piercing_auto_desc_sc"] = "Fires #{skill_color}#armor piercing## flechettes that inflict #{skill_color}#96## bleed damage over #{skill_color}#6## seconds.",
-		["bm_wp_upg_a_piercing_semi_desc_sc"] = "Fires #{skill_color}#armor piercing## flechettes that inflict #{skill_color}#120## bleed damage over #{skill_color}#6## seconds.",
-		["bm_wp_upg_a_piercing_pump_desc_sc"] = "Fires #{skill_color}#armor piercing## flechettes that inflict #{skill_color}#180## bleed damage over #{skill_color}#6## seconds.",
-		["bm_wp_upg_a_piercing_heavy_desc_sc"] = "Fires #{skill_color}#armor piercing## flechettes that inflict #{skill_color}#240## bleed damage over #{skill_color}#6## seconds.",
+		["bm_wp_upg_a_slug_desc"] = "Fires a lead slug that #{skill_color}#pierces body armor, enemies, shields and thin walls.##",
+		["bm_wp_upg_a_slug_spam_desc"] = "Fires a lead slug that #{skill_color}#deals 80% of its damage through body armor and pierces enemies and thin walls.##",
+		["bm_wp_upg_a_explosive_desc_sc"] = "Fires an #{heat_warm_color}#explosive## slug with a blast radius of #{skill_color}#1.5## meters.\nRounds have #{skill_color}#no falloff## but #{important_1}#cannot headshot.##",
+		["bm_wp_upg_a_custom_desc"] = "Fires #{important_1}#6## larger, heavier pellets that #{skill_color}#increase## damage.",
+		--["bm_wp_upg_a_dragons_breath_auto_desc_sc"] = "Fires magnesium shards that have up to a #{skill_color}#15%## chance to #{heat_warm_color}#set enemies on fire##, dealing #{heat_warm_color}#90## damage over #{skill_color}#3## seconds.\n\n#{risk}#Chance is reduced over range and can only stun enemies before damage falloff starts.##",
+		["bm_wp_upg_a_dragons_breath_semi_desc_sc"] = "Fires magnesium shards that have up to a #{skill_color}#25%## chance to #{heat_warm_color}#set enemies on fire##, dealing #{heat_warm_color}#120## damage over #{skill_color}#3## seconds.\n\n#{risk}#Chance is reduced over range and can only stun enemies before damage falloff starts.##",
+		["bm_wp_upg_a_dragons_breath_pump_desc_sc"] = "Fires magnesium shards that have up to a #{skill_color}#35%## chance to #{heat_warm_color}#set enemies on fire##, dealing #{heat_warm_color}#180## damage over #{skill_color}#3## seconds.\n\n#{risk}#Chance is reduced over range and can only stun enemies before damage falloff starts.##",
+		["bm_wp_upg_a_dragons_breath_heavy_desc_sc"] = "Fires magnesium shards that have up to a #{skill_color}#45%## chance to #{heat_warm_color}#set enemies on fire##, dealing #{heat_warm_color}#240## damage over #{skill_color}#3## seconds.\n\n#{risk}#Chance is reduced over range and can only stun enemies before damage falloff starts.##",
+		["bm_wp_upg_a_rip"] = "Tombstone Buckshot",
+		--["bm_wp_upg_a_rip_auto_desc_sc"] = "Fires #{stats_positive}#poison laced## buckshot, potentially stunning enemies and dealing #{stats_positive}#30## poison damage over #{skill_color}#1## second.\n\n#{risk}#Duration diminishes over range.##",
+		["bm_wp_upg_a_rip_semi_desc_sc"] = "Fires #{stats_positive}#poison laced## buckshot, potentially stunning enemies and dealing #{stats_positive}#120## poison damage over #{skill_color}#4## seconds.\n\n#{risk}#Duration diminishes over range.##",
+		["bm_wp_upg_a_rip_pump_desc_sc"] = "Fires #{stats_positive}#poison laced## buckshot, potentially stunning enemies and dealing #{stats_positive}#180## poison damage over #{skill_color}#6## seconds.\n\n#{risk}#Duration diminishes over range.##",
+		["bm_wp_upg_a_rip_heavy_desc_sc"] = "Fires #{stats_positive}#poison laced## buckshot, potentially stunning enemies and dealing #{stats_positive}#240## poison damage over #{skill_color}#8## seconds.\n\n#{risk}#Duration diminishes over range.##",
+		--["bm_wp_upg_a_piercing_auto_desc_sc"] = "Fires #{skill_color}#12## #{skill_color}#armor piercing## flechettes that inflict #{skill_color}#96## bleed damage over #{skill_color}#8## seconds.",
+		--["bm_wp_upg_a_piercing_semi_desc_sc"] = "Fires #{skill_color}#12## #{skill_color}#armor piercing## flechettes that inflict #{skill_color}#120## bleed damage over #{skill_color}#8## seconds.",
+		--["bm_wp_upg_a_piercing_pump_desc_sc"] = "Fires #{skill_color}#12## #{skill_color}#armor piercing## flechettes that inflict #{skill_color}#180## bleed damage over #{skill_color}#8## seconds.",
+		--["bm_wp_upg_a_piercing_heavy_desc_sc"] = "Fires #{skill_color}#12## #{skill_color}#armor piercing## flechettes that inflict #{skill_color}#240## bleed damage over #{skill_color}#8## seconds.",
+		--["bm_wp_upg_a_piercing_auto_desc_sc"] = "Fires #{skill_color}#12## #{skill_color}#armor piercing## flechettes.",
+		["bm_wp_upg_a_piercing_semi_desc_sc"] = "Fires #{skill_color}#12## #{skill_color}#armor piercing## flechettes.",
+		["bm_wp_upg_a_piercing_pump_desc_sc"] = "Fires #{skill_color}#12## #{skill_color}#armor piercing## flechettes.",
+		["bm_wp_upg_a_piercing_heavy_desc_sc"] = "Fires #{skill_color}#12## #{skill_color}#armor piercing## flechettes.",
 
 		--Generic Mods--
 		["bm_wp_upg_vg_afg"] = "AFG",
@@ -1170,6 +1122,9 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization", function(loc)
 		["bm_wp_upg_o_8"] = "Long-range scope.\n#{risk}#8x magnification.##",
 		["bm_wp_upg_o_8_range"] = "Long-range scope with a built-in #{skill_color}#rangefinder.##\n#{risk}#8x magnification.##",
 
+		["bm_wp_upg_o_iwelo"] = "Emitted Light Optic with a floating illuminated reticle\n#{risk}#1.1x magnification.##",
+		["bm_wp_upg_o_iwrds"] = "Precision red dot sight.\n#{risk}#1.5x magnification.##",
+
 		["bm_wp_upg_o_shortdot_dmc"] = "Shortdot Scope",
 		["bm_wp_upg_o_5_default"] = "Long-range scope.\nAttach to be able to modify the default sniper scope reticle.\n#{skill_color}#5x magnification.##",
 
@@ -1189,9 +1144,9 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization", function(loc)
 		["bm_wp_upg_a_grenade_launcher_electric_ms3gl_desc_sc"] = "Fires a round that creates a #{ghost_color}#burst of electricity## at point of impact. The burst deals #{skill_color}#180## damage, has a radius of #{skill_color}#5## meters, and has a chance to #{ghost_color}#tase enemies.##",
 		["bm_wp_upg_a_grenade_launcher_electric_arbiter_desc_sc"] = "Fires a round that creates a #{ghost_color}#burst of electricity## at point of impact. The burst deals #{skill_color}#300## damage, has a radius of #{skill_color}#2.5## meters, and has a chance to #{ghost_color}#tase enemies.##",
 		["bm_wp_upg_a_grenade_launcher_poison"] = "Manticore-6 Round",
-		["bm_wp_upg_a_grenade_launcher_poison_desc_sc"] = "Fires a round that creates a #{stats_positive}#cloud of poisonous gas## at point of impact.\nThe gas has a radius of #{skill_color}#6## meters, lingers for #{skill_color}#16## seconds, deals #{skill_color}#240## damage over #{skill_color}#8## seconds, and #{stats_positive}#induces vomiting## in most enemies #{important_1}#1## time when caught in it.",
-		["bm_wp_upg_a_grenade_launcher_poison_arbiter_desc_sc"] = "Fires a round that creates a #{stats_positive}#cloud of poisonous gas## at point of impact.\nThe gas has a radius of #{skill_color}#6## meters, lingers for #{skill_color}#12## seconds, deals #{skill_color}#180## damage over #{skill_color}#6## seconds, and #{stats_positive}#induces vomiting## in most enemies #{important_1}#1## time when caught in it.",
-		["bm_wp_upg_a_grenade_launcher_poison_ms3gl_desc_sc"] = "Fires a round that creates a #{stats_positive}#cloud of poisonous gas## at point of impact.\nThe gas has a radius of #{skill_color}#6## meters, lingers for #{skill_color}#8## seconds, deals #{skill_color}#120## damage over #{skill_color}#4## seconds, and #{stats_positive}#induces vomiting## in most enemies #{important_1}#1## time when caught in it.",
+		["bm_wp_upg_a_grenade_launcher_poison_desc_sc"] = "Fires a round that creates a #{stats_positive}#cloud of poisonous gas## at point of impact.\nThe gas has a radius of #{skill_color}#6## meters, lingers for #{skill_color}#10## seconds, deals #{skill_color}#240## damage over #{skill_color}#8## seconds, and #{stats_positive}#induces vomiting## in most enemies #{important_1}#1## time when caught in it.",
+		["bm_wp_upg_a_grenade_launcher_poison_arbiter_desc_sc"] = "Fires a round that creates a #{stats_positive}#cloud of poisonous gas## at point of impact.\nThe gas has a radius of #{skill_color}#6## meters, lingers for #{skill_color}#8## seconds, deals #{skill_color}#180## damage over #{skill_color}#6## seconds, and #{stats_positive}#induces vomiting## in most enemies #{important_1}#1## time when caught in it.",
+		["bm_wp_upg_a_grenade_launcher_poison_ms3gl_desc_sc"] = "Fires a round that creates a #{stats_positive}#cloud of poisonous gas## at point of impact.\nThe gas has a radius of #{skill_color}#6## meters, lingers for #{skill_color}#6## seconds, deals #{skill_color}#120## damage over #{skill_color}#4## seconds, and #{stats_positive}#induces vomiting## in most enemies #{important_1}#1## time when caught in it.",
 
 		--Flamethrowers--
 		["bm_wp_fla_mk2_mag_rare_sc"] = "Rare",
@@ -1227,328 +1182,483 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization", function(loc)
 		["bm_wp_upg_bonus_sc_none_desc"] = "USE THIS TO DISABLE BOOSTS FROM WEAPON SKINS.",
 
 		--Gecko Pistol
+		["bm_w_maxim9"] = "Gecko M2",
 		["bm_tranq_maxim_sc_desc"] = "The world's first #{skill_color}#integrally suppressed## pistol, good handling and concealability tie in well with debilitating tranquilizer rounds.\n\n#{stats_positive}#Deals damage over time with tranquilizer rounds.##",
+		["bm_w_x_maxim9"] = "Akimbo Gecko M2s",
 		["bm_tranq_x_maxim_sc_desc"] = "A pair of the world's first #{skill_color}#integrally suppressed## pistol, good handling and concealability tie in well with debilitating tranquilizer rounds.\n\n#{stats_positive}#Deals damage over time with tranquilizer rounds.##",
 		--Igor (APS)
+		["bm_w_stech"] = "Igor Automatik",
 		["bm_stech_sc_desc"] = "A heavier, slower firing, machine pistol that lost favor due to its encumbrance. Its weight allows better control at the cost of concealing ability.",
+		["bm_w_x_stech"] = "Akimbo Igor Automatiks",
 		["bm_x_stech_sc_desc"] = "A heavier, slower firing, machine pistol that lost favor due to its encumbrance. Its weight allows better control at the cost of concealing ability.",
 		--Chimano Compact
+		["bm_wp_pis_g26"] = "Chimano 26 Compact",
 		["bm_jowi_sc_desc"] = "A Chimano that's configured to take concealment to the extreme at the cost of almost everything else.\n\nRumors say that Wick used this when seeking vengeance against the Russian mob.",
+		["bm_w_jowi"] = "Akimbo Chimano 26 Compacts",
 		["bm_x_jowi_sc_desc"] = "When they're this small, why not carry two? An akimbo pairing that incorrectly gets attributed to as Wick's personal choice.",
 		--Glock 18c
+		["bm_w_glock_18c"] = "Chimano 18C",
 		["bm_g18c_sc_desc"] = "Fully automatic Austrian spraygun. Difficult to control, but at close range is absolutely devastating.",
+		["bm_w_x_g18c"] = "Akimbo Chimano 18Cs",
 		["bm_x_g18c_sc_desc"] = "If one was a bullet hose, carrying two may as well be a storm. Mind the recoil!",
 		--CZ 75
+		["bm_w_czech"] = "Czech 92",
 		["bm_czech_sc_desc"] = "One of the Wonder Nines, a machine pistol with fine ergonomics and handling. Used by counter terrorist forces all over the world.",
+		["bm_w_x_czech"] = "Akimbo Czech 92s",
 		["bm_x_czech_sc_desc"] = "Another example of how not to use a machine pistol. How can you even comfortably reload the things?",
 		--PPK (Gruber)
+		["bm_w_ppk"] = "Gruber Kurz",
 		["bm_ppk_sc_desc"] = "A compact alternative to larger, more dangerous firearms. A classic weapon with classic application.",
+		["bm_w_x_ppk"] = "Akimbo Gruber Kurzes",		
 		["bm_x_ppk_sc_desc"] = "For when you need to be less 007 and more Kingsman.",		
 		--M13
+		["bm_w_legacy"] = "M13",
 		["bm_legacy_sc_desc"] = "West German design that was ultimately rejected in favor of the Bernetti, but will still hold its own in a fire fight.",
+		["bm_w_x_legacy"] = "Akimbo M13s",
 		["bm_x_legacy_sc_desc"] = "Two pistols forgotten by history that will leave a legacy of lead in a room of your choosing.",		
 		--Glock 17
+		["bm_w_glock_17"] = "Chimano 88",
 		["bm_g17_sc_desc"] = "Easy to control recoil and reliable. The perfect sidearm to start a heisting career.",
+		["bm_w_x_g17"] = "Akimbo Chimano 88s",
 		["bm_x_g17_sc_desc"] = "Making up for puny 9mm by sheer amount of firepower and still taking advantage of low recoil.\n\nHoxton's choice when we busted him out.",
 		--Bernetti 9
+		["bm_w_b92fs"] = "Bernetti 92",
 		["bm_b92fs_sc_desc"] = "A popular firearm due to an impressive magazine capacity and decent damage. Especially handy for confrontations with numerous antagonists.",
+		["bm_w_x_b92fs"] = "Akimbo Bernetti 92s",
 		["bm_x_b92fs_sc_desc"] = "Two pistols are better than one. Another way to turn any engagement into a 9mm party.",
 		--White Streak
+		["bm_w_pl14"] = "White Streak",
 		["bm_pl14_sc_desc"] = "Modern Russian handgun using post-soviet tech from the west. Popular among the Reapers for its reliability and futuristic look.",
+		["bm_w_x_pl14"] = "Akimbo White Streaks",
 		["bm_x_pl14_sc_desc"] = "Modern Russian handgun using post-soviet tech from the west. Popular among the Reapers for its reliability and futuristic look.",
 		--Holt 9mm
+		["bm_w_holt"] = "HOLT 9mm",
 		["bm_holt_sc_desc"] = "A working prototype of a sidearm that's been stuck in development hell, features an innovative design to help reduce recoil.",
+		["bm_w_x_holt"] = "Akimbo HOLT 9mms",
 		["bm_x_holt_sc_desc"] = "Not one, but two working prototypes of the pistol equivalent to lost media.",		
 		--FMG-9
+		["bm_w_fmg9"] = "Wasp DS-9",
 		["bm_fmg9_sc_desc"] = "A prototype weapon platform that functions as a baby carrier for your STRYK 18c, features futuristic folding technology!",
 		--93R
+		["bm_w_beer"] = "Bernetti 93R",
 		["bm_beer_sc_desc"] = "A borderline fictional piece of select-fire hardware that'll have creeps scrambling to figure out whose move it is. Dead or alive, you're coming with me.",
 		--Contractor Pistols 
+		["bm_w_packrat"] = "Contractor M30",
 		["bm_packrat_sc_desc"] = "Wick's choice for its reliability and overall ease of use, said to have been used when he paid The Red Circle a visit.",
+		["bm_w_x_packrat"] = "Akimbo Contractor M30s",
 		["bm_x_packrat_sc_desc"] = "The go-to for when you want to clear Russian owned nightclubs with a message of blood and vengeance.",
 		--Breech (Luger) 
+		["bm_w_breech"] = "Parabellum-08",
 		["bm_breech_sc_desc"] = "The pistol that almost took over the world. Twice. This German artifact is sleek, accurate and unfortunately obsolete.",
 		--Chimano Custom
+		["bm_w_g22c"] = "Chimano Custom",
 		["bm_g22c_sc_desc"] = "This weapon is a combination of high capacity and high power. Among the best overall combat pistols.",
+		["bm_w_x_g22c"] = "Akimbo Chimano Customs",
 		["bm_x_g22c_sc_desc"] = "If one vote was a free gun, voting fraud seems appealing when you can get two of these portable body stoppers.",
-		--Baby Deagle
-		["bm_sparrow_sc_desc"] = "\"You're gonna carry that weight.\"",
 		--Signature .40
+		["bm_w_p226"] = "Signature .40",
 		["bm_p226_sc_desc"] = "Whether it be Armored Transport interception or Bank Robberies, this classic cop-stopper will never fail to disappoint.",
 		--LEO
+		["bm_w_hs2000"] = "LEO-40",
 		["bm_hs2000_sc_desc"] = "Interpol agents, crooked Croatian cops, and international criminals alike will find this compact blaster effective.",
 		--5/7 pistol
-		["bm_lemming_sc_desc"] = "Power and capacity combined. If it isn't dead in 20 rounds you probably shouldn't be shooting at it.\n\n#{skill_color}#Deals 80% of its damage through body armor and headshots deal 11% more damage.##",
+		["bm_w_lemming"] = "Acuto 5/7",
+		["bm_lemming_sc_desc"] = "Power and capacity combined. If it isn't dead in 20 rounds you probably shouldn't be shooting at it.\n\n#{skill_color}#Deals 80% of its damage through body armor and headshots deal 33% more damage.##",
 		--Baby Deagle--
+		["bm_w_sparrow"] = "Sparrow 941",
+		["bm_sparrow_sc_desc"] = "\"You're gonna carry that weight.\"",
 		["bm_w_sparrow_sc_g_cowboy_desc"] = "You're gonna carry that weight.",
 		--socom deez nuts--
+		["bm_w_socom"] = "Anubis .45",
 		["bm_w_socom_desc"] = "Jackal's sidearm of choice. A reliable and powerful .45 ACP handgun with a stylish design.",
+		["bm_wp_wpn_fps_upg_fl_pis_socomlam"] = "Ra Combined Module",
+		["bm_wp_wpn_fps_upg_fl_pis_socomlam_desc"] = "Turn it on/off by pressing #{skill_color}#$BTN_GADGET##",
+		["bm_w_x_socom"] = "Akimbo Anubis .45s",
 		--Crosskill
-		["bm_w_colt_1911"] = "Crosskill Operator Pistol",
+		["bm_w_colt_1911"] = "Crosskill Operator II",
+		["bm_1911_sc_desc"] = "When 9mm isn't enough, reach for this custom 1911A1 chambered in the powerful .45ACP. Top shelf brutality.",
+		["bm_w_x_1911"] = "Mustang & Sally",
+		["bm_x_1911_sc_desc"] = "While it doesn't have demonic powers, the carnage will certainly leave people screaming in terror.",	
 		--Crosskill Chunky
-		["bm_w_m1911"] = "Crosskill A1 Pistol",
+		["bm_w_m1911"] = "Crosskill A1",
+		["bm_m1911_sc_desc"] = "A reproduction of the classic Crosskill .45. Despite the name, not at all chunkier than the custom one.",
 		--Crosskill Guard
+		["bm_w_shrew"] = "Crosskill Guard",
 		["bm_shrew_sc_desc"] = "Smaller and more compact than its classic A1 cousin. Trades magazine capacity and barrel length for even more concealability.",
+		["bm_w_x_shrew"] = "Barry & Paul",
 		["bm_x_shrew_sc_desc"] = "The way of the Canaanites, two .45 problem solvers in a seriously small package sure to leave invaders running.",
 		["bm_shrew_g_bling_sc_desc"] = "In a world filled with misery and uncertainty, it is a great comfort to know that, in the end, there is light in the darkness.",
 		--USP 
+		["bm_w_usp"] = "Interceptor-45",
 		["bm_usp_sc_desc"] = "S&G's above average performer excels in damage, capacity and range.",
+		["bm_w_x_usp"] = "Akimbo Interceptor-45s",
 		["bm_x_usp_sc_desc"] = "A pair of S&G's pistols for when you really need to send a message.",
-		--1911 
-		["bm_1911_sc_desc"] = "When 9mm isn't enough, reach for this custom 1911A1 chambered in the powerful .45ACP. Top shelf brutality.",
-		["bm_x_1911_sc_desc"] = "While it doesn't have demonic powers, the carnage will certainly leave people screaming in terror.",	
 		--Model 54 
-		["bm_type54_sc_desc"] = "Chinese clone of the Soviet designed Tokarev, features a unique underbarreled shotgun mount for an extra way to get rid of bad guys.",
+		["bm_w_type54"] = "CC-33",
+		["bm_type54_sc_desc"] = "A Soviet designed pistol chambered in the hard hitting 7.62×25mm round; features a unique underbarreled shotgun mount for an extra way to get rid of bad guys.",
+		["bm_w_x_type54"] = "Akimbo CC-33s",
 		["bm_x_type54_sc_desc"] = "A one-two punch that can turn into a one-two-three-four punch.",		
 		--Broomstick--
+		["bm_w_c96"] = "Broomstick",
 		["bm_c96_sc_desc"] = "\"...and then the #{important_1}#wolf## ate up Little Red Riding Hood.\"\n\nA revolutionary German pistol, this one in particular has been modified to fire in full-auto.\n\nThis weapon reloads in clips of 10 bullets at a time.",
-		["bm_wp_c96_nozzle"] = "BlasTech DL-44 Suppressor",
-		["bm_wp_c96_nozzle_desc_sc"] = "Tech said to have come from #{skill_color}#a galaxy far, far away## converts this weapon to #{risk}#fire bolts of plasma## and utilize a #{skill_color}#recharging magazine.##\n\nRecharge delay: #{skill_color}#1.25s##\nRecharge rate: #{skill_color}#4/s## #{important_1}#(Halved while overheated)##\nOverheat penalty: #{important_1}#2s##",
+		["bm_wp_c96_nozzle"] = "BlasTech DL-44 Muzzle",
+		["bm_wp_c96_nozzle_desc_sc"] = "Tech said to have come from #{skill_color}#a galaxy far, far away## converts this weapon to #{risk}#fire bolts of plasma## and utilize a #{skill_color}#recharging magazine.##\n\nRecharge delay: #{skill_color}#1.5s##\nRecharge rate: #{skill_color}#3/s## #{important_1}#(Halved while overheated)##\nOverheat penalty: #{important_1}#2s##",
 		--Sub2000
-		["bm_sub2000_sc_desc"] = "Pistol carbine of questionable manufacturing quality. Tiny pistol bullets hit a lot harder when coming out of a longer barrel and folding capability makes for decent concealment.",	
+		["bm_w_sub2000"] = "Cavity .40",
+		["bm_sub2000_sc_desc"] = "Pistol carbine of questionable manufacturing quality. Tiny pistol bullets hit a lot harder when coming out of a longer barrel and its folding capability makes for decent concealment.",	
 		--Deagle
+		["bm_w_deagle"] = "Deagle",
 		["bm_deagle_sc_desc"] = "What more needs to be said about this semi automatic magic wand? Just wave it at the bad guys and shout \"Headicus Explodicus!\"\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",	
+		["bm_w_x_deagle"] = "Akimbo Deagles",
 		["bm_x_deagle_sc_desc"] = "Twin wrist wreckers that take a real nut to actually carry into battle.\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",	
+		--Kahn .357
+		["bm_w_korth"] = "Kahn .357",
+		["bm_w_x_korth"] = "Akimbo Kahn .357s",
 		--Matever 2006m
+		["bm_w_mateba"] = "Matever 9mm", --:^)
 		["bm_2006m_sc_desc"] = "A rare design of an already rare production run. A fancy way to send .38 down range.\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",	
+		["bm_wp_2006m_b_short"] = "Tachikoma Barrel",	
+		["bm_wp_2006m_b_medium"] = "Togusa Barrel",	
+		["bm_wp_2006m_b_long"] = "Kusanagi Barrel",	
+		["bm_w_x_2006m"] = "Akimbo Matevers",
 		["bm_x_2006m_sc_desc"] = "The logistics of handling two of these is outweighed by the sheer badass factor.\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",	
 		--Frenchman Model 87
+		["bm_w_model3"] = "Frenchman 87",	
 		["bm_model3_sc_desc"] = "A classic answer to the lifelong question \"What am I going to to about all these jerks all up in my face?\"\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",	
+		["bm_w_x_model3"] = "Akimbo Frenchman 87s",	
 		["bm_x_model3_sc_desc"] = "Bring out your inner rootin' tootin' qualities and challenge the cops to a dual at high noon with these twin revolvers.\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",	
 		--Raging bull
+		["bm_w_raging_bull"] = "Bronco .44",	
 		["bm_rage_sc_desc"] = "Very powerful short range cannon. It puts down mooks fast so long as you're lining up shots.\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",	
+		["bm_w_x_rage"] = "Akimbo Bronco .44s",
 		["bm_x_rage_sc_desc"] = "Not at all good or practical, you can't help but want to flex on the police force by pulling these out during a bank robbery.\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",	
 		--Castigo
+		["bm_w_chinchilla"] = "Castigo .44",
 		["bm_chinchilla_sc_desc"] = "Powerful, accurate, and stylish. Handy for breaking through the more durable foes in DC.\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",	
+		["bm_w_x_chinchilla"] = "Akimbo Castigo .44s",
 		["bm_x_chinchilla_sc_desc"] = "A sicario needs to ensure his mark is down, two of these will guarantee it.\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",	
 		--RUS-12
+		["bm_w_rsh12"] = "RUS-12",
 		["bm_rsh12_sc_desc"] = "The absolute final word in one handed caliber pissing matches.\n\n#{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",
-		--Chunky 1911 
-		["bm_m1911_sc_desc"] = "A reproduction of the classic Crosskill .45. Despite the name, not at all chunkier than the custom one.",
-		--FMG-9
-		["bm_w_fmg9"] = "Wasp-DS Machine-Pistol",
-		--Sub 2000
-		["bm_w_sub2000"] = "Cavity 10mm Pistol-Carbine",
+		--S&W .500
+		["bm_w_shatters_fury"] = "Phoenix .500",
+		["bm_wp_wpn_fps_pis_shatters_fury_b_comp1"] = "Horus Barrel",
+		["bm_wp_wpn_fps_pis_shatters_fury_b_comp2"] = "Shatter Barrel",
+		["bm_wp_wpn_fps_pis_shatters_fury_b_long"] = "Hathor Barrel",
+		["bm_wp_wpn_fps_pis_shatters_fury_b_short"] = "Firebird Barrel",
+		["bm_wp_wpn_fps_pis_shatters_fury_g_ergo"] = "Ergo Grip",
+		["bm_wp_wpn_fps_pis_shatters_fury_body_smooth"] = "Smooth Cylinder",
 		--SAA/Peacemaker
+		["bm_w_peacemaker"] = "Peacemaker .45LC",
 		["bm_ap_weapon_peacemaker_sc_desc"] = "#{risk}#The greatest handgun ever made.##\nAlt-fire fans #{skill_color}#6 shots## at an #{skill_color}#increased fire rate.\n\nCan pierce body armor, enemies, shields and thin walls.##",
-		--CUSTOM HANDGUNS
+		--CUSTOM PISTOLS
 			--Browning Hi-Power
-			["bm_w_hpb"] = "VF Hi-Power Pistol",
+			["bm_w_hpb"] = "Hi-Power",
+			--Browning Hi-Power (Mira)
+			--["bm_w_hpb"] = "Hi-Power",
 			--Walther P99
-			["bm_w_p99"] = "Gruber 988",
+			["bm_w_p99"] = "Gruber 99",
 			--Derringer
-			["bm_w_derringer"] = "Derringer Pistol",
+			["bm_w_derringer"] = "Derringer",
 			--Automag .44
-			["bm_w_amt"] = "Automag .44 Pistol",
+			["bm_w_amt"] = "Automag .44",
 			--Colt Detective
-			["bm_w_coltds"] = "Crosskill Investigator Revolver",
+			["bm_w_coltds"] = "Crosskill Investigator",
 			["bm_lemon_dmc_desc"] = "Imagine yourself with a concealable, high-powered revolver. Now imagine no futher, as the Investigator is exactly that.\n\n#{skill_color}#Deals double damage when attacking enemies from behind.##",
-
-
+			--M6D
+			["kfa_scope"] = "KFA-2 Smart-Link Scope",
+			["kfa_scope_desc"] = "Enable interfacing between your mask and the mounted #{skill_color}#Smart-Link## scope.\n#{risk}#2x magnification.##",
 
 		--Kobus 90--
-		["bm_w_p90"] = "Project-90 Submachine Gun",
-		["bm_p90_sc_desc"] = "A bullpup SMG and competitor to the SpecOps-7 SMG. Frequently commented on as looking like a futuristic space gun.\n\n#{skill_color}#Deals 80% of its damage through body armor and headshots deal 11% more damage.##",
-		["bm_wp_p90_body_p90_tan"] = "Tan Body",
-		["bm_wp_90_body_boxy"] = "OMNIA Assault Frame",
+		["bm_w_p90"] = "Project-90",
+		["bm_p90_sc_desc"] = "A bullpup SMG and competitor to the SpecOps-7 SMG. Frequently commented on as looking like a futuristic space gun.\n\n#{skill_color}#Deals 80% of its damage through body armor and headshots deal 33% more damage.##",
+		["bm_wp_p90_body_p90_tan"] = "Tan Stock",
+		["bm_wp_90_body_boxy"] = "OMNIA Assault Stock",
 		["bm_wp_90_body_boxy_desc"] = "Recovered from the desolated remains of an old OMNIA warehouse, this frame makes no difference to the weapon's handling or its functionality whatsoever, but its block-like aesthetic surely makes it a nice thing to have.",
 		--Spec Ops
-		["bm_w_mp7"] = "SpecOps-7 Submachine Gun",
-		["bm_mp7_sc_desc"] = "A lightweight SMG and competitor to the Project-90 SMG. Doesn't have an undermounted grenade launcher as some sources may lead you to believe.\n\n#{skill_color}#Deals 80% of its damage through body armor and headshots deal 11% more damage.##",
+		["bm_w_mp7"] = "SpecOps-7",
+		["bm_mp7_sc_desc"] = "A lightweight SMG and competitor to the Project-90 SMG. Doesn't have an undermounted grenade launcher as some sources may lead you to believe.\n\n#{skill_color}#Deals 80% of its damage through body armor and headshots deal 33% more damage.##",
+		--Tec-9
+		["bm_w_tec9"] = "T3K Urban",
+		["bm_w_x_tec9"] = "Akimbo T3K Urbans",
+		--Heather
+		["bm_w_sr2"] = "Heather-2M",
+		["bm_w_x_sr2"] = "Akimbo Heather-2Ms",
+		--CMP
+		["bm_w_mp9"] = "CMP-9",
+		--Miyaka
+		["bm_w_pm9"] = "Miyaka 9 Special",
+		--Micro Uzi
+		["bm_w_baka"] = "Micro Uzi",
+		["bm_w_x_baka"] = "Akimbo Micro Uzis",
 		--Cobra/Skorpion
+		["bm_w_scorpion"] = "Cobra",
+		["bm_w_x_scorpion"] = "Akimbo Cobras",
 		["bm_wp_scorpion_m_extended"] = "Dual Magazines",
+		--Tatonka
+		["bm_w_coal"] = "Tatonka",
+		--AK Gen
+		["bm_w_vityaz"] = "AK Gen 21 Tactical",
+		--Signature SMG
+		["bm_w_shepheard"] = "Signature-10", 
 		--Compact-5/MP5
-		["bm_w_mp5"] = "Compact-5 Submachine Gun",	
+		["bm_w_mp5"] = "Compact-5",	
+		["bm_w_x_mp5"] = "Akimbo Compact-5s",	
 		["bm_mp5_sc_desc"] = "The little sister to the Gewehr-3.\nFast-firing, accurate and easy to handle, what more could you want out of an SMG?",
+		--Swedish K
+		["bm_w_m45"] = "Swedish K",
 		--Pachett/Sterling
+		["bm_w_sterling"] = "Patchette L2A1",
 		["bm_wp_sterling_b_e11"] = "BlasTech E-11 Barrel",
 		["bm_wp_sterling_b_e11_desc_sc"] = "Tech said to have come from #{skill_color}#a galaxy far, far away## converts this weapon to #{risk}#fire bolts of plasma## and utilize a #{skill_color}#recharging magazine.##\n\nRecharge delay: #{skill_color}#1s##\nRecharge rate: #{skill_color}#6/s## #{important_1}#(Halved while overheated)##\nOverheat penalty: #{important_1}#2s##",
 		--Uzi
+		["bm_w_uzi"] = "Uzi",
 		["bm_uzi_sc_desc"] = "While slow firing, the Uzi makes for a reliable, easy to control SMG that can still deliver a punch, especially now given its .41 AE conversion",
 		--Chicago Typewriter
+		["bm_w_m1928"] = "Chicago Typewriter",
 		["bm_thompson_sc_desc"] = "Sporting a high-capacity drum magazine, you too can bring on the mobster heat as you mow down your enemies.",	
+		--Mark 10
+		["bm_w_mac10"] = "Mark 10",
+		["bm_w_x_mac10"] = "Akimbo Mark 10s",
 		--MP40
+		["bm_w_erma"] = "MP 40",
 		["bm_erma_sc_desc"] = "A fairly reliable SMG that saw widespread use in the hands of infantrymen during WWII, just don't use the magazine as a grip.",
-		
+		--Jackal
+		["bm_w_schakal"] = "Jackal",
+		--Kross Vertex
+		["bm_w_polymer"] = "Kross Vertex",
 		--CUSTOM SMGs
+			--LWRC
+			["bm_w_smg45"] = "FT Striker .45",
+			["bm_w_smg45_desc"] = "An American clone of the AMP-45.",
 			--Typhoon
-			["bm_w_crysis3_typhoon"] = "Typhoon Submachine Gun",
-			["bm_w_crysis3_typhoon_desc"] = "\"It's the purest form of expression, and right now I've got a lot to say.\"\n\nUtilizing superposed loading technology, this 10-barrelled SMG spits lead out at blisteringly high speeds.",
+			["bm_w_crysis3_typhoon"] = "CRYNET Typhoon",
+			["bm_w_crysis3_typhoon_desc"] = "\"It's the purest form of expression, and right now #{important_1}#I've got a lot to say##\"\n\nUtilizing #{risk}#superposed loading## technology, this 10-barrelled machine gun trades damage for spitting lead out at blisteringly high speeds.\n\nAlt-fire fires a #{skill_color}#volley## of #{skill_color}#10## rounds down range.",
 
 
 		--Bootleg/HK416c
-		["bm_w_tecci"] = "Bootleg LMG",
+		["bm_w_tecci"] = "Bootlegger",
 		["bm_w_tecci_desc_sc"] = "A piston operated rifle specced out like an LMG that can accurately spit lead.",
 		--KSP/M249
-		["bm_w_m249"] = "KSP-90 LMG",
+		["bm_w_m249"] = "KSP-90",
 		["bm_m249_sc_desc"] = "Reloading is a pain in the ass, but chances are that everybody will be dead before you even need to reload.",
 		--RPK
-		["bm_w_rpk"] = "RPK LMG",
+		["bm_w_rpk"] = "RPK",
 		["bm_rpk_sc_desc"] = "A good choice when you want your bullet-hose to be on target and a little more Eastern Bloc.",
 		--Brenner 21/HK21
-		["bm_w_hk21"] = "Brenner-21 MMG",
+		["bm_w_hk21"] = "Brenner-21",
 		["bm_hk21_sc_desc"] = "The big-little sister to the Gewehr-3. Comes with an increased fire rate for even greater suppressive abilties.",	
 		--M60
-		["bm_w_m60"] = "M60 MMG",
+		["bm_w_m60"] = "M60",
 		["bm_m60_sc_desc"] = "Nicknamed 'The Pig' for being hungry for ammo and incredibly cumbersome. Expect anyone down range to be a closed casket.",	
 		--Ksp 58
-		["bm_w_par"] = "KSP-58B MMG",	
+		["bm_w_par"] = "KSP-58B",	
 		["bm_par_sc_desc"] = "A heavier sibling machinegun to the KSP-90 typically mounted on vehicles. Trades mobility for an even bigger bullet.",	
 		--Buzzsaw/Mg42
-		["bm_w_mg42"] = "Buzzsaw-42 MMG",	
+		["bm_w_mg42"] = "Buzzsaw-42",	
 		["bm_wolf_brigade_sc_desc"] = "\"We are not men disguised as mere dogs.\nWe are #{important_1}#wolves## disguised as mere men.\"\n\n#{skill_color}#Has 25% less recoil when hipfired.##",
-		["bm_wp_mg42_b_vg38"] = "BlasTech DLT-19 Suppressed Barrel",
+		["bm_wp_mg42_b_vg38"] = "BlasTech DLT-19 Barrel",
 		["bm_wp_mg42_b_vg38_desc_sc"] = "Tech said to have come from #{skill_color}#a galaxy far, far away## converts this weapon to #{risk}#fire bolts of plasma## and utilize a #{skill_color}#recharging magazine.##\n\nRecharge delay: #{skill_color}#2s##\nRecharge rate: #{skill_color}#9/s## #{important_1}#(Halved while overheated)##\nOverheat penalty: #{important_1}#4s##",
 		--["bm_wp_mg42_b_mg34_desc_sc"] = "Slows your rate of fire to 800 RPM",
 		--Versteckt-51/HK51B
-		["bm_w_hk51b"] = "Versteckt-51B MMG",
+		["bm_w_hk51b"] = "Versteckt-51B",
 		["bm_hk51b_sc_desc"] = "Aftermarket conversion of the Brenner-21, shrinking this MG down to Compact-5 sizes and increasing its rate of fire even further.",
 		--M134
 		["bm_m134_sc_desc"] = "\"Each step you take is paved with the corpses of your enemies...\"\n\n#{risk}#Has a brief spin-up period before firing; aiming keeps the weapon spun-up.##",
 		--Microgun
 		["bm_shuno_sc_desc"] = "\"This is your road. When you come, you'll walk it alone.\"\n\n#{risk}#Has a brief spin-up period before firing; aiming keeps the weapon spun-up.##",
 
-
-
-
-
-
-		--AA12
-		["bm_aa12_sc_desc"] = "Box magazine fed full-auto only shotgun. Great for making lasting impressions.",
+		--Grimm
+		["bm_w_basset"] = "Grimm 12G",	
 		--Saiga
+		["bm_w_saiga"] = "IZHMA 12G",
 		["bm_saiga_sc_desc"] = "This fully automatic shotgun is perfect for those days you just don't feel like aiming.",
+		--AA12
+		["bm_w_aa12"] = "Steakout 12G",
+		["bm_aa12_sc_desc"] = "Box magazine fed full-auto only shotgun. Great for making lasting impressions.",
 		--Spas12
+		["bm_w_spas12"] = "Predator 12G",
 		["bm_spas12_sc_desc"] = "A heavier and more complicated alternative to other semi-auto shotguns, features an almost alien alternative firing mode.",
 		--Benelli
+		["bm_w_benelli"] = "M1014",
 		["bm_benelli_sc_desc"] = "Top of the line tactical shotgun. Perfect for clearing particularly busy rooms.",
 		--Argos III
-		["bm_ultima_sc_desc"] = "Nothing says modern like plastic and aluminum, it even comes with a USB slot to charge your phone.\n\nReloads #{skill_color}#2## shells at a time.",		
+		["bm_w_ultima"] = "Argos III",
+		["bm_ultima_sc_desc"] = "Nothing says modern like plastic and aluminum, it even comes with a USB slot to charge your phone.\n\nReloads #{skill_color}#2## shells at a time.",	
+		--Street Sweeper
+		["bm_w_striker"] = "Street Sweeper",	
+		--Goliath
+		["bm_w_rota"] = "Goliath 12G",	
+		--VD-12
+		["bm_w_sko12"] = "VD-12",	
+		["bm_w_x_sko12"] = "Akimbo VD-12s",	
+		--GSPS
+		["bm_w_m37"] = "GSPS 12G",
 		--Loco
+		["bm_w_serbu"] = "Locomotive 12G",
 		["bm_serbu_sc_desc"] = "Aftermarket version of the Reinfeld 880 that has been cut down in size; for those who want concealability and a desire to destroy their wrists.",
 		--Reinfeld 88
-		["bm_w_m1897"] = "Repeater 1897 Shotgun",
+		["bm_w_m1897"] = "Repeater 1897",
 		["bm_menu_sc_m1897_desc"] = "This iconic historical piece has seen everything from muddy trenches to thick pacific island jungles, and has a nasty reputation of being quite an effective firestarter.\n\nAlt-fire allows for #{skill_color}#slam-firing at 3x the fire rate## at the cost of #{important_1}#more recoil, spread and the inabilty to aim down your sights.##",
 		--Mosconi 12g
+		["bm_w_m590"] = "Mosconi Tactical 12G",
 		["bm_menu_sc_m590_desc"] = "An improved version of an old classic. A fine choice for LEOs, soldiers, private citizens, and bank robbers alike.",
 		--R870
+		["bm_w_r870"] = "Reinfeld 880",
 		["bm_menu_sc_r870_desc"] = "Long arm of the law and freedom. Now freedom has a shotgun and shells with your name on it.",		
 		--KSG
+		["bm_w_ksg"] = "Raven 12G",
 		["bm_menu_sc_ksg_desc"] = "Everything is plastic in the future! Bullpup shotgun with questionable craftsmanship, an LWI specialty.",		
 		--Breaker 10g
-		["bm_menu_sc_boot"] = "Breaker 10G Shotgun",		
+		["bm_w_boot"] = "Breaker 10G",		
 		["bm_menu_sc_boot_desc"] = "An antique shotgun sporting a powerful 10g shotgun shell and an even more potent badass factor. Come with me if you want to live.",	
+		--Claire Angélique Florette du Bertrand
+		["bm_w_coach"] = "Claire S/S 12G",	
 		--Mosconi
+		["bm_w_huntsman"] = "Mosconi S/S 12G",	
 		["bm_menu_sc_huntsman_desc"] = "Double the barrels, double the fun. While limited when it comes to magazine size, #{skill_color}#two triggers## allows you to unleash a ragnarok of buckshot on any unfortunate SOB in the same room as you.",		
-		--Akimbo Judge
+		--Judge
+		["bm_w_judge"] = "The Judge",
+		["bm_w_x_judge"] = "Judge & Jury", --really wish weaponlib's right_only worked w/ the Judges so that we could have the 'right' one be the reinforced frame. a real shame.
 		["bm_x_judge_sc_desc"] = "Judge and Jury, and with two of these portable room-clearers, you're the executioner.",
 		--Joceline
-		["bm_b682_sc_desc"] = "A competition over-under typically reserved for sporting events, only instead of clay pigeons you'll be using it for popping helmets.",		
+		["bm_w_b682"] = "Joceline O/U 12G",		
+		["bm_b682_sc_desc"] = "A competition over-under typically reserved for sporting events, only instead of clay pigeons you'll be using it for popping helmets.",			
 		--Custom Shotguns
-		--Doomstick
-		["bm_w_quadbarrel"] = "Doomstick Shotgun",
-		["bm_wp_wpn_fps_upg_quadbarrel_ammo_buckshot_close_desc"] = "Type of pellets effective at close range.\n#{skill_color}#Increases pellet count to 10.##",
-		["bm_wp_wpn_fps_upg_quadbarrel_ammo_buckshot_med_desc"] = "Type of pellets effective at medium range.\n#{important_1}#Lowers pellet count to 6.##",
-		["bm_wp_wpn_fps_upg_quadbarrel_ammo_slug_desc"] = "Powerful steel slug effective at long range.\nCapable of #{skill_color}#piercing body armor, enemies, shields, titan shields, and walls.##",
-		--MP153
-		["bm_w_mp153"] = "Argos I Shotgun",
+			--Doomstick
+			["bm_w_quadbarrel"] = "Doomstick",
+			["bm_wp_wpn_fps_upg_quadbarrel_ammo_buckshot_close_desc"] = "Type of pellets effective at close range.\n#{skill_color}#Increases pellet count to 10.##",
+			["bm_wp_wpn_fps_upg_quadbarrel_ammo_buckshot_med_desc"] = "Type of pellets effective at medium range.\n#{important_1}#Lowers pellet count to 6.##",
+			["bm_wp_wpn_fps_upg_quadbarrel_ammo_slug_desc"] = "Powerful steel slug effective at long range.\nCapable of #{skill_color}#piercing body armor, enemies, shields, titan shields, and walls.##",
+			--MP153
+			["bm_w_mp153"] = "Argos I",
 
 			
 		--S552
+		["bm_w_s552"] = "Commando 552",				
 		["bm_s552_sc_desc"] = "An elegant alternative to other compact 5.56mm rifles, the preferred choice among DHS. Uses special Swiss-made 5.6mm rounds that offer better range.",				
 		--M733/AMCAR
+		["bm_w_amcar"] = "AM-CAR",
 		["bm_amcar_sc_desc"] = "The most mass produced .223 rifle the world has ever seen. A great all-purpose rifle.",
 		--G36
+		["bm_w_g36"] = "JP36",		
 		["bm_g36_sc_desc"] = "Another top shelf contender for the 'best plastic rifle' award.",		
 		--VHS/Lion's Roar
+		["bm_w_vhs"] = "Lion's Roar",		
 		["bm_vhs_sc_desc"] = "A difficult weapon to wield that boasts impressive performance in the hands of the capable.\n\nSaid to carry the spirit of Dragan's fury in combat.",		
 		--Olympic/Para
+		["bm_w_olympic"] = "Para-23",
 		["bm_menu_sc_olympic_desc"] = "A grossly oversized pistol firing a rifle round in a fully automatic manner. This gun is an existential crisis that shoots bullets.",
 		--TAR-21/Para
-		["bm_menu_sc_komodo_desc"] = "A lot of damage in a seriously compact package. Great for CQB or ranged encounters.",		
+		["bm_w_komodo"] = "Tempest-95",
+		["bm_menu_sc_komodo_desc"] = "A lot of damage in a seriously compact package. Great for CQB or ranged encounters.",
 		--Famas
+		["bm_w_famas"] = "Clarion 5.56",
 		["bm_menu_sc_famas_desc"] = "This weapon trades magazine capacity for rate of fire and accuracy. A very effective tool for shooting apples off of people's heads.",
 		--OICW--
+		["bm_w_osipr"] = "SABR",
+		["bm_w_osipr_gl"] = "SABR Grenade Launcher",
 		["bm_w_osipr_desc_pc"] = "X-Generation weapon technology. Equipped with a #{skill_color}#20mm grenade launcher.##\nPress #{skill_color}#$BTN_BIPOD## to switch to the Grenade Launcher.",
 		["bm_w_osipr_desc"] = "X-Generation weapon technology. Equipped with a #{skill_color}#20mm grenade launcher.##\nHold #{skill_color}#$BTN_BIPOD## to switch to the Grenade Launcher.",
 		--M4/CAR-4
-		["bm_m4_sc_desc"] = "Reliable, compact, and deadly. Sporting a more controllable rate of fire over the AMCAR, the CAR-4 makes for a popular 5.56mm rifle among modern militaries.",
+		["bm_w_m4"] = "CAR-4",
+		["bm_m4_sc_desc"] = "Reliable, compact, and deadly. Sporting a more controllable rate of fire over the AM-CAR, the CAR-4 makes for a popular 5.56mm rifle among modern militaries.",
 		["bm_wp_upg_fg_m4a1"] = "Em-Four Kit",
 		["bm_wp_upg_fg_m4a1_desc"] = "This Exclusive Set swaps out the aftermarket flip-up sights for a more traditional set up. #{risk}#Overrides the appearance of your handguard.##",
 		["bm_wp_upg_s_fixed"] = "CAR Fixed Stock",
 		--AK5
+		["bm_w_ak5"] = "Ak 5",
 		["bm_ak5_sc_desc"] = "A good all-purpose rifle famous for bank robberies and confusing the uninformed regarding its bullet dimensions.",
 		--Union 5.56
+		["bm_w_corgi"] = "Union 5.56",	
 		["bm_corgi_sc_desc"] = "Despite the reputation, this bullpup is not at all sea-worthy.",	
+		["bm_wp_corgi_b_short"] = "MSG Barrel",
 		--UAR
+		["bm_w_aug"] = "UAR A3",	
 		["bm_aug_sc_desc"] = "Classic bullpup rifle. Great all arounder for extra dead bad guys.",	
+		["bm_wp_upg_b_hbar"] = "Heavy Barrel",	
 		--AK17
+		["bm_w_ak12"] = "AK-17",	
 		["bm_flint_sc_desc"] = "The modern interpretation of the classic AK. Features a potent #{skill_color}#2 round burst## and has quite the identity crisis.",	
 		--AK 5.45
-		["bm_w_ak74"] = "AK 5.45 Rifle",
+		["bm_w_ak74"] = "AK 5.45",
 		["bm_ak74_sc_desc"] = "Despite firing a smaller round than its 7.62 sister, this rifle is by no means any less deadly.",
 		--CR 805
+		["bm_w_hajk"] = "CR 805B",
 		["bm_menu_sc_hajk_desc"] = "A younger, modern, cousin to the classic bullet-hose Cobra. This one features various firing modes and even multiple round conversions... not that you'll be getting those.",
 		--AMR-16
-		["bm_m16_sc_desc"] = "This classic rifle serves as the predecessor to the AMCAR. What it lacks in concealability and rate of fire it makes up for in range and power.",
+		["bm_w_m16"] = "AMR-16",
+		["bm_m16_sc_desc"] = "This classic rifle serves as the predecessor to the AM-CAR. What it lacks in concealability and rate of fire it makes up for in range and power.",
 		--Queen's Wrath
+		["bm_w_l85a2"] = "Queen's Wrath",
 		["bm_l85a2_sc_desc"] = "Though its reputation has been marred by earlier iterations, this rifle stands to be one of the most accurate automatics ever made.\nStill an ergonomic nightmare though.",
 		--AK 7.62
-		["bm_w_akm"] = "AK 7.62 Rifle",
+		["bm_w_akm"] = "AK 7.62",
 		["bm_akm_sc_desc"] = "This rifle will be a handy thing to have around when body armor starts getting popular in DC.\n\nThe Go-To for insurgents and crazy regimes throughout the world.",
-		["bm_w_akm_gold"] = "Golden AK 7.62 Rifle",
+		["bm_w_akm_gold"] = "Golden AK 7.62",
 		["bm_akm_gold_sc_desc"] = "What does a heister, a Mexican drug lord and a megalomaniac dictator have in common? A fascination for gold-plated rifles, of course.",
 		--Queen's Wrath
 		["bm_l85a2_sc_desc"] = "Though its reputation has been marred by earlier iterations, this rifle stands to be one of the most accurate automatics ever made.\n\nStill an ergonomic nightmare though.",
 		--KETCHUPKNOB--
 		--ASPIRING POKEMON TRAINER, ASH KETCHNOV--
-		["bm_w_groza"] = "OB-14st Byk-1 Rifle", --Hopefully less silly than its Ketchup name
+		["bm_w_groza"] = "OB-14st Byk-1", --Hopefully less silly than its Ketchup name
 		--"OB-14st" being an awful combo of "Oblast" (a word for region/zone/area, as well as literally having BLAST in the name) and the "14" in "OTs-14"
 		--Although, a Russian word for "region/zone/area" followed up with a Polish word...
 		--Eh, whatever
 		["bm_groza_sc_desc_pc"] = "The bullpup sister of the AK family, kitted out for those who want a bit more boom.\n\nPressing #{skill_color}#$BTN_BIPOD## switches to the undermounted grenade launcher.",
 		["bm_groza_sc_desc"] = "The bullpup sister of the AK family, kitted out for those who want a bit more boom.\n\nHolding #{skill_color}#$BTN_BIPOD## switches to the undermounted grenade launcher.",
 		--Krinkov
+		["bm_w_akmsu"] = "Krinkov",
 		["bm_akmsu_sc_desc"] = "A small rifle useful for taking down big men. Not to be underestimated as this rifle can hold its own in just about any scenario.",
 		--Akimbo Krinkov
+		["bm_w_x_akmsu"] = "Akimbo Krinkovs",
 		["bm_x_akmsu_sc_desc"] = "A small rifle useful for taking down big men. Not to be underestimated as this rifle can hold its own in just about any scenario.",
-			
 		--CUSTOM ARs
 			--AN-94/92
-			["bm_w_tilt"] = "KVK-99 Rifle",
+			["bm_w_tilt"] = "KVK-99",
 			["bm_tilt_sc_desc"] = "#{risk}#The first 2 rounds of each trigger pull## are fired at #{skill_color}#3x the rate of fire.##",
 			--HK G36
-			["bm_w_g36k"] = "SG36K Rifle",
+			["bm_w_g36k"] = "SG36K",
 			--SCAR-L
-			["bm_w_scarl"] = "VF 16S Rifle",
+			["bm_w_scarl"] = "Eagle Light",
 			--Valmet Rk.62
-			["bm_w_rk62"] = "Velmer Rifle",
+			["bm_w_rk62"] = "Velmer",
+			--NV4
+			["bm_nova4_sc_desc"] = "Full-auto ballistic rifle. A moderate fire rate yields increased stability for best-in-class accuracy. Ideal for mid-to-long range engagements",
+			["bm_wp_wpn_fps_ass_nova4_flatline_desc"] = "Grants the following perks:\n#{heat_warm_color}#Precision:##\n#{skill_color}#No damage fall off## with #{important_1}#reduced## fire rate.\n#{item_stage_2}#Focus:##\n#{skill_color}#Increased## accuracy.",
+			["bm_wp_wpn_fps_ass_nova4_chaos_desc"] = "Grants the following perks:\n#{heat_warm_color}#Celerity:##\n#{skill_color}#Increases## hipfire fire rate but #{important_1}#reduces## ADS fire rate.\n#{item_stage_2}#Steady:##\n#{skill_color}#Reduced## hipfire spread.",
 
 	
+		--Little Friend
+		["bm_w_contraband"] = "Bigger Friend 7.62",
+		["bm_m203_weapon_sc_desc_pc"] = "The big sister to Scarface's personal \"Little Friend\" AMR-16.\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##\nPressing #{skill_color}#$BTN_BIPOD## switches to the undermounted grenade launcher.",
+		["bm_m203_weapon_sc_desc"] = "The big sister to Scarface's personal \"Little Friend\" AMR-16.\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##\nHolding #{skill_color}#$BTN_BIPOD## switches to the undermounted grenade launcher.",
+		--FAL
+		["bm_w_fal"] = "Falcon 58",	
+		["bm_fal_sc_desc"] = "The Right Arm of the Free World. When you have to cut down mooks with heavy body armor, this is the gun you turn to.\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",	
+		--ASS VAL
+		["bm_w_asval"] = "Valkyria",
+		["bm_asval_sc_desc"] = "Tiny rifle bullets might do for your run of the mill gunfighter, but others might go for this gun.\n\nComes #{skill_color}#integrally suppressed## and #{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",
+		--Galil
+		["bm_w_galil"] = "Defender 7.62",
+		["bm_galil_sc_desc"] = "A copycat of a rifle based on a Finnish design, which itself was also a derivative of the classic AK. Imitation is the sincerest form of flattery.\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",
+		--SCAR
+		["bm_w_scar"] = "Eagle Heavy",			
+		["bm_scar_sc_desc"] = "The battle rifle of the future. With a good balance of handling and ballistic damage, it's become popular among USMC and special forces.\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",		
 		--Galant--
+		["bm_w_ching"] = "M1 Galant",
 		["bm_galant_sc_desc"] = "A classic WW2 battle rifle. Reliable, accurate, and #{skill_color}#quick to reload when emptied.\n\nDeals 80% of its damage through body armor and can pierce enemies and thin walls.##",
 		--M308
-		["bm_m14_sc_desc"] = "Fast and accurate, just be sure to keep the recoil in check, especially on full-auto.\n\n#{skill_color}#Deals 80% of its damage through body armor and can pierce enemies and thin walls.##",
-		--FAL
-		["bm_fal_sc_desc"] = "The Right Arm of the Free World. When you have to cut down mooks with heavy body armor, this is the gun you turn to.\n\n#{skill_color}#Deals 80% of its damage through body armor and can pierce enemies and thin walls.##",	
-		--SCAR
-		["bm_scar_sc_desc"] = "The battle rifle of the future. With a good balance of handling and ballistic damage, it's become popular among USMC and special forces.\n\n#{skill_color}#Deals 80% of its damage through body armor and can pierce enemies and thin walls.##",			
+		["bm_w_m14"] = "M308",
+		["bm_m14_sc_desc"] = "Fast and accurate, just be sure to keep the recoil in check, especially on full-auto.\n\n#{skill_color}#Deals 80% of its damage through body armor and can pierce enemies and thin walls.##",	
 		--G3
 		["bm_w_g3"] = "Gewehr-3",
 		["bm_g3_sc_desc"] = "Acting as the big sister to the Compact-5 and Brenner-21, this rifle's accuracy rivals that of snipers.\n\n#{skill_color}#Deals 80% of its damage through body armor and can pierce enemies and thin walls.##",	
-		--Little Friend
-		["bm_w_contraband"] = "Bigger Friend 7.62 Rifle",
-		["bm_m203_weapon_sc_desc_pc"] = "The big sister to Scarface's personal AMR-16.\n\n#{skill_color}#Deals 80% of its damage through body armor and can pierce enemies and thin walls.##\nPressing #{skill_color}#$BTN_BIPOD## switches to the undermounted grenade launcher.",
-		["bm_m203_weapon_sc_desc"] = "The big sister to Scarface's personal AMR-16.\n\n#{skill_color}#Deals 80% of its damage through body armor and can pierce enemies and thin walls.##\nHolding #{skill_color}#$BTN_BIPOD## switches to the undermounted grenade launcher.",
-		--ASS VAL
-		--["bm_w_asval"] = "Valkyria",
-		["bm_asval_sc_desc"] = "Tiny rifle bullets might do for your run of the mill gunfighter, but others might go for this gun.\n\nComes #{skill_color}#integrally suppressed## and #{skill_color}#Deals 80% of its damage through body armor and can pierce enemies and thin walls.##",
-		--Galil
-		["bm_w_galil"] = "Defender 7.62 Rifle",
-		["bm_galil_sc_desc"] = "A copycat of a rifle based on a Finnish design, which itself was also a derivative of the classic AK. Imitation is the sincerest form of flattery.\n\n#{skill_color}#Deals 80% of its damage through body armor and can pierce enemies and thin walls.##",
 		--KS12
+		["bm_w_shak12"] = "KS-12 Urban",
 		["bm_shak12_sc_desc"] = "A battle rifle in a bullpup design sporting a very potent 12.7x55mm cartridge. Supreme carnage in a seriously compact package.\n\n#{skill_color}#Deals 80% of its damage through body armor and can pierce enemies and thin walls.##",	
-		--ShAK-12
-		["bm_wp_shak12_body_vks"] = "\"VISha\" Stock",		
+		["bm_shak12_sc_oden_desc"] = "A battle rifle in a bullpup design sporting a very potent 12.7x55mm cartridge. Supreme carnage in a seriously compact package.\n\n#{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",	
+		["bm_wp_shak12_body_vks"] = "\"VISha\" Stock",
 		["bm_wp_shak12_body_vks_ap_desc"] = "Loads high-powered rounds that #{skill_color}#grants full armor penetration and shield piercing capabilites.## Stock and bolt are reinforced with heavier materials #{important_1}#reducing rate of fire.##",
 		
 		--Custom DMRs
@@ -1556,75 +1666,106 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization", function(loc)
 			["bm_xeno_sc_desc_pc"] = "From \"Armat\" comes this strange piece of space-age technology. Comes equipped with an #{skill_color}#integrated grenade launcher.##\n\nPress #{skill_color}#$BTN_BIPOD## to switch to the grenade launcher.",
 			["bm_xeno_sc_desc"] = "From \"Armat\" comes this strange piece of space-age technology. Comes equipped with an #{skill_color}#integrated grenade launcher.##\n\nHold #{skill_color}#$BTN_BIPOD## to switch to the grenade launcher.",
 			--VSS
-			["bm_w_vss"] = "Viktoriya Rifle",
-			["bm_vss_sc_desc"] = "A variant of the Valkyria configured for better range and accuracy.\n\nComes #{skill_color}#integrally suppressed## and #{skill_color}#Deals 80% of its damage through body armor and can pierce enemies and thin walls.##",
+			["bm_w_vss"] = "Viktoriya",
+			["bm_vss_sc_desc"] = "A variant of the Valkyria configured for better range and accuracy.\n\nComes #{skill_color}#integrally suppressed## and #{skill_color}#deals 80% of its damage through body armor and can pierce enemies and thin walls.##",
 			--G3 HK79
-			["bm_w_g3hk79"] = "Gewehr-A3 GL79 Rifle",
-			["bm_g3hk79_sc_desc_pc"] = "A variant of the Gewehr-3 that comes equipped with an #{skill_color}#underbarrel grenade launcher.##\n\nPress #{skill_color}#$BTN_BIPOD## to switch to the grenade launcher.",
+			["bm_w_g3hk79"] = "Gewehr-A3 w/ GL79",
+			["bm_g3hk79_sc_desc_pc"] = "A variant of the Gewehr-3 that comes equipped with an #{skill_color}#underbarrel grenade launcher## and #{skill_color}#deals 80% of its damage through body armor and can pierce enemies and thin walls.##\n\nPress #{skill_color}#$BTN_BIPOD## to switch to the grenade launcher.",
 			--BO3 XR2
-			["bm_w_xr2"] = "XR-2 Rifle",
-			["bm_xr2_sc_desc"] = "The XR-2 is a versatile rifle designed for the most dynamic of combat scenarios and features a unique #{risk}#3-round auto-burst## that provides 	an #{skill_color}#increased fire rate while on burst-fire mode.##\n\n#{skill_color}#Deals 80% of its damage through body armor and can pierce enemies and thin walls.##",
+			["bm_w_xr2"] = "XR-2",
+			["bm_xr2_sc_desc"] = "The XR-2 is a versatile rifle designed for the most dynamic of combat scenarios and features a unique #{risk}#3-round auto-burst## that provides an #{skill_color}#increased fire rate while on burst-fire mode.##\n\n#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",
 			["bm_wp_xr2_handle_01_sc"] = "Full-Auto Bolt",
 			["bm_xr2_handle_01_sc_desc"] = "Trade the auto-burst for #{skill_color}#full-auto## at the cost of #{important_1}#no burst fire rate increase.##",
 			["bm_wp_xr2_handle_02_sc"] = "Rapid-Fire Bolt",
 			["bm_xr2_handle_02_sc_desc"] = "Increases burst fire rate to #{skill_color}#950 RPM## at the cost of #{important_1}#lowered recoil mitigation during the burst.\n\nBurst delay and semi-auto fire rate are unaffected.##",
 
 		--MSR
+		["bm_w_msr"] = "Rattlesnake",	
 		["bm_msr_sc_desc"] = "The choice sniper rifle for the US military. Good accuracy, handling, and even concealability makes this a good all purpose sniper rifle.\n\n#{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",	
 		--R700
+		["bm_w_r700"] = "Reinfeld Model 700",	
 		["bm_r700_sc_desc"] = "The predecessor to the Rattlesnake. Good accuracy and handling, even has better range than its younger brother. The downside? Crappy 5 round magazines.\n\n#{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",	
 		--QBU88
+		["bm_w_qbu88"] = "Káng Arms X1",
 		["bm_qbu88_sc_desc"] = "Bullpup sniper platform with an Eastern Bloc inspiration. Like many, good for forcing your will on others.\n\n#{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",
 		--Winchester 1874
+		["bm_w_winchester1874"] = "Repeater 1874",	
 		["bm_winchester1874_sc_desc"] = "The Gun That Won the West. Holy relic of firearms, but no means less deadly with its supply of potent .44-40 ammunition.\n\n#{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",	
 		--TTI(TTY)
-		["bm_w_tti"] = "Tecci .308 Sniper Rifle",
+		["bm_w_tti"] = "Tecci Tactical .308",
 		["bm_tti_sc_desc"] = "One of Wick's personal firearms. It's said there's footage of him practicing 3-gun with this rifle somewhere online.\n\n#{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",
 		--Scunt
+		["bm_w_scout"] = "Pronghorn",
 		["bm_wp_scout_m_extended"] = "Standoff Speed Magazine",
 		--WA2000
-		["bm_w_wa2000"] = "Lebensauger .300 Sniper Rifle",
+		["bm_w_wa2000"] = "Lebensauger .300",
 		["bm_wa2000_sc_desc"] = "Only a few hundred of these prestigious rifles were made; a sniper fitting for a top-tier hitman.\n\n#{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",
 		--Rangerhitter
-		["bm_w_sbl"] = "Rangehitter MK2 Sniper Rifle", --It's not a Beretta gun so "Rangehitter" is the stand-in/fake name for the IRL manufacturer "Marlin"
+		["bm_w_sbl"] = "Rangehitter Mk. 2", --It's not a Beretta gun so "Rangehitter" is the stand-in/fake name for the IRL manufacturer "Marlin"
 		["bm_sbl_sc_desc"] = "A 20th century lever action that offers a bigger slug of lead compared to the 19th century. Expect extra kick and extra dead pigs with .45-70 on your side.\n\n#{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",	
 		--Model 70
+		["bm_w_model70"] = "Platypus 70",
 		["bm_model70_sc_desc"] = "The Rifleman's Rifle. An early bolt action design made by the same designers of the Repeater 1874.\n\n#{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",			
 		--SVD
+		["bm_w_siltstone"] = "Grom",
 		["bm_siltstone_sc_desc"] = "High powered semi-auto sniper rifle belonging to the AK family. Like most eastern bloc weaponry, its reputation is well earned.\n\n#{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",
 		--Mosin--
-		["bm_mosin_sc_desc"] = "When food is a luxury but you're still in need of a gun comes this cheap, classic bolt-action rifle.\n\nThis weapon reloads in clips of 5 bullets at a time and #{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",
+		["bm_w_mosin"] = "Nagant",
+		["bm_mosin_sc_desc"] = "When food is a luxury but you're still in need of a gun comes this cheap, classic bolt-action rifle.\n\nThis weapon reloads in clips of 5 bullets at a time and #{skill_color}#can pierce body armor, enemies, shields and thin walls.##",
 		["bm_wp_upg_a_tranq_mosin"] = "Tranquilizer Rounds",
-		["bm_wp_upg_a_tranq_mosin_desc"] = "For true oblivion, #{item_stage_2}#The End.##\n\nFire #{stats_positive}#tranquilizer## rounds that #{skill_color}#deal 40 damage/sec over 3 seconds and can stun enemies.##",
+		["bm_wp_upg_a_tranq_mosin_desc"] = "For true oblivion, #{item_stage_2}#The End.##\n\nFire #{stats_positive}#tranquilizer## rounds that #{skill_color}#deal 30 damage/sec over 6 seconds and can stun enemies.##",
 		--Desert Fox
-		["bm_desertfox_sc_desc"] = "A compact bullpup sniper platform, used by Wick during his assault on a Russian mob safehouse.\n\n#{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",			
+		["bm_w_desertfox"] = "Desertfox",
+		["bm_desertfox_sc_desc"] = "A compact bullpup sniper platform, used by Wick during his assault on a Russian mob safehouse.\n\n#{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",
 		--R93
+		["bm_w_r93"] = "R93",
 		["bm_r93_sc_desc"] = "German sniper rifle with a big bullet meant to stop big men. Sniper of choice among police and counter-terrorist paramilitary forces across the globe.\n\n#{skill_color}#Can pierce body armor, enemies, shields and thin walls.##",			
 		--Thanatos--
-		["bm_w_m95"] = "Thanatos .50 cal Anti-Materiel Rifle",
+		["bm_w_m95"] = "Thanatos .50 BMG",
 		["bm_m95_sc_desc"] = "Anti-materiel rifle used to combat small vehicles. Using this on organic targets is probably a war crime.\n\n#{skill_color}#Headshots deal 100% more damage.\nCan pierce enemies, their body armor, shields, titan-shields and thin walls.##",
 		--Custom Snipers
-			["bm_w_m107cq"] = "Mors .50 cal Anti-Materiel Rifle",
+			--Guerilla
+			["bm_w_sgs"] = "Guerilla 553R",	
+			--M107
+			["bm_w_m107cq"] = "Mors .50 BMG",
 			["bm_m107cq_sc_desc"] = "If the Thanatos wasn't up to speed, then the Mors will deliver what you want as a fine, red mist.\n\n#{skill_color}#Headshots deal 100% more damage.\nCan pierce enemies, their body armor, shields, titan-shields and thin walls.##",
-			["bm_w_m200"] = "TF-141 Anti-Materiel Rifle",
+			["bm_w_m200"] = "TF-141",
 			["bm_m200_sc_desc"] = "For those wanting to perform some sweet 360 no-scope ladder-stall shots.\n\n#{skill_color}#Headshots deal 100% more damage.\nCan pierce enemies, their body armor, shields, titan-shields and thin walls.##",
 			--Marlin 1894
-			["bm_w_m1894"] = "Mare's Leg Sniper Rifle",
+			["bm_w_m1894"] = "Mare's Leg",
 			--SPX Centerfire
-			["bm_w_moss464spx"] = "Mosconi SPX Sniper Rifle",
+			["bm_w_moss464spx"] = "Mosconi SPX",
 			--Winchester 1894
-			["bm_w_winchester1894"] = "Repeater 1894 Sniper Rifle",
+			["bm_w_winchester1894"] = "Repeater 1894",
 			--SVD
-			["bm_w_svd"] = "SV7 Sniper Rifle",
+			["bm_w_svd"] = "SV7",
 			["bm_wp_wpn_fps_snp_svd_pso"] = "SV7 Scope",
 			--L115
-			["bm_w_l115"] = "AIM 90M Sniper Rifle",
+			["bm_w_l115"] = "AIM 90M",
+			--Highly Modified CAR-4
+			["bm_hmcar_sc_desc"] = "Before being phased out by law-enforcement, you managed to swipe a case full of these conversion kits.\n\nShoots #{stat_maxed}#titan-sniper rounds## capable of #{skill_color}#piercing enemies, their body armor, shields and thin walls;## Alt-fire shoots a #{event_color}#full power sniper round## for #{skill_color}#twice the ammo and power## that also adds the abilty to #{skill_color}#pierce titan-shields.##",
+			["bm_wp_hmcar_hd_kit"] = "32bit 8K HD Kit",
+			["bm_wp_hmcar_hd_kit_desc"] = "Application has crashed: C++ exception\nCould not load texture because IDirect3D9::CreateTexture call failed.\nDirect3D could not allocate sufficient memory to complete the call.\n\n\n\n\n\n\n ",
 
+		--GL40		
+		["bm_w_gre_m79"] = "GL-40",
+		["bm_w_gre_m79_sc_desc"] = "A thump and a boom.\n\nPress #{skill_color}#$BTN_GADGET## to flip the leaf sight up/down.\n\nThe leaf sight is #{risk}#zeroed to 30 meters.##",
 		--3GL
+		["bm_w_ms3gl"] = "Basilisk 3GL",
 		["bm_ms3gl_sc_desc"] = "Fires custom 40mm rounds superposed in a single chamber. Uses electric primers to fire, allowing for rapid follow-ups in a compact package.\n\nAlt-fire #{skill_color}#fires a burst of 3 grenades.##",
 		--PIGLET/M32
+		["bm_w_m32"] = "Piglet",
 		["bm_m32_sc_desc"] = "Become a \"#{risk}#War Machine##\", show your enemies that no amount of love will protect them and those near them from this 6-shot rotary grenade launcher.",
+		--China Puff
+		["bm_w_china"] = "China Puff",
+		--Compact 40mm
+		["bm_w_slap"] = "Compact 40mm",
+		--Arbiter
+		["bm_w_arbiter"] = "Arbiter",
+		--RPG
+		["bm_w_rpg7"] = "HRL-7",
 		--COMMANDO 101/M202 FLASH
+		["bm_w_ray"] = "Commando 101 FLASH",
 		["bm_ray_sc_desc"] = "Become the \"#{risk}#Grim Reaper##\" with this 4-shot #{heat_warm_color}#incendiary## rocket launcher.\n\nRockets leave behind a #{heat_warm_color}#pool of fire## and explosive damage dealt by this weapon #{skill_color}#instantly destroys turrets.##",
 
 		--Generic weapon descriptions (Keep for custom weapon purposes)--
@@ -1648,10 +1789,12 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization", function(loc)
 		["bm_ap_armor_20_weapon_sc_desc"] = "#{skill_color}#Deals 20% of its damage through body armor.##",
 		["bm_ap_armor_50_weapon_sc_desc"] = "#{skill_color}#Deals 50% of its damage through body armor and can pierce enemies.##",
 		["bm_ap_armor_80_weapon_sc_desc"] = "#{skill_color}#Deals 80% of its damage through body armor and can pierce enemies and thin walls.##",
-		["bm_pdw_gen_sc_desc"] = "#{skill_color}#Deals 80% of its damage through body armor and headshots deal 11% more damage.##",
+		["bm_pdw_gen_sc_desc"] = "#{skill_color}#Deals 80% of its damage through body armor and headshots deal 33% more damage.##",
 		["bm_heavy_ap_weapon_sc_desc"] = "#{skill_color}#Headshots deal 100% more damage.\nCan pierce enemies, their body armor, shields, titan-shields and thin walls.##",
-		["bm_ap_2_weapon_sc_desc"] = "Arrows can be retrieved by picking them up and range increases the longer an arrow is drawn.\n\n#{skill_color}#Can pierce body armor.##",
-		["bm_ap_3_weapon_sc_desc"] = "Arrows can be retrieved by picking them up.\n\n#{skill_color}#Can pierce body armor.##",
+		["bm_heavy_ap_no_mult_weapon_sc_desc"] = "#{skill_color}#Can pierce enemies, their body armor, shields, titan-shields and thin walls.##",
+		["bm_bow_sc_desc"] = "Hold #{skill_color}#$BTN_FIRE## to draw an arrow, release to fire.\nDamage and velocity of the arrow increases as you approach full draw.\n\nPress #{skill_color}#$BTN_AIM## to let down your drawn arrow.\n\nArrows can be retrieved by picking them up.\n#{skill_color}#Can pierce body armor.##",
+		["bm_xbow_sc_desc"] = "Bolts can be retrieved by picking them up.\n\n#{skill_color}#Can pierce body armor.##",
+		["bm_airbow_sc_desc"] = "Arrows can be retrieved by picking them up.\n\n#{skill_color}#Can pierce body armor.##",
 		["bm_40mm_weapon_sc_desc"] = "Press #{skill_color}#$BTN_GADGET## to flip the leaf sight up/down.\n\nThe leaf sight is #{risk}#zeroed to 30 meters.##",
 		["bm_rocket_launcher_sc_desc"] = "Explosive damage dealt by this weapon #{skill_color}#instantly destroys turrets.##",
 		["bm_quake_shotgun_sc_desc"] = "Fires both barrels at once, doubling the number of pellets.",
@@ -1689,32 +1832,43 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization", function(loc)
 
 		-- Melee weapon descriptions (don't forget to call them in blackmarkettweakdata, not weapontweakdata) --
 		["bm_melee_weapon_info"] = "In armed robberies, beating the victims with firearms is usually more common than to shoot or stab them.\n\nSwing speed is determined by the used weapon's concealment rating.",
-		["bm_melee_katana_info"] = "This is no \"tool of justice\" in your hands.\n\nFully charged attacks come out 50% faster, allowing for a faster follow-up slash.",
-		["bm_melee_thebestweapon_info"] = "The best weapon in the game.",
-		["bm_melee_thejobissnotyours_info"] = "This isn't even your sword.\n\nFully charged attacks come out 50% faster, allowing for a faster follow-up slash.",
+		["bm_melee_katana_info"] = "The Shinsakuto-Katana is a masterpiece, but also freshly forged. It has not tasted blood, and has no real heritage or history. It is simply waiting for a wielder with which to create that.\n\nFully charged attacks come out 50% faster, allowing for a faster follow-up slash.\n\nAs Jiro, killing a Cloaker with a charged melee attack will trigger a special kill.",
+			["bm_melee_raiden_info"] = "This is no \"tool of justice\" in your hands.\n\nFully charged attacks come out 50% faster, allowing for a faster follow-up slash.",
+			["bm_melee_thejobissnotyours_info"] = "This isn't even your sword.\n\nFully charged attacks come out 50% faster, allowing for a faster follow-up slash.",
 		["bm_melee_buck_info"] = "Surprisingly effective against modern weapons too.\n\nReduces incoming ranged damage by 10% while charging.", --Buckler Shield
-		["bm_melee_charge_info"] = "Pitch your forks and fork up some pitches.\n\nSprinting forwards starts a sprint charge that deals 45 damage every 0.25 seconds to targets in front of you. This can be increased with skills.\n\nHitting an enemy while sprint charging drains 15% of your max stamina; a killing blow gives back 10%.\n\nYou cannot parry enemy attacks, even when not sprint charging.", -- Randal Pitchfork
+		["bm_melee_briefcase_info"] = "Whatever may be inside, the briefcase itself is shockingly resilient.\n\nReduces incoming ranged damage by 10% while charging.", --Briefcase
+		["bm_melee_pitch_info"] = "Pitch your forks and fork up some pitches.\n\nSprinting forwards starts a sprint charge that deals 45 damage every 0.4 seconds to targets in front of you. This can be increased with skills.\n\nHitting an enemy while sprint charging drains 15% of your max stamina; a killing blow gives back 10%.\n\nYou cannot parry enemy attacks, even when not sprint charging.", --Randal Pitchfork
+			["bm_melee_charge_info"] = "Sprinting forwards starts a sprint charge that deals 45 damage every 0.4 seconds to targets in front of you. This can be increased with skills.\n\nHitting an enemy while sprint charging drains 15% of your max stamina; a killing blow gives back 10%.\n\nYou cannot parry enemy attacks, even when not sprint charging.",
 		["bm_melee_cs_info"] = "Rip and Tear, until it is done.\n\nDeals 30 damage every 0.25 seconds to targets in front of you while charging. This can be increased with skills.\n\nCannot parry enemy attacks.", -- ROAMING FR-
-		["bm_melee_ostry_info"] = "Spiiiiiiiiiin.\n\nDeals 18 damage every 0.25 seconds to targets in front of you while charging. This can be increased with skills.\n\nCannot parry enemy attacks.", --Kazaguruma
+		["bm_melee_ostry_info"] = "Spiiiiiiiiiin.\n\nDeals 18 damage every 0.18 seconds to targets in front of you while charging. This can be increased with skills.\n\nCannot parry enemy attacks.", --Kazaguruma
 		["bm_melee_wing_info"] = "Goes great with a disguise kit!\n\nDeals quadruple damage when attacking enemies from behind.",-- Wing Butterfly Knife
 		["bm_melee_switchblade_info"] = "Designed for violence, deadly as a revolver - that's the switchblade!\n\nDeals double damage when attacking enemies from behind.",-- Switchblade Knife
 		["bm_melee_chef_info"] = "Not sure if this was used for chopping meat from the supermarket.\n\nFully charged hits spread panic.", -- Psycho Knife
 		["bm_melee_headless_sword_info"] = "A sword forged from nightmares.\n\nFully charged hits spread panic.", -- Headless Dozer Sword
-		["bm_melee_goat_info"] = "\"It was too big to be called a sword. Massive, thick, heavy, and far too rough. Indeed, it was like a heap of raw iron.\"\n\nFully charged hits spread panic.", -- im not gaj
-		["bm_melee_great_info"] = "Try thrusting attack, but hole.\n\nCharging an attack by at least 90% performs a thrusting attack, extending range by 1 meter.", -- Great Sword
+			["bm_melee_goat_info"] = "\"It was too big to be called a sword. Massive, thick, heavy, and far too rough. Indeed, it was like a heap of raw iron.\"\n\nFully charged hits spread panic.", -- im not gaj
+		["bm_melee_great_info"] = "Try thrusting attack, but hole.\n\nCharge an attack by at least 90% to perform a thrust, extending range by half a meter.", -- Great Sword
 		["bm_melee_nin_info"] = "Fires nails which have a short effective range and instant travel. Still counts as a melee kill.", -- Pounder
+			["bm_melee_thebestweapon_info"] = "The best weapon in the game.",
 		["bm_melee_iceaxe_info"] = "Deals 50% more headshot damage.", -- Icepick
 		["bm_melee_mining_pick_info"] = "Deals 50% more headshot damage.", --Gold Fever (Pickaxe)
 		["bm_melee_boxing_gloves_info"] = "I didn't hear no bell.\n\nKills performed with the OVERKILL Boxing Gloves instantly refill your stamina.", -- OVERKILL Boxing Gloves
 		["bm_melee_clean_info"] = "Give the cops that extra clean shave they need.\n\nDeals 120 bleed damage over three seconds.", --Alabama Razor
 		["bm_melee_barbedwire_info"] = "There's no afterlife waiting for my sorry ass... and I'm just here... talking to a fucking baseball bat!\n\nDeals 120 bleed damage over three seconds.", --Lucille Baseball Bat
-		["bm_melee_inner_child_info"] = "Get in touch with your inner child.\n\nDeals 120 bleed damage over three seconds.",
+			["bm_melee_bleed_info"] = "Deals 120 bleed damage over three seconds.",
+			["bm_melee_inner_child_info"] = "Get in touch with your inner child.\n\nDeals 120 bleed damage over three seconds.",
 		["bm_melee_spoon_gold_info"] = "Eat 'em up, Eat 'em up, Eat 'em up, Eat 'em up! \n\nHas a 50% chance to deal 120 fire damage and interrupt enemies over 3 seconds.", --Gold Spoon
+			["bm_melee_fire_info"] = "Has a 50% chance to deal 120 fire damage and interrupt enemies over 3 seconds.",
 		["bm_melee_cqc_info"] = "Contains an exotic poison that deals 120 poison damage and carries a 50% chance to interrupt every 1/2 second over 4 seconds.", --Kunai, Syringe
 		["bm_melee_fight_info"] = "Be water, my friend.\n\nParrying an enemy attack deals 120 melee damage to them. This can be increased with skills.", --Empty Palm Kata
 		["bm_melee_slot_lever_info"] = "GIMME A JACKPOT!\n\nHas a 5% chance to deal ten times the damage and knockdown.",
 		["bm_melee_specialist_info"] = "Twice the blades, twice the fun.\n\nMelee attacks deal double damage every hit after the first while drawn.", --Specialist Knives, Talons, Knuckle Daggers, Push Daggers
 		["bm_melee_cleaver_info"] = "He's whacking and hacking and slashing.\n\nDeals 50% less headshot damage in exchange for increased overall effectiveness against the body and limbs.",
+
+		["bm_menu_weapon_bayonet_header"] = "STATS FROM PRIMARY:",
+		["bm_menu_weapon_bayonet_damage"] = "\nADDITIONAL DAMAGE: ##+",
+		["bm_menu_weapon_bayonet_damage_base"] = "\n-BASE: ##",
+		["bm_menu_weapon_bayonet_damage_skill"] = "\n-SKILL: ##+",
+		["bm_menu_weapon_bayonet_range"] = "\nADDITIONAL RANGE: ##+",
 
 		--We assets now--
 		["menu_asset_dinner_safe"] = "Safe",
@@ -1786,15 +1940,22 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization", function(loc)
 		
 		--Weapon categories--
 		["menu_pistol"] = "Pistols",
+		["menu_pistol_single"] = "Pistol",
 			["menu_light_pis"] = "Light Pistols",
 			["menu_heavy_pis"] = "Heavy Pistols",
 		
 		["menu_shotgun"] = "Shotguns",
+		["menu_shotgun_single"] = "Shotgun",
 			["menu_light_shot"] = "Auto Shotguns",
 			["menu_heavy_shot"] = "Light Shotguns",
 			["menu_break_shot"] = "Heavy Shotguns",
 		
 		["menu_smg"] = "Machine Guns",
+		["menu_smg_single"] = "Machine Gun",
+		["menu_lmg"] = "Machine Guns",
+		["menu_lmg_single"] = "Machine Gun",
+		["menu_minigun"] = "Machine Guns",
+		["menu_minigun_single"] = "Machine Gun",
 			["menu_light_smg"] = "Light SMGs",
 			["menu_heavy_smg"] = "Heavy SMGs",
 			["menu_light_mg"] = "LMGs",
@@ -1802,6 +1963,9 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization", function(loc)
 			["menu_miniguns"] = "Gatling Guns",
 
 		["menu_assault_rifle"] = "Rifles",
+		["menu_assault_rifle_single"] = "Rifle",
+		["menu_snp"] = "Rifles",
+		["menu_snp_single"] = "Rifle",
 			["menu_light_ar"] = "Light Rifles",
 			["menu_heavy_ar"] = "Heavy Rifles",
 			["menu_dmr_ar"] = "Marksman Rifles",
@@ -1810,6 +1974,41 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization", function(loc)
 			["menu_antim_snp"] = "Anti-Materiel Rifles",
 
 		["menu_wpn_special"] = "Specials",
+		["menu_wpn_special_single"] = "Special",
+
+		["menu_flamethrower"] = "Flamethrowers",
+		["menu_flamethrower_single"] = "Flamethrower",
+
+		["menu_grenade_launcher"] = "Launchers",
+		["menu_grenade_launcher_single"] = "Launcher",
+
+		["menu_saw"] = "Saws",
+		["menu_saw_single"] = "Saw",
+
+		["menu_bow"] = "Bows",
+		["menu_bow_single"] = "Bow",
+		["menu_crossbow"] = "Crossbows",
+		["menu_crossbow_single"] = "Crossbow",
+
+		["menu_akimbo"] = "Akimbo+",
+
+		["menu_unsupported"] = "Unsupported",
+
+		["st_menu_value"] = "Value:",
+
+		["st_menu_skill_use"] = "SKILL USE:",
+
+
+
+		["menu_reticle_dmc_eotech"] = "TECopt Full",
+		["menu_reticle_dmc_eotech_moa"] = "TECopt MOA Dot",
+		["menu_reticle_dmc_eotech_seggs"] = "TECopt Segmented",
+		["menu_reticle_dmc_ebr_cqb"] = "Maelstrom EBR-CQB",
+		["menu_reticle_dmc_trijicon_chevron"] = "Trigonom Chevron",
+		["menu_reticle_dmc_ncstar"] = "Reconnaissance Cross",
+		["menu_reticle_dmc_lua"] = "Powered by Lua!",
+		["menu_reticle_dmc_dot_4x4"] = "Small Dot",
+		["menu_reticle_dmc_dot_2x2"] = "Tiny Dot",
 		
 		
 		
@@ -1884,9 +2083,6 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Weapons", function(loc
 		["bm_wp_wpn_fps_upg_bajur_m_pants"] = "NO",
 		["bm_wp_wpn_fps_upg_bajur_fg_dmr_desc"] = "Replaces the upper receiver of the Itachi with a .50 Beowulf variant, making the weapon kick a hell of a lot harder, but increasing the size of bulletholes made on law enforcers ten-fold.\n Reduces all stats, except for accuracy and power.",
 
-		--Union 5.56--
-		["bm_wp_corgi_b_short"] = "MSG Barrel",
-
 		--Bipod--
 		["bm_sc_bipod_desc_pc"] = "Mount by pressing #{skill_color}#$BTN_BIPOD## over a valid surface. Press again to dismount.\n\nReduces recoil by #{skill_color}#60%## and increases range by #{skill_color}#30%## while mounted.\n\n#{item_stage_2}#Additional options for mounting can be found in Restoration Mod's extra options menu.##",
 		["bm_sc_bipod_desc"] = "Mount by holding #{skill_color}#$BTN_BIPOD## over a valid surface. Hold again to dismount.\n\nReduces recoil by #{skill_color}#60%## and increases range by #{skill_color}#30%## while mounted.\n\n#{item_stage_2}#Additional options for mounting can be found in Restoration Mod's extra options menu.##",
@@ -1894,6 +2090,13 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Weapons", function(loc
 		["hud_hint_bipod_slide"] = "Cannot mount while sliding",
 		["hud_hint_bipod_air"] = "Cannot mount while airborne",
 		["hud_hint_bipod_lean"] = "Cannot mount while leaning",
+		["hud_hint_bipod_lean"] = "Cannot mount while leaning",
+
+		["hud_interact_autumn_disable"] = "Disabled by Captain Autumn!",
+
+		["hud_assault_restored_down"] = "Assaults Survived - Restoring 1 Down",
+		["hud_assault_remaining_single"] = "1 Assault Remaining Until Down Restore",
+		["hud_assault_remaining_plural"] = " Assaults Remaining Until Down Restore",
 
 		--String override for the stungun--
 		["bm_melee_taser_info"] = "Device that electrocutes and interrupts targets on touch when fully charged.",
@@ -1909,14 +2112,6 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Weapons", function(loc
 		["bm_wp_par_b_short"] = "Comped Barrel",
 
 		["menu_es_rep_upgrade"] = "",	--???--
-
-		["bm_w_lemming"] = "5/7 Pistol",
-
-		["bm_w_x_judge"] = "Judge & Jury", --really wish weaponlib's right_only worked w/ the Judges so that we could have the 'right' one be the reinforced frame. a real shame.
-		["bm_w_x_shrew"] = "Barry & Paul",
-		["bm_w_x_1911"] = "Mustang & Sally",
-		["bm_w_tec9"] = "T3K Urban Submachine Gun",
-		["bm_w_x_tec9"] = "Akimbo T3K Urban Submachine Guns",
 
 		["bm_wp_mp5_fg_mp5sd"] = "SPOOC Foregrip",
 		["bm_wp_hs2000_sl_long"] = "Elite Slide",
@@ -1962,13 +2157,7 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Weapons", function(loc
 		["bm_wp_upg_i_singlefire_desc"] = "LOCKS YOUR WEAPON TO SINGLE-FIRE MODE.",
 		["bm_wp_upg_i_autofire_desc"] = "LOCKS YOUR WEAPON TO FULL-AUTO.",
 
-		--Fixed names for SMGS to ARs--
-		["bm_w_olympic"] = "Para Rifle",
-		["bm_w_akmsu"] = "Krinkov Rifle",
-		["bm_w_x_akmsu"] = "Akimbo Krinkov Rifles",
-		["bm_w_hajk"] = "CR 805B Rifle",
 		
-		["menu_akimbo_assault_rifle"] = "Akimbo Assault Rifle",
 
 		--Throwables--
 		["bm_concussion_desc"] = "Radius: 10m \n- Stuns enemies for up to 4s \n- Enemy accuracy reduced by 50% for 7s \n- Titan-Shields, Titan-Bulldozers and Captains are immune to its stunning effects\n \nThis stunning little beauty will take everyone's breath away, giving you that extra moment to kill them.",
@@ -1986,7 +2175,7 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Weapons", function(loc
 		["bm_wpn_prj_hur_desc"] = "Damage: 360 \n \nThey say a sharp axe is never wrong. A thrown sharp axe couldn't be any more right.",
 		["bm_grenade_electric_desc"] = "Damage: 400 \nRadius: 5m \nFuse: 3s \n \nShrapnel is all well and good but some things need to be fried, and this little beauty is a rather practical beast for dishing out some damage with high voltage.",
 		["bm_grenade_poison_gas_grenade"] = "Manticore-6 Grenade",
-		["bm_grenade_poison_gas_grenade_desc"] = "Damage: 300 over 10s \nRadius: 6m \nDuration (Gas Cloud): 20s \nFuse: 1s after remaining stationary \n- Enemies cannot be poisoned by the same gas cloud more than once\n- Shields, Bulldozers, Grenadiers and Captains are immune to its stunning effects.\n\nThis experimental bio-weapon will emit a sweeping cloud of toxic gas that targets specific genotypes; has been engineered to not harm you or your crew. Victims will experience violent coughing, nausea, vomiting and is lethal to all but the toughest of enemies.\n\nTruly a war-criminal's weapon of choice, peko.",
+		["bm_grenade_poison_gas_grenade_desc"] = "Damage: 300 over 10s \nRadius: 6m \nDuration (Gas Cloud): 12s \nFuse: 1s after remaining stationary \n- Enemies cannot be poisoned by the same gas cloud more than once\n- Shields, Bulldozers, Grenadiers and Captains are immune to its stunning effects.\n\nThis experimental bio-weapon will emit a sweeping cloud of toxic gas that targets specific genotypes; has been engineered to not harm you or your crew. Victims will experience violent coughing, nausea, vomiting and is lethal to all but the toughest of enemies.\n\nTruly a war-criminal's weapon of choice, peko.",
 		
 
 		["bm_wp_wpn_fps_upg_scar_m203_buckshot"] = "40MM Buckshot Rounds",
@@ -1999,6 +2188,53 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Weapons", function(loc
 		["bm_wp_wpn_fps_upg_g3m203_gre_flechette"] = "40MM Flechette Rounds",
 		["bm_wp_wpn_fps_upg_g3m203_gre_flechette_desc"] = "Round loaded with 12 small long range darts.\n\nTotal ammo: 20\nDamage: 240\nAccuracy: 50\nEffective range: 11M\nMaximum range: 22M",
 	})
+
+
+	--local weapon_names = restoration.Options:GetValue("OTHER/WepNames")
+	--[[ 
+		WepNames Options
+		1 = do nothing, use resmod default/in-universe names (i.e. Crosskill Operator, Bootleg)
+		2 = same as 1, but no nicknames (i.e. Bootleg > SG 416c)
+		3 = real names (i.e. SA 1911 Operator, HK 416c)
+		
+	]]
+	if weapon_names then
+		if weapon_names == 2 then
+			LocalizationManager:add_localized_strings({	
+
+			})
+		elseif weapon_names == 3 then
+			LocalizationManager:add_localized_strings({	
+				--Signature 40
+				["bm_w_hs2000"] = "SA XD(M)-40",
+				["bm_wp_hs2000_m_extended"] = "22rnd XD(M)-40 Magazine",
+				["bm_wp_hs2000_sl_custom"] = "Compensated Slide",
+				["bm_wp_hs2000_sl_long"] = "Custom Slide",
+				--Signature 40
+				["bm_w_p226"] = "SIG P226R",
+				["bm_w_x_p226"] = "Akimbo P226Rs",
+				["bm_wp_p226_co_comp_2"] = "SJC Compensator .40",
+				["bm_wp_p226_m_extended"] = "22rnd P226 Magazine",
+				["bm_wp_p226_b_equinox"] = "Equinox Duo-Tone Slide",
+				["bm_wp_p226_b_long"] = "Brushed Long Slide",
+
+				--Crosskill
+				["bm_w_colt_1911"] = "SA 1911 Operator",
+				["bm_w_x_colt_1911"] = "Akimbo 1911 Operators",
+				["bm_wp_1911_co_2"] = "TCII Compensator", --Not 100% but seems to be based off of it
+				["bm_wp_1911_co_1"] = "Clark Heavy Pinmaster", --Not 100% but seems to be based off of it
+				["bm_wp_1911_g_ergo"] = "Pachmayr 1911 Grip",
+				["bm_wp_1911_g_bling"] = "Walnut Grips",
+				["bm_wp_1911_g_engraved"] = "Custom Engraved 1911 Grips",
+				["bm_wp_1911_b_long"] = "Compensated Long Slide",
+				["bm_wp_1911_b_vented"] = "Compensated Two-Tone Slide",
+				["bm_wp_1911_m_extended"] = "12rnd Magazine",
+				--Crosskill Chunky
+				["bm_w_m1911"] = "Colt 1911A1",
+				["bm_w_x_m1911"] = "Akimbo 1911A1s",
+			})
+		end
+	end	
 
 	local twirl = math.rand(1)
 	local shalashaska = 0.06
@@ -2105,8 +2341,9 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Weapons", function(loc
 			["bm_w_m16"] = "is that a clarion",
 			["bm_m16_sc_desc"] = "I'll give you a clip so you can do some damage",
 			["bm_w_x_type54"] = "The twin crosskills",
+			["bm_akmsu_sc_desc"] = "A small rifle useful for taking down #{stat_maxed}#BIG MEN##. Not to be underestimated as this rifle can hold its own in just about any scenario.",
 		})
-	end	
+	end
 	
 end)
 
@@ -2216,7 +2453,7 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 		["debug_equipment_armor_kit"] = "Throwable Case",
 		["bm_equipment_armor_kit_desc"] = "To use the throwable case, you need to place it by holding $BTN_USE_ITEM. Once placed it cannot be moved, but it can be used by you and your crew by holding $BTN_INTERACT to refill your throwables. It can only be used three times.\n\nYou can see how many uses are left by looking into the case.\n\nThe Throwable Case is a concealable case, usually used by a soldier or mercenary to carry specialized weaponry when the heat comes.",
 
-		["bm_equipment_ecm_jammer_desc"] = "To use the ECM Jammer, you need to place it by holding $BTN_USE_ITEM. Once placed it cannot be moved and it will be active for 10 seconds.\n\nYou can toggle the ECM Jammer's feedback ability by interacting with it. The feedback loop will stun enemies every 1.5 seconds within a 25 meter radius. Feedback lasts for 10 seconds and will recharge after 4 minutes.\n\nECM jammers can open ATM machines and temporarily cancel out electronic devices such as cell phones, cameras, and other detection systems easing your way towards your goal.",
+		["bm_equipment_ecm_jammer_desc"] = "To use the ECM Jammer, you need to place it by holding $BTN_USE_ITEM. Once placed it cannot be moved and it will be active for 10 seconds.\n\nYou can activate the ECM Jammer's feedback ability by interacting with it. The feedback loop has a 25 meter radius. The first feedback loop has a 100% chance to stun most enemies, with every 1.5 seconds afterwards having a 60% chance to stun. Feedback lasts for 10 seconds and will recharge after 4 minutes.\n\nECM jammers can open ATM machines and temporarily cancel out electronic devices such as cell phones, cameras, and other detection systems easing your way towards your goal.",
 		["bm_equipment_first_aid_kit_desc"] = "To use the first aid kit, you need to place it by holding $BTN_USE_ITEM. Once placed it cannot be moved, but it can be used by you and your crew by holding $BTN_INTERACT to regain 150 health. First aid kits can only be used once.\n\nThe first aid kit is a collection of supplies and equipment for use in rapidly giving first aid in emergency situations.",
 		["bm_equipment_doctor_bag_desc"] = "To use the doctor bag, you need to place it by holding $BTN_USE_ITEM. Once placed it cannot be moved, but it can be used by you and your crew by holding $BTN_INTERACT to regain 20% of their maximum health and 4% maximum health every 4 seconds for 3 minutes. Doctor bags can be used twice.\n\nThe doctor dag is a portable bag, usually used by a physician or other medical professional to transport medical supplies and medicine.",
 		["bm_equipment_sentry_gun_desc"] = "To use the sentry gun, you need to place it by holding $BTN_USE_ITEM. Upon deployment it will use 40% of your maximum ammo. Upon taking too much damage, it will shut off. While in this state, interacting with it by holding $BTN_INTERACT will place it into an automatic repair mode. Picking up sentries will refund their remaining ammo and repair them. Sentry guns terrify civilians, forcing them to the ground.\n\nThe Sentry Gun automatically aims and fires at targets that are detected by its sensors. It's commonly used as a distraction, drawing attention away from you and your team.",
@@ -2284,7 +2521,7 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 		["loading_new_units_res_8"] = "Titan Shields can only be pierced with the Thanatos, OVE9000 Saw when using Rip and Tear basic, and special AP rounds in Sentry Guns.",
 		["loading_new_units_res_9"] = "Captain Spring and Titan Dozers take bonus headshot damage at all times.",
 		["loading_new_units_res_10"] = "Titan Tasers fire electric rounds that severely restrict your movement temporarily, indicated by a blue UI overlay.",
-		["loading_new_units_res_11"] = "Veteran Cops have quick reflexes that make high damage and slow firing weapons ineffective making fire, explosives, and high DPS weapons ideal.",
+		["loading_new_units_res_11"] = "Veteran Cops will drop Tear Gas grenades on death when killed by anything but a headshot.",
 		["loading_new_units_res_12"] = "Veteran Cops move quickly making shots harder to land.",
 		["loading_new_units_res_13"] = "The Riot Gear clad Titan SWAT are somewhat resistant to melee.",
 		["loading_new_units_res_14"] = "Titan SWAT cannot be taken hostage or converted to fight on your side.",
@@ -2484,7 +2721,11 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 		
 		["mutator_bravos_only"] = "Hardline",
 		["mutator_bravos_only_desc"] = "All enemies are replaced by their PONR equivalents.",
-		["mutator_bravos_only_longdesc"] = "All non-scripted spawn enemies are replaced by their Point of No Return equivalent spawns from Pro-Jobs at all times. FBI SWATs will replace Blue SWATs, and FBI SWATs will be replaced by National Guard Bravo units.",		
+		["mutator_bravos_only_longdesc"] = "All non-scripted spawn enemies are replaced by their Point of No Return equivalent spawns from Pro-Jobs at all times. FBI SWATs will replace Blue SWATs, and FBI SWATs will be replaced by National Guard Bravo units.",
+
+		["mutator_sonic_mod"] = "SoniCmod",
+		["mutator_sonic_mod_desc"] = "Much Deadly Assaults",
+		["mutator_sonic_mod_longdesc"] = "Changes the assaults to be more difficult to survive while adding some twists. \n\nWARNING: By enabling this mutator, you're making your lives A LIVING HELL!",
 
 		["mutator_zombie_outbreak"] = "The Dead Walking",
 		["mutator_zombie_outbreak_desc"] = "Replaces all enemies with Zombie units",
@@ -2614,7 +2855,7 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 
 				--Joker
 				["menu_stockholm_syndrome_beta_sc"] = "Joker",
-				["menu_stockholm_syndrome_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYou can convert a non-special enemy to fight on your side. This can not be done during stealth and enemies must surrender before you can convert them. You can only convert one enemy at a time.\n\nYour converted enemy takes #{skill_color}#60%## less damage.\n\nConverted enemies count as hostages for the purposes of skills and trading people out of custody.\n\nACE: #{owned}#$pro##\nYou can now have #{skill_color}#2## converted enemies at the same time.\n\nYour converted enemy takes an additional #{skill_color}#20%## less damage.",
+				["menu_stockholm_syndrome_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYou can convert #{skill_color}#1## non-special enemy who has surrendered to fight on your side. This can not be done during stealth.\n\nYour converted enemy takes #{skill_color}#60%## less damage.\n\nConverted enemies count as hostages for the purposes of skills and trading people out of custody.\n\nACE: #{owned}#$pro##\nYou can now have #{skill_color}#2## non-special enemies converted at the same time.\n\nYour converted enemies takes an additional #{skill_color}#20%## less damage.",
 
 				--Partners in Crime
 				["menu_control_freak_beta_sc"] = "Partners in Crime",
@@ -2627,27 +2868,27 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 			--[[   ASSAULT SUBTREE   ]]--
 				--Leadership
 				["menu_stable_shot_beta_sc"] = "Leadership",
-				["menu_stable_shot_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nSMGs and LMGs gain #{skill_color}#2## stability.\n\nACE: #{owned}#$pro##\nYou and your crews' stability rating for all weapons is increased by #{skill_color}#2.##",
+				["menu_stable_shot_beta_desc_sc"] = "BASIC: #{owned}#$basic##\n#{skill_color}#Machine guns## gain #{skill_color}#2## stability.\n\nACE: #{owned}#$pro##\nYou and your crews' stability rating for #{skill_color}#all weapons## is increased by #{skill_color}#2.##",
 
 				--MG Handling
 				["menu_scavenger_sc"] = "MG Handling",
-				["menu_scavenger_desc_sc"] = "BASIC: #{owned}#$basic##\nTightens the hipfire accuracy of SMGs and LMGs by #{skill_color}#20%.##\n\nACE: #{owned}#$pro##\nTightens the hipfire accuracy of SMGs and LMGs by an additional #{skill_color}#30%.##\n\nSMGs and LMGs reload #{skill_color}#25%## faster.",
+				["menu_scavenger_desc_sc"] = "BASIC: #{owned}#$basic##\nTightens the hipfire accuracy of #{skill_color}#machine guns## by #{skill_color}#20%.##\n\nACE: #{owned}#$pro##\nTightens the hipfire accuracy of #{skill_color}#machine guns## by an additional #{skill_color}#30%.##\n\n#{skill_color}#Machine guns## reload #{skill_color}#25%## faster.",
 
 				--MG Specialist
 				["menu_sharpshooter_sc"] = "MG Specialist",
-				["menu_sharpshooter_desc_sc"] = "BASIC: #{owned}#$basic##\nThe movement penalty to accuracy is reduced by #{skill_color}#60%## for SMGs and LMGs.\n\nThe movement penalty to accuracy is determined by stability.\n\nACE: #{owned}#$pro##\nSMGs and LMGs fire #{skill_color}#15%## faster.\n\nEvery #{skill_color}#5th## bullet fired by an SMG or LMG without releasing the trigger consumes no ammo.",
+				["menu_sharpshooter_desc_sc"] = "BASIC: #{owned}#$basic##\nThe movement penalty to accuracy is reduced by #{skill_color}#60%## for #{skill_color}#machine guns.##\n\nThe movement penalty to accuracy is determined by stability.\n\nACE: #{owned}#$pro##\n#{skill_color}#Machine guns## fire #{skill_color}#15%## faster.\n\nEvery #{skill_color}#5th## bullet fired by a #{skill_color}#machine gun## without releasing the trigger consumes no ammo.",
 
 				--Shock and Awe
 				["menu_spotter_teamwork_beta_sc"] = "Shock and Awe",
-				["menu_spotter_teamwork_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYour weapons' magazine sizes are increased by #{skill_color}#20%.##\n\n#{risk}#NOTE: Does not apply to Crossbows, Bows, Grenade Launchers, or Rocket Launchers.##\n\nACE: #{owned}#$pro##\nYour weapons can be hipfired while sprinting and their sprint-to-fire delay is removed.\n\nYour weapons' magazine sizes are increased by an additional #{skill_color}#30%.##",
+				["menu_spotter_teamwork_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYour magazine sizes are increased by #{skill_color}#20%.##\n\n#{risk}#NOTE: Does not apply to crossbows, bows or launchers.##\n\nACE: #{owned}#$pro##\nThe magazine size increase is raised by an additional #{skill_color}#30%.##\n\nYour weapons can be hipfired while sprinting and their sprint-to-fire delay is removed.",
 
 				--Heavy Impact
 				["menu_speedy_reload_sc"] = "Heavy Impact",
-				["menu_speedy_reload_desc_sc"] = "BASIC: #{owned}#$basic##\nSMGs and LMGs have a #{skill_color}#20%## chance to knock down enemies.\n\nThis chance is raised to #{skill_color}#40%## when using a bipod.\n\n#{risk}#NOTE: Stagger effects do not apply to Captains, Bulldozers, Snipers, and Shields.##\n\nACE: #{owned}#$pro##\nYou take #{skill_color}#12.5%## less damage while crouched.\n\nThe effect is raised to #{skill_color}#25%## when using a bipod.",
+				["menu_speedy_reload_desc_sc"] = "BASIC: #{owned}#$basic##\n#{skill_color}#Machine guns## have a #{skill_color}#20%## chance to knock down enemies.\n\nThis chance is raised to #{skill_color}#40%## when using a bipod.\n\n#{risk}#NOTE: Stagger effects do not apply to Captains, Bulldozers, Snipers, and Shields.##\n\nACE: #{owned}#$pro##\nYou take #{skill_color}#12.5%## less damage while crouched.\n\nThe effect is raised to #{skill_color}#25%## when using a bipod.",
 
 				--Body Expertise
 				["menu_body_expertise_beta_sc"] = "Body Expertise",
-				["menu_body_expertise_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYour bullets can #{skill_color}#now pierce body armor.##\n\nSMGs and LMGs fired in full auto apply #{skill_color}#30%## of the enemy's headshot damage multiplier to their body.\n\n#{risk}#NOTE: Does not apply to Bulldozers.##\n\nACE: #{owned}#$pro##\nAll guns fired in full auto apply #{skill_color}#60%## of the enemy's headshot damage multiplier to their body.",
+				["menu_body_expertise_beta_desc_sc"] = "BASIC: #{owned}#$basic##\n#{skill_color}#All weapons## can now #{skill_color}#pierce body armor.##\n\n#{skill_color}#Machine guns## fired in full auto apply #{skill_color}#30%## of the enemy's headshot damage multiplier to their body.\n\n#{risk}#NOTE: The damage multiplier does not apply to Bulldozers.##\n\nACE: #{owned}#$pro##\n#{skill_color}#All weapons## fired in full auto apply #{skill_color}#60%## of the enemy's headshot damage multiplier to their body.",
 
 
 		--[[   ENFORCER   ]]--
@@ -2659,23 +2900,23 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 
 				--Shotgun CQB
 				["menu_shotgun_cqb_beta_sc"] = "Shotgun CQB",
-				["menu_shotgun_cqb_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYour aim down sights and sprint-to-fire speeds for Shotguns and flamethrowers are #{skill_color}#15%## faster.\n\nACE: #{owned}#$pro##\nShotguns and flamethrowers reload #{skill_color}#25%## faster.",
+				["menu_shotgun_cqb_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYour aim down sights and sprint-to-fire speeds for #{skill_color}#shotguns and flamethrowers## are #{skill_color}#15%## faster.\n\nACE: #{owned}#$pro##\n#{skill_color}#Shotguns and flamethrowers## reload #{skill_color}#25%## faster.",
 
 				--Shotgun Impact
 				["menu_shotgun_impact_beta_sc"] = "Shotgun Impact",
-				["menu_shotgun_impact_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nShotguns and flamethrowers gain #{skill_color}#2## stability.\n\nACE: #{owned}#$pro##\nShotguns fire #{skill_color}#3## extra pellets.\n\n#{risk}#NOTE: Does not apply to slugs or explosive rounds.##",
+				["menu_shotgun_impact_beta_desc_sc"] = "BASIC: #{owned}#$basic##\n#{skill_color}#Shotguns and flamethrowers## gain #{skill_color}#2## stability.\n\nACE: #{owned}#$pro##\n#{skill_color}#Shotguns## fire #{skill_color}#3## extra pellets.\n\n#{risk}#NOTE: Does not apply to shotguns using slugs or explosive rounds.##",
 
 				--Pigeon Shooting
 				["menu_far_away_beta_sc"] = "Pigeon Shooter",
-				["menu_far_away_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYou move #{skill_color}#60%## faster while aiming down sights.\n\n#{risk}#NOTE: Speed is capped to your current stance's max speed.##\n\nACE: #{owned}#$pro##\nShotgun and flamethrower accuracy and range is increased by #{skill_color}#30%## while aiming down sights.",
+				["menu_far_away_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYou move #{skill_color}#60%## faster while aiming down sights.\n\n#{risk}#NOTE: Speed is capped to your current stance's max speed.##\n\nACE: #{owned}#$pro##\nThe accuracy and range of #{skill_color}#shotguns and flamethrowers## is increased by #{skill_color}#30%## while aiming down sights.",
 
 				--Gung Ho
 				["menu_close_by_beta_sc"] = "Gung-Ho",
-				["menu_close_by_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nShotguns and flamethrowers can be hipfired while sprinting and their sprint-to-fire delay is removed.\n\nACE: #{owned}#$pro##\nYour rate of fire is increased by #{skill_color}#35%## while hip-firing with shotguns and flamethrowers.",
+				["menu_close_by_beta_desc_sc"] = "BASIC: #{owned}#$basic##\n#{skill_color}#Shotguns and flamethrowers## can be hipfired while sprinting and their sprint-to-fire delay is removed.\n\nACE: #{owned}#$pro##\nWhile hip-firing, the rate of fire of #{skill_color}#shotguns and flamethrowers## is increased by #{skill_color}#35%.##",
 
 				--Overkill
 				["menu_overkill_sc"] = "OVERKILL",
-				["menu_overkill_desc_sc"] = "BASIC: #{owned}#$basic##\nKills using a shotgun, flamethrower, or the OVE9000 portable saw grants them a #{skill_color}#50%## damage boost for #{skill_color}#2## seconds.\n\nACE: #{owned}#$pro##\nThe damage bonus now applies to all weapons and lasts #{skill_color}#10## seconds. Skill must still be activated using a shotgun or the OVE9000 portable saw.\n\n#{risk}#NOTE: Does not apply to grenade launchers.##\n\nDecreases the time it takes to pull and put away shotguns and the saw by #{skill_color}#50%.##",
+				["menu_overkill_desc_sc"] = "BASIC: #{owned}#$basic##\nKills using #{skill_color}#shotguns, flamethrowers or OVE9000 saw## grants them a #{skill_color}#50%## damage boost for #{skill_color}#2## seconds.\n\nACE: #{owned}#$pro##\nThe damage bonus now applies to all weapons and lasts #{skill_color}#10## seconds. Skill must still be activated using a #{skill_color}#shotgun, flamethrower or OVE9000 saw.##\n\n#{risk}#NOTE: The damage bonus does not apply to launchers.##\n\nDecreases the time it takes to pull and put away #{skill_color}#shotguns, flamethrowers and the OVE9000 saw## by #{skill_color}#50%.##",
 
 			--[[   JUGGERNAUT SUBTREE   ]]--
 				--Stun Resistance--
@@ -2700,7 +2941,7 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 
 				--Iron Man
 				["menu_juggernaut_beta_sc"] = "Iron Man",
-				["menu_juggernaut_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nUnlocks the ability to wear the Improved Combined Tactical Vest.\n\nACE: #{owned}#$pro##\nWhen you melee Shield enemies, they get knocked back by the sheer force.\n\nEnables your ranged weapons to have a chance to knock back Shield enemies when attacking them. Knock back chance is increased the higher the total damage of the weapon is.\n\nYour armor recovers #{skill_color}#10%## faster.",
+				["menu_juggernaut_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nUnlocks the ability to wear the Improved Combined Tactical Vest.\n\nWhen you melee Shield enemies, they get knocked back by the sheer force.\n\nACE: #{owned}#$pro##\nEnables your ranged weapons to have a chance to knock back Shield enemies when attacking them. Knock back chance is increased the higher the total damage of the weapon is.\n\nYour armor recovers #{skill_color}#10%## faster.",
 
 			--[[   SUPPORT SUBTREE   ]]--
 				--Scavenger
@@ -2709,11 +2950,11 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 
 				--Bulletstorm--
 				["menu_ammo_reservoir_beta_sc"] = "Bulletstorm",
-				["menu_ammo_reservoir_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nAmmo bags placed by you grant players the ability to shoot without depleting their ammunition for up to #{skill_color}#5## seconds after interacting with it.\n\nThe more ammo players replenish, the longer the duration of the effect.\n\n#{risk}#NOTE: Grenade launchers, Rocket launchers and any other weapons using explosive munitions do not receive the effects of this skill.##\n\nACE: #{owned}#$pro##\nIncreases the maximum possible duration of the effect by an additional #{skill_color}#15## seconds.",
+				["menu_ammo_reservoir_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nAmmo bags placed by you grant players the ability to shoot without depleting their ammunition for up to #{skill_color}#5## seconds after interacting with it.\n\nThe more ammo players replenish, the longer the duration of the effect.\n\n#{risk}#NOTE: Launchers and any other weapons using explosive munitions do not receive the effects of this skill.##\n\nACE: #{owned}#$pro##\nIncreases the maximum possible duration of the effect by an additional #{skill_color}#15## seconds.",
 
 				--Specialist Equipment formally Rip and Tear
 				["menu_portable_saw_beta_sc"] = "Specialist Equipment",
-				["menu_portable_saw_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nReduces the wear down of saw blades by #{skill_color}#50%.##\n\nACE: #{owned}#$pro##\nSaws, Crossbows, Bows, Grenade Launchers, and Rocket Launchers reload #{skill_color}#25%## faster.",
+				["menu_portable_saw_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nReduces the wear down of #{skill_color}#OVE9000 saw## blades by #{skill_color}#50%.##\n\nACE: #{owned}#$pro##\n#{skill_color}#The OVE9000 saw, crossbows, bows and launchers## reload #{skill_color}#25%## faster.",
 
 				--Extra Lead
 				["menu_ammo_2x_beta_sc"] = "Extra Lead",
@@ -2721,7 +2962,7 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 
 				--Rip and Tear formally Carbon Blade
 				["menu_carbon_blade_beta_sc"] = "Rip and Tear",
-				["menu_carbon_blade_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYou can now saw through shield enemies with your OVE9000 portable saw.\n\nACE: #{owned}#$pro##\nKills with the Saw, Crossbows, Bows, Grenade Launchers, or Rocket Launchers have a #{skill_color}#50%## chance to cause nearby enemies in a #{skill_color}#10## meter radius to panic.\n\nPanic makes enemies go into short bursts of uncontrollable fear.",
+				["menu_carbon_blade_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYou can now saw through shields with your #{skill_color}#OVE9000 saw.##\n\nACE: #{owned}#$pro##\nKills with #{skill_color}#the OVE9000 saw, crossbows, bows and launchers## have a #{skill_color}#50%## chance to cause nearby enemies in a #{skill_color}#10## meter radius to panic.\n\nPanic makes enemies go into short bursts of uncontrollable fear.",
 
 				--Fully Loaded--
 				["menu_bandoliers_beta_sc"] = "Fully Loaded",
@@ -2744,7 +2985,7 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 	
 				--Jack of all Trades
 				["menu_jack_of_all_trades_beta_sc"] = "Jack of All Trades",
-				["menu_jack_of_all_trades_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYou carry #{skill_color}#50%## more throwables.\n\nACE: #{owned}#$pro##\n##You can now equip a second deployable to bring with you.## Pressing #{skill_color}#$BTN_CHANGE_EQ## will allow you to toggle between deployables.\n\nYou carry #{important_1}#50%## the normal amount of your second deployable, to a minimum of #{skill_color}#1.##",
+				["menu_jack_of_all_trades_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYou carry #{skill_color}#50%## more throwables.\n\n#{risk}#NOTE: Does not apply to perk deck throwables.##\n\nACE: #{owned}#$pro##\n#{skill_color}#You can now equip a second deployable to bring with you.## Pressing #{skill_color}#$BTN_CHANGE_EQ## will allow you to toggle between deployables.\n\nYou carry #{important_1}#50%## the normal amount of your second deployable, to a minimum of #{skill_color}#1.##",
 	
 				--Sentry Tower Defense--
 				["menu_tower_defense_beta_sc"] = "Tower Defense",
@@ -2782,27 +3023,27 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 			--[[   COMBAT ENGINEER SUBTREE   ]]--
 				--Sharpshooter--
 				["menu_discipline_sc"] = "Sharpshooter",
-				["menu_discipline_desc_sc"] = "BASIC: #{owned}#$basic##\nRifles gain #{skill_color}#2## stability.\n\nACE: #{owned}#$pro##\nLethal headshots using Rifles set to semi-auto or burst increase your rate of fire by #{skill_color}#20%## for #{skill_color}#10## seconds.",
+				["menu_discipline_desc_sc"] = "BASIC: #{owned}#$basic##\n#{skill_color}#Rifles## gain #{skill_color}#2## stability.\n\nACE: #{owned}#$pro##\nLethal headshots using #{skill_color}#rifles## set to semi-auto or burst increase your rate of fire by #{skill_color}#20%## for #{skill_color}#10## seconds.",
 
 				--Rifleman
 				["menu_rifleman_sc"] = "Rifleman",
-				["menu_rifleman_desc_sc"] = "BASIC: #{owned}#$basic##\nRifles gain #{skill_color}#15%## more accuracy and range while aiming down sights.\n\nACE: #{owned}#$pro##\nRifles gain an additional #{skill_color}#15%## more accuracy and range while aiming down sights.",
+				["menu_rifleman_desc_sc"] = "BASIC: #{owned}#$basic##\n#{skill_color}#Rifles## gain #{skill_color}#15%## more accuracy and range while aiming down sights.\n\nACE: #{owned}#$pro##\n#{skill_color}#Rifles## gain an additional #{skill_color}#15%## more accuracy and range while aiming down sights.",
 
 				--Kilmer--
 				["menu_heavy_impact_beta_sc"] = "Kilmer",
-				["menu_heavy_impact_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nThe movement penalty to accuracy is reduced by #{skill_color}#60%## for rifles.\n\nThe movement penalty to accuracy is determined by stability.\n\nACE: #{owned}#$pro##\nRifles reload #{skill_color}#25%## faster.",
+				["menu_heavy_impact_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nThe movement penalty to accuracy is reduced by #{skill_color}#60%## for #{skill_color}#rifles.##\n\nThe movement penalty to accuracy is determined by stability.\n\nACE: #{owned}#$pro##\n#{skill_color}#Rifles## reload #{skill_color}#25%## faster.",
 
 				--Ammo Efficiency--
 				["menu_single_shot_ammo_return_sc"] = "Ammo Efficiency",
-				["menu_single_shot_ammo_return_desc_sc"] = "BASIC: #{owned}#$basic##\nGetting #{skill_color}#3## lethal headshots with Rifles in less than #{skill_color}#8## seconds will grant #{skill_color}#1## bullet or #{skill_color}#3%## of your total ammo, whichever is higher, to the Rifle.\n\nACE: #{owned}#$pro##\nThe effect is now triggered upon landing #{skill_color}#2## lethal headshots, and the ammo is refunded directly into your magazine whenever possible.",
+				["menu_single_shot_ammo_return_desc_sc"] = "BASIC: #{owned}#$basic##\nGetting #{skill_color}#3## lethal headshots with #{skill_color}#rifles## in less than #{skill_color}#8## seconds will grant #{skill_color}#3%## of your total ammo, to a minimum of #{skill_color}#1## round, back to the weapon.\n\nACE: #{owned}#$pro##\nThe effect is now triggered upon landing #{skill_color}#2## lethal headshots within #{skill_color}#12## seconds of each other.",
 
 				--Aggressive Reload
 				["menu_engineering_beta_sc"] = "Aggressive Reload",
-				["menu_engineering_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nLethal headshots using Rifles set to semi-auto or burst will increase your reload speed by #{skill_color}#25%## for #{skill_color}#10## seconds.\n\nACE: #{owned}#$pro##\nThe reload speed bonus increases to #{skill_color}#50%##, and can be triggered regardless of fire mode.",
+				["menu_engineering_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nLethal headshots using #{skill_color}#rifles## set to semi-auto or burst will increase your reload speed by #{skill_color}#25%## for #{skill_color}#10## seconds.\n\nACE: #{owned}#$pro##\nThe reload speed bonus increases to #{skill_color}#50%##, and can be triggered regardless of fire mode.",
 
 				--Mind Blown, formerly Explosive Headshot--
 				["menu_kilmer_sc"] = "Mind Blown",
-				["menu_kilmer_desc_sc"] = "BASIC: #{owned}#$basic##\nHeadshots with Rifles set to semi-auto or burst deal #{skill_color}#70%## of the damage dealt to the closest enemy in a #{skill_color}#4## meter radius.\n\nFor every #{skill_color}#7## meters away you are from the enemy, the effect chains to an additional enemy; up to #{skill_color}#4## times.\n\nACE: #{owned}#$pro##\nHeadshots with Rifles set to semi-auto or burst have #{skill_color}#no damage falloff## and the radius of the chaining effect is increased by #{skill_color}#1## meter.\n\nFor every #{skill_color}#7## meters away you are from the enemy, the chaining effect deals an additional #{skill_color}#10%## damage; up to a total of #{skill_color}#110%## of the damage dealt.",
+				["menu_kilmer_desc_sc"] = "BASIC: #{owned}#$basic##\nHeadshots with #{skill_color}#rifles## set to semi-auto or burst deal #{skill_color}#70%## of the damage dealt to the closest enemy in a #{skill_color}#4## meter radius.\n\nFor every #{skill_color}#7## meters away you are from the enemy, the effect chains to an additional enemy; up to #{skill_color}#4## times.\n\nACE: #{owned}#$pro##\nHeadshots with #{skill_color}#rifles## set to semi-auto or burst have #{skill_color}#no damage falloff## and the radius of the chaining effect is increased by #{skill_color}#1## meter.\n\nFor every #{skill_color}#7## meters away you are from the enemy, the chaining effect deals an additional #{skill_color}#10%## damage; up to a total of #{skill_color}#110%## of the damage dealt.",
 
 		--[[   GHOST   ]]--
 
@@ -2874,7 +3115,7 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 
 				--Cleaner--
 				["menu_hitman_beta_sc"] = "Cleaner",
-				["menu_hitman_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYou deal #{skill_color}#10%## more damage to special enemies.\n\n#{risk}#NOTE: Does not apply Grenade Launchers or Rocket Launchers.##\n\nACE: #{owned}#$pro##\nKilling an enemy from behind with guns or melee fills your dodge meter by #{skill_color}#75%## of your dodge.\n\nYou deal an additional #{skill_color}#15%## more damage to special enemies.",
+				["menu_hitman_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYou deal #{skill_color}#10%## more damage to special enemies.\n\n#{risk}#NOTE: Does not apply to launchers.##\n\nACE: #{owned}#$pro##\nYou deal an additional #{skill_color}#15%## more damage to special enemies.\n\nKilling an enemy from behind with guns or melee fills your dodge meter by #{skill_color}#75%## of your dodge.",
 
 				--Low Blow--
 				["menu_unseen_strike_beta_sc"] = "Low Blow",
@@ -2885,27 +3126,27 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 			--[[   GUNSLINGER SUBTREE   ]]--
 				--Equilibrium--
 				["menu_equilibrium_beta_sc"] = "Equilibrium",
-				["menu_equilibrium_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYou and your crew's weapon stability with pistols is increased by #{skill_color}#2.##\n\nACE: #{owned}#$pro##\nYou draw and holster pistols #{skill_color}#100%## faster.",
+				["menu_equilibrium_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYou and your crew's weapon stability with #{skill_color}#pistols## is increased by #{skill_color}#2.##\n\nACE: #{owned}#$pro##\n#{skill_color}#Pistols## are drawn and holstered #{skill_color}#100%## faster.",
 
 				--Gun Nut--
 				["menu_dance_instructor_sc"] = "Gun Nut",
-				["menu_dance_instructor_desc_sc"] = "BASIC: #{owned}#$basic##\nTightens the hipfire accuracy of Pistols by #{skill_color}#20%.##\n\nACE: #{owned}#$pro##\nPistols fire #{skill_color}#15%## faster.\n\nPistols #{skill_color}#now pierce body armor.##",
+				["menu_dance_instructor_desc_sc"] = "BASIC: #{owned}#$basic##\nTightens the hipfire accuracy of #{skill_color}#pistols## by #{skill_color}#20%.##\n\nACE: #{owned}#$pro##\n#{skill_color}#Pistols## fire #{skill_color}#15%## faster.\n\n#{skill_color}#Pistols## can ##pierce body armor.##",
 
 				--Over Pressurized/Gunfighter--
 				["menu_gun_fighter_sc"] = "Gunfighter",
-				["menu_gun_fighter_desc_sc"] = "BASIC: #{owned}#$basic##\nPistols reload #{skill_color}#5%## faster.\n\nThe movement penalty to accuracy is reduced by #{skill_color}#40%## for Pistols.\n\nThe movement penalty to accuracy is determined by stability.\n\nACE: #{owned}#$pro##\nPistols reload an additional #{skill_color}#25%## faster.",
+				["menu_gun_fighter_desc_sc"] = "BASIC: #{owned}#$basic##\n#{skill_color}#Pistols## reload #{skill_color}#5%## faster.\n\nThe movement penalty to accuracy is reduced by #{skill_color}#40%## for #{skill_color}#pistols.##\n\nThe movement penalty to accuracy is determined by stability.\n\nACE: #{owned}#$pro##\n#{skill_color}#Pistols## reload an additional #{skill_color}#25%## faster.",
 
 				--Akimbo--
 				["menu_akimbo_skill_sc"] = "Akimbo",
-				["menu_akimbo_skill_desc_sc"] = "BASIC: #{owned}#$basic##\nAkimbo weapons gain #{skill_color}#10## stability.\n\nACE: #{owned}#$pro##\nAkimbo weapons gain #{skill_color}#25%## more total ammo capacity and pickup.",
+				["menu_akimbo_skill_desc_sc"] = "BASIC: #{owned}#$basic##\n#{skill_color}#Akimbo## weapons gain #{skill_color}#10## stability.\n\nACE: #{owned}#$pro##\n#{skill_color}#Akimbo## weapons gain #{skill_color}#25%## more total ammo capacity and pickup.",
 
 				--Desperado--
 				["menu_expert_handling_sc"] = "Desperado",
-				["menu_expert_handling_desc_sc"] = "BASIC: #{owned}#$basic##\nEach pistol headshot grants your weapons a #{skill_color}#8%## accuracy and range boost for #{skill_color}#4## seconds. This effect can stack #{skill_color}#5## times, and the duration of each stack is refreshed on pistol headshots.\n\nACE: #{owned}#$pro##\nIncreases the accuracy and range boost duration to #{skill_color}#10## seconds.",
+				["menu_expert_handling_desc_sc"] = "BASIC: #{owned}#$basic##\nHeadshots with #{skill_color}#pistols## grants them a #{skill_color}#8%## accuracy and range boost for #{skill_color}#4## seconds.\n\nThis effect can stack #{skill_color}#5## times; the duration of each stack is refreshed with each headshot.\n\nACE: #{owned}#$pro##\nIncreases the accuracy and range boost duration to #{skill_color}#10## seconds.",
 
 				--Trigger Happy--
 				["menu_trigger_happy_beta_sc"] = "Trigger Happy",
-				["menu_trigger_happy_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nEach pistol headshot grants them a #{skill_color}#10%## damage boost for #{skill_color}#4## seconds. This effect can stack #{skill_color}#5## times, and the duration of each stack is refreshed on pistol headshots.\n\nACE: #{owned}#$pro##\nIncreases the damage boost duration to #{skill_color}#10## seconds.",
+				["menu_trigger_happy_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nHeadshots with #{skill_color}#pistols## grants them a #{skill_color}#10%## damage boost for #{skill_color}#4## seconds.\n\nThis effect can stack #{skill_color}#5## times; the duration of each stack is refreshed with each headshot.\n\nACE: #{owned}#$pro##\nIncreases the damage boost duration to #{skill_color}#10## seconds.",
 
 			--[[   REVENANT SUBTREE   ]]--
 				--Running From Death--
@@ -2934,7 +3175,7 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 			--[[   BRAWLER SUBTREE   ]]--
 				--Martial Arts--
 				["menu_martial_arts_beta_sc"] = "Martial Arts",
-				["menu_martial_arts_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYou take #{skill_color}#50%## less damage from all melee attacks because of training.\n\nACE: #{owned}#$pro##\nThe knockdown effects of your melee strikes are #{skill_color}#100%## stronger because of training.",
+				["menu_martial_arts_beta_desc_sc"] = "BASIC: #{owned}#$basic##\nYou take #{skill_color}#50%## less damage from all melee attacks, because of training.\n\nACE: #{owned}#$pro##\nThe knockdown rating of your melee strikes are #{skill_color}#100%## greater, because of training.\n\nYour melee weapon's knockdown rating determines when a melee strike will stagger an enemy as well as how much damage is done towards breaking a Bulldozer's armor plates and visor.",
 
 				--Counter-Strike--
 				["menu_drop_soap_beta_sc"] = "Counter Strike",
@@ -2954,7 +3195,7 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Skills", function(loc)
 
 				--Berserker--
 				["menu_frenzy_sc"] = "Berserker",
-				["menu_frenzy_desc_sc"] = "BASIC: #{owned}#$basic##\nThe lower your health, the more damage you do.\n\nWhen your health is below #{skill_color}#100%##, you will do up to #{skill_color}#100%## more melee and saw damage.\n\nACE: #{owned}#$pro##\nThe lower your health, the more damage you do.\n\nWhen your health is below #{skill_color}#100%##, you will do up to #{skill_color}#50%## more damage with ranged weapons.\n\n#{risk}#NOTE: Does not apply Grenade Launchers or Rocket Launchers.##"
+				["menu_frenzy_desc_sc"] = "BASIC: #{owned}#$basic##\nThe lower your health, the more damage you do.\n\nWhen your health is below #{skill_color}#100%##, you will do up to #{skill_color}#100%## more melee and saw damage.\n\nACE: #{owned}#$pro##\nThe lower your health, the more damage you do.\n\nWhen your health is below #{skill_color}#100%##, you will do up to #{skill_color}#50%## more damage with ranged weapons.\n\n#{risk}#NOTE: Does not apply launchers.##"
 
 	})
 
@@ -2974,10 +3215,10 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Perk_Decks", function(
 		["bm_menu_dodge"] = "Dodge",
 
 		--Shared Perks--
-		["menu_deckall_2_desc_sc"] = "Increases your headshot damage by ##25%.##\n\nYou do ##25%## more damage. Does not apply to throwables, grenade launchers, or rocket launchers.",
-		["menu_deckall_4_desc_sc"] = "You gain ##+1## increased concealment.\n\nWhen wearing armor, your movement speed is ##15%## less affected.\n\nYou gain ##45%## more experience when you complete days and jobs.\n\nYou do ##25%## more damage. Does not apply to throwables, grenade launchers, or rocket launchers.",
-		["menu_deckall_6_desc_sc"] = "Unlocks a Throwable Case equipment for you and your crew to use. The Throwable Case can be used to replenish throwables during a heist.\n\nYou do ##25%## more damage. Does not apply to throwables, grenade launchers, or rocket launchers.",
-		["menu_deckall_8_desc_sc"] = "Increases your doctor bag interaction speed by ##20%.##\n\nYou do ##25%## more damage. Does not apply to throwables, grenade launchers, or rocket launchers.",
+		["menu_deckall_2_desc_sc"] = "Increases your headshot damage by ##25%.##\n\nYou do ##25%## more damage. Does not apply to throwables or launchers.",
+		["menu_deckall_4_desc_sc"] = "You gain ##+1## increased concealment.\n\nWhen wearing armor, your movement speed is ##15%## less affected.\n\nYou gain ##45%## more experience when you complete days and jobs.\n\nYou do ##25%## more damage. Does not apply to throwables or launchers.",
+		["menu_deckall_6_desc_sc"] = "Unlocks a Throwable Case equipment for you and your crew to use. The Throwable Case can be used to replenish throwables during a heist.\n\nYou do ##25%## more damage. Does not apply to throwables or launchers.",
+		["menu_deckall_8_desc_sc"] = "Increases your doctor bag interaction speed by ##20%.##\n\nYou do ##25%## more damage. Does not apply to throwables or launchers.",
 
 		--Crook--
 		["menu_st_spec_6_desc_sc"] = "The Crook is a versatile criminal. The term is as old as crime itself.\n\nTruly, the crook is a jack of all trades and a master of none. He steals, lies, cheats and does any and every dishonest or illegal work necessary to get by.\n\nBenefits from a full perk deck:\n##-##Your dodge is increased by ##5## points.\n##-##Your dodge is increased by an additional ##10## points for ballistic vests.\n##-##Your armor is increased by ##50%## for ballistic vests.\n##-##You pick locks ##20%## faster.",
@@ -2989,13 +3230,13 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Perk_Decks", function(
 		["menu_deck6_9_desc_sc"] = "Your armor is increased by an additional ##20%## for ballistic vests.\n\nDeck completion Bonus: Your chance of getting a higher quality item during PAYDAY is increased by ##10%.##",
 
 		--Rogue
-		["menu_st_spec_4_desc_sc"] = "The Rogue is a stealthy criminal, capable of sneaky tricks and deadly force. Versatile and deceptive, the Rogue is hired to do anything from pickpocketing, to burglaries and con jobs.\n\nThe trademark of a Rogue is his versatility - what he lacks in strength he makes up for in skill.\n\nBenefits from a full perk deck:\n##-##Your dodge is increased by ##15## points.\n##-##You swap between your weapons ##30%## faster.\n##-##Your dodge meter will be filled to ##200%## of its normal maximum when you are revived.\n##-##Your camera loop duration is increased by ##20## seconds.\n##-##Dodging an attack causes you to regenerate ##1## life point every ##2## seconds for the next ##10## seconds. This effect can stack, but all stacks are lost whenever you take health damage.",
+		["menu_st_spec_4_desc_sc"] = "The Rogue is a stealthy criminal, capable of sneaky tricks and deadly force. Versatile and deceptive, the Rogue is hired to do anything from pickpocketing, to burglaries and con jobs.\n\nThe trademark of a Rogue is his versatility - what he lacks in strength he makes up for in skill.\n\nBenefits from a full perk deck:\n##-##Your dodge is increased by ##15## points.\n##-##You swap between your weapons ##30%## faster.\n##-##Your dodge meter will be filled to ##200%## of its normal maximum when you are revived.\n##-##Your camera loop duration is increased by ##20## seconds.\n##-##Dodging an attack causes you to regenerate ##1## life point every second for the next ##5## seconds. This effect can stack, but all stacks are lost whenever you take health damage.",
 		["menu_st_spec_4_desc_sc_short"] = "The Rogue is a stealthy criminal, capable of sneaky tricks and deadly force. Versatile and deceptive, the Rogue is hired to do anything from pickpocketing, to burglaries and con jobs.\n\nThe trademark of a Rogue is his versatility - what he lacks in strength he makes up for in skill.",		
 		["menu_deck4_1_desc_sc"] = "Your dodge is increased by ##5## points.\n\nYou swap between your weapons ##30%## faster.",
 		["menu_deck4_3_desc_sc"] = "Your dodge is increased by an additional ##5## points.",
 		["menu_deck4_5_desc_sc"] = "Your dodge meter will be filled to ##200%## of its normal maximum when you are revived.\n\nYour camera loop duration is increased by ##20## seconds.",
 		["menu_deck4_7_desc_sc"] = "Your dodge is increased by an additional ##5## points.",
-		["menu_deck4_9_desc_sc"] = "Dodging an attack causes you to regenerate ##1## health every ##2## seconds for the next ##10## seconds. This effect can stack, but all stacks are lost whenever you take health damage.\n\nDeck completion Bonus: Your chance of getting a higher quality item during PAYDAY is increased by ##10%.##",
+		["menu_deck4_9_desc_sc"] = "Dodging an attack causes you to regenerate ##1## health every second for the next ##5## seconds. This effect can stack, but all stacks are lost whenever you take health damage.\n\nDeck completion Bonus: Your chance of getting a higher quality item during PAYDAY is increased by ##10%.##",
 
 		--Hitman--
 		["menu_deck5_1_sc"] = "Gun-fu",
@@ -3064,22 +3305,22 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Perk_Decks", function(
 		["menu_deck8_3_desc_sc"] = "When you are within ##12## meters of an enemy, you receive an additional ##5%## less damage from enemies.\n\nYou gain ##5## dodge points.",
 		["menu_deck8_5_desc_sc"] = "When you are within ##12## meters of an enemy, you receive an additional ##10%## less damage from enemies.\n\nEach successful melee hit grants an additional ##8%## melee damage boost for ##10## seconds and can stack up to ##5## times.\n\nYour camera loop duration is increased by ##20## seconds.",
 		["menu_deck8_7_desc_sc"] = "Each successful melee hit grants an additional ##8%## melee damage boost for ##10## seconds, this effect can stack up to ##5## times.\n\nYour dodge is increased by an additional ##5## points.",
-		["menu_deck8_9_desc_sc"] = "Each successful melee hit heals ##1## health every ##2## seconds for ##10## seconds, this effect can stack up to ##5## times.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a PAYDAY is increased by ##10%.##",
+		["menu_deck8_9_desc_sc"] = "Each successful melee hit heals ##2## health every second for ##5## seconds, this effect can stack up to ##5## times.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a PAYDAY is increased by ##10%.##",
 
 		--Sociopath--
-		["menu_st_spec_9_desc_sc"] = "The Sociopath is known to be one of the most effective type of criminals. Where he is effective, he is also difficult to deal with, which is why larger organizations avoid him.\n\nBold, disinhibitted and mean, the Sociopath excels in the most violent of jobs. Unable to feel guilt for the crimes he commits, the Sociopath is a dangerous enemy.\n\nBenefits from a full perk deck:\n##-##When you are within ##18## meters of an enemy, you receive ##5%## less damage from enemies.\n##-##You carry ##1## additional body bag in your inventory.\n##-Activated upon killing an enemy with a 5 second cooldown:##\nYou regenerate ##20## armor.\nIf done using a melee weapon, regenerate ##2%## of your health.\nIf done within ##18## meters, you regenerate an additional ##20## armor and have a ##25%## chance to spread panic among your enemies.\n-Kills done during cooldown reduce it by ##0.5## seconds.\n##-##You gain ##10## dodge points.",
+		["menu_st_spec_9_desc_sc"] = "The Sociopath is known to be one of the most effective type of criminals. Where he is effective, he is also difficult to deal with, which is why larger organizations avoid him.\n\nBold, disinhibitted and mean, the Sociopath excels in the most violent of jobs. Unable to feel guilt for the crimes he commits, the Sociopath is a dangerous enemy.\n\nBenefits from a full perk deck:\n##-##When you are within ##18## meters of an enemy, you receive ##5%## less damage from enemies.\n##-##You gain ##10## dodge points.\n##-##You carry ##1## additional body bag in your inventory.\n##-Activated upon killing an enemy with a 5 second cooldown:##\nYou regenerate ##20## armor.\nIf done using a melee weapon, regenerate ##2%## of your health.\nIf done within ##18## meters, you regenerate an additional ##20## armor and have a ##25%## chance to spread panic among your enemies.\nKills done during cooldown reduce it by ##0.5## seconds, melee kills triple the cooldown reduction.",
 		["menu_st_spec_9_desc_sc_short"] = "The Sociopath is known to be one of the most effective type of criminals. Where he is effective, he is also difficult to deal with, which is why larger organizations avoid him.\n\nBold, disinhibitted and mean, the Sociopath excels in the most violent of jobs. Unable to feel guilt for the crimes he commits, the Sociopath is a dangerous enemy.",
 		["menu_deck9_1_sc"] = "No Talk",
 		["menu_deck9_1_desc_sc"] = "When you are surrounded by three enemies or more within ##18## meters, you take ##5%## less damage from enemies.",
-		["menu_deck9_3_desc_sc"] = "Killing an enemy regenerates ##20## armor.\n\nThis cannot occur more than once every ##5## seconds but each kill during cooldown reduces it by ##0.5## seconds.\n\nYou gain ##5## dodge points.",
-		["menu_deck9_5_desc_sc"] = "Killing an enemy with a melee weapon regenerates ##2%## health.\n\nThis is activated alongside Tension and cannot occur more than once every ##5## seconds but each kill during cooldown reduces it by ##0.5## seconds.\n\nYou carry ##1## additional body bag in your inventory.",
-		["menu_deck9_7_desc_sc"] = "Killing an enemy within ##18## meters regenerates ##20## armor.\n\nThis is activated alongside Tension and cannot occur more than once every ##5## seconds but each kill during cooldown reduces it by ##0.5## seconds.\n\nYour dodge is increased by an additional ##5## points.",
-		["menu_deck9_9_desc_sc"] = "Killing an enemy within ##18## meters has a ##25%## chance to spread panic among your enemies.\n\nPanic will make enemies go into short bursts of uncontrollable fear.\n\nThis is activated alongside Tension and cannot occur more than once every ##5## seconds but each kill during cooldown reduces it by ##0.5## seconds.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a PAYDAY is increased by ##10%.##",
+		["menu_deck9_3_desc_sc"] = "Killing an enemy regenerates ##20## armor.\n\nThis cannot occur more than once every ##5## seconds; each kill during cooldown reduces it by ##0.5## seconds, with melee kills tripling the reduction.\n\nYou gain ##5## dodge points.",
+		["menu_deck9_5_desc_sc"] = "Killing an enemy with a melee weapon regenerates ##2%## health.\n\nThis is activated alongside Tension and shares its cooldown.\n\nYou carry ##1## additional body bag in your inventory.",
+		["menu_deck9_7_desc_sc"] = "Killing an enemy within ##18## meters regenerates ##20## armor.\n\nThis is activated alongside Tension and shares its cooldown.\n\nYour dodge is increased by an additional ##5## points.",
+		["menu_deck9_9_desc_sc"] = "Killing an enemy within ##18## meters has a ##25%## chance to spread panic among your enemies.\n\nPanic will make enemies go into short bursts of uncontrollable fear.\n\nThis is activated alongside Tension and shares its cooldown.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a PAYDAY is increased by ##10%.##",
 
 		--Grinder--
-		["menu_st_spec_11_desc_sc"] = "A typical grinder is a hard working individual, able to take control of difficult situations and turn them around.\n\nThe grinder relies heavily on always being in the front and dishing out punishment, being able to survive due to the fact that he does damage to the enemies regardless of how much damage he has sustained.\n\nBenefits from a full perk deck:\n##-##Damaging an enemy heals ##4## life points every second for ##5## seconds. This effect stacks up to ##5## times but cannot occur more than once every ##0.5## seconds and only while wearing the Flak Jacket. Damaging enemies with sentries or damage over time effects does not grant stacks.\n##-##You lose ##30## armor while wearing the Flak Jacket.\n##-##You gain ##8## concealment while wearing the Flak Jacket.\n##-##Every stack increases your movement speed by ##5%.##\n##-##You gain the ability to place ##2## body bag cases.",
+		["menu_st_spec_11_desc_sc"] = "A typical grinder is a hard working individual, able to take control of difficult situations and turn them around.\n\nThe grinder relies heavily on always being in the front and dishing out punishment, being able to survive due to the fact that he does damage to the enemies regardless of how much damage he has sustained.\n\nBenefits from a full perk deck:\n##-##Damaging an enemy heals ##4## life points every second for ##5## seconds. This effect stacks up to ##5## times but cannot occur more than once every ##0.75## seconds and only while wearing the Flak Jacket. Damaging enemies with sentries or damage over time effects does not grant stacks.\n##-##You lose ##30## armor while wearing the Flak Jacket.\n##-##You gain ##8## concealment while wearing the Flak Jacket.\n##-##Every stack increases your movement speed by ##5%.##\n##-##You gain the ability to place ##2## body bag cases.",
 		["menu_st_spec_11_desc_sc_short"] = "A typical grinder is a hard working individual, able to take control of difficult situations and turn them around.\n\nThe grinder relies heavily on always being in the front and dishing out punishment, being able to survive due to the fact that he does damage to the enemies regardless of how much damage he has sustained.",
-		["menu_deck11_1_desc_sc"] = "Damaging an enemy heals ##2## health every second for ##3## seconds.\n\nThis effect stacks up to ##5## times but you can only gain a stack every ##0.5## seconds and only while wearing the ##Flak Jacket.## Damaging enemies with sentries or damage over time effects does not grant stacks.\n\nYou lose ##30## armor while wearing the Flak Jacket.\n\nYou gain ##8## concealment while wearing the Flak Jacket.",
+		["menu_deck11_1_desc_sc"] = "Damaging an enemy heals ##2## health every second for ##3## seconds.\n\nThis effect stacks up to ##5## times but you can only gain a stack every ##0.75## seconds and only while wearing the ##Flak Jacket.## Damaging enemies with sentries or damage over time effects does not grant stacks.\n\nYou lose ##30## armor while wearing the Flak Jacket.\n\nYou gain ##8## concealment while wearing the Flak Jacket.",
 		["menu_deck11_3_desc_sc"] = "Stacks heal an additional ##1## health every second.",
 		["menu_deck11_5_desc_sc"] = "Stacks last an additional ##2## seconds.\n\nYou gain the ability to place ##2## body bag cases.",
 		["menu_deck11_7_desc_sc"] = "Stacks heal an additional ##1## health every second.",
@@ -3095,12 +3336,12 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Perk_Decks", function(
 		["menu_deck13_9_desc_sc"] = "Killing an enemy speeds up your armor recovery speed depending on your equipped armor. Heavier armors gain a smaller bonus than lighter armors. This bonus is reset whenever your armor recovers.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a PAYDAY is increased by ##10%.##",
 
 		--THIS IS WAR BABY--
-		["menu_st_spec_14_desc_sc"] = "The Maniac Perk Deck is the embodiment of crazy and to never accept bad odds in moments of danger. By pushing through and constantly deal damage, your fellow heisters will be granted a temporary shield making all of you feel Jimmy's invulnerable spirit.\n\nBenefits from a full perk deck:\n##-##Damage you deal is converted into Hysteria Stacks. Max amount of stacks is ##240.## Hysteria Stacks: Incoming damage is reduced by ##2## points for every ##30## stacks of Hysteria. Hysteria Stacks decay by ##30## every ##8## seconds.\n##-##Members of your crew also gains the effect of your Hysteria Stacks.\n##-##Civilians intimidated by you and your crew remain intimidated ##25%## longer.",
+		["menu_st_spec_14_desc_sc"] = "The Maniac Perk Deck is the embodiment of crazy and to never accept bad odds in moments of danger. By pushing through and constantly deal damage, your fellow heisters will be granted a temporary shield making all of you feel Jimmy's invulnerable spirit.\n\nBenefits from a full perk deck:\n##-##Damage you deal is converted into Hysteria Stacks. Max amount of stacks is ##720.## Hysteria Stacks: Incoming damage is reduced by ##2## points for every ##90## stacks of Hysteria. Hysteria Stacks decay by ##90## every ##8## seconds.\n##-##Members of your crew also gains the effect of your Hysteria Stacks.\n##-##Civilians intimidated by you and your crew remain intimidated ##25%## longer.",
 		["menu_st_spec_14_desc_sc_short"] = "The Maniac Perk Deck is the embodiment of crazy and to never accept bad odds in moments of danger. By pushing through and constantly deal damage, your fellow heisters will be granted a temporary shield making all of you feel Jimmy's invulnerable spirit.",
-		["menu_deck14_1_desc_sc"] = "Damage you deal is converted into Hysteria Stacks. Max amount of stacks is ##240.##\n\nHysteria Stacks:\nIncoming damage is reduced by ##1## point for every ##40## stacks of Hysteria. Hysteria Stacks decay by ##40## every ##8## seconds.",
+		["menu_deck14_1_desc_sc"] = "Damage you deal is converted into Hysteria Stacks. Max amount of stacks is ##720.##\n\nHysteria Stacks:\nIncoming damage is reduced by ##1## point for every ##120## stacks of Hysteria. Hysteria Stacks decay by ##120## every ##8## seconds.",
 		["menu_deck14_3_desc_sc"] = "Members of your crew also gains the effect of your Hysteria Stacks.\n\nHysteria Stacks from multiple crew members do not stack and only the stacks that give the highest damage absorption will have an effect.\n\nYou gain ##5## dodge points.",
-		["menu_deck14_5_desc_sc"] = "Changes the decay of your Hysteria Stacks to ##30## every ##8## seconds.\n\nCivilians intimidated by you and your crew remain intimidated ##25%## longer.",
-		["menu_deck14_7_desc_sc"] = "Incoming damage is now reduced by ##1## point for every ##30## stacks of Hysteria.\n\nYour dodge is increased by an additional ##5## points.",
+		["menu_deck14_5_desc_sc"] = "Changes the decay of your Hysteria Stacks to ##90## every ##8## seconds.\n\nCivilians intimidated by you and your crew remain intimidated ##25%## longer.",
+		["menu_deck14_7_desc_sc"] = "Incoming damage is now reduced by ##1## point for every ##90## stacks of Hysteria.\n\nYour dodge is increased by an additional ##5## points.",
 		["menu_deck14_9_desc_sc"] = "Hysteria stacks are ##100%## more potent for you.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a PAYDAY is increased by ##10%.##",
 
 		--Anarchist--
@@ -3158,19 +3399,19 @@ Hooks:Add("LocalizationManagerPostInit", "SC_Localization_Perk_Decks", function(
 		["menu_deck16_9_desc_sc"] = "Every ##25%## armor missing increases the number of health gained from kills by ##2.##\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a PAYDAY is increased by ##10%.##",
 
 		--Yakuza--
-		["menu_st_spec_12_desc_sc"] = "The Yakuza are one of the most feared crime syndicates in the world. Ruled by the ninkyo and lead by the Oyabun, the Yakuza are known for their strict code of conduct, organized nature and the tattoos that cover their entire bodies.\n\nAn outcast and a dropout from society, the Yakuza knows how it is to fend for himself. While he appears gentle, he is not to be taken lightly.\n\nBenefits from a full perk deck:\n##-##You bag corpses and interact with hostages ##75%## faster.\n##-##Once per down, if you would be downed, you instead survive with ##1## life point and you regain ##50## armor.\n##-##Your dodge is increased by ##10## points.\n##-##The maximum amount of deflection you can gain is raised to ##80%.##\n##-When your health is below 100%:##\nKills using melee weapon fill your dodge meter by up to ##150%## of your dodge.\nKills through any other means fill your dodge meter by up to ##50%## of your dodge.\nMelee kills increase the grace period of your next dodge by up to ##300%##, to a maximum of ##900ms##.\nYour dodge meter fills by up to ##10%## of your dodge every second.\nYou take up to ##20%## less damage.",
+		["menu_st_spec_12_desc_sc"] = "The Yakuza are one of the most feared crime syndicates in the world. Ruled by the ninkyo and lead by the Oyabun, the Yakuza are known for their strict code of conduct, organized nature and the tattoos that cover their entire bodies.\n\nAn outcast and a dropout from society, the Yakuza knows how it is to fend for himself. While he appears gentle, he is not to be taken lightly.\n\nBenefits from a full perk deck:\n##-##You bag corpses and interact with hostages ##75%## faster.\n##-##Once per down, if you would be downed, you instead survive with ##1## life point and you regain ##50## armor.\n##-##Your dodge is increased by ##10## points.\n##-##The maximum amount of deflection you can gain is raised to ##80%.##\n##-When your health is below 100%:##\nKills using melee weapon fill your dodge meter by up to ##125%## of your dodge.\nKills through any other means fill your dodge meter by up to ##50%## of your dodge.\nMelee kills increase the grace period of your next dodge by up to ##300%##, to a maximum of ##900ms##.\nYour dodge meter fills by up to ##10%## of your dodge every second.\nYou take up to ##20%## less damage.",
 		["menu_st_spec_12_desc_sc_short"] = "The Yakuza are one of the most feared crime syndicates in the world. Ruled by the ninkyo and lead by the Oyabun, the Yakuza are known for their strict code of conduct, organized nature and the tattoos that cover their entire bodies.\n\nAn outcast and a dropout from society, the Yakuza knows how it is to fend for himself. While he appears gentle, he is not to be taken lightly.",
 		["menu_deck12_1_desc_sc"] = "The lower your health, the faster your dodge meter will passively fill up.\n\nWhen your health is below ##100%##, your dodge meter fills by up to ##10%## of your dodge every second.\n\nYour dodge is increased by ##5## points.",
 		["menu_deck12_3_desc_sc"] = "The lower your health, the more your dodge meter is filled when you kill an enemy.\n\nWhen your health is below ##100%##, your meter fills by up to ##50%## of your dodge.",
 		["menu_deck12_5_desc_sc"] = "The lower your health, the less damage you take. When your health is below ##100%##, you will take up to ##20%## less damage.\n\nYou bag corpses and interact with hostages ##75%## faster.",
-		["menu_deck12_7_desc_sc"] = "The lower your health, the more your effective your dodge becomes when you kill an enemy using melee.\n\nWhen your health is below ##100%##, melee kills fill your meter by up to ##150%## of your dodge as well as increasing the grace period of your next dodge by up to ##300%##, to a maximum of ##900ms.##\n\nYour dodge is increased by an additional ##5## points.",
+		["menu_deck12_7_desc_sc"] = "The lower your health, the more your effective your dodge becomes when you kill an enemy using melee.\n\nWhen your health is below ##100%##, melee kills fill your meter by up to ##125%## of your dodge as well as increasing the grace period of your next dodge by up to ##300%##, to a maximum of ##900ms.##\n\nYour dodge is increased by an additional ##5## points.",
 		["menu_deck12_9_desc_sc"] = "The maximum amount of deflection you can gain is raised to ##80%.##\n\nOnce per down, if you would be downed you instead survive with ##1## health and you regain ##50## armor.\n\nNOTE: This effect does not apply to, nor is it refreshed by, downs caused by cloaker kicks and taser shocks.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a PAYDAY is increased by ##10%.##",
 		["menu_yakuza_deflection_add"] = "(Boosted by Yakuza)",
 
 		--Hacker--
-		["menu_st_spec_21_desc_sc"] = "Using your sharp mind and gear, you can bring any security system to its knees with the push of a button. You are never caught unaware by a camera or security guard, but if things do go awry, you can just as easily brute-force your way into enemy comms to deliver a nasty surprise for anyone listening.\n\nBenefits from a full perk deck:\n##-##Unlocks and equips the Pocket ECM Device. Activating the Pocket ECM device before the alarm is raised will trigger the jamming effect, disabling all electronics and pagers for a ##10## second duration. Activating the Pocket ECM after the alarm is raised will trigger the feedback effect, stunning enemies in a ##12## meter radius every ##1.5## seconds for a ##10## second duration. The Pocket ECM device has ##1## charge with an ##80## second cooldown timer, but each kill you perform will shorten the cooldown timer by ##2## seconds.\n##-##While the feedback effect is active:\nWhen you kill and enemy, you will regenerate ##5## health.\nWhen crew members kill enemies, they will regenerate ##2.5## health.\n##-##Your armor recovery rate is increased by ##10%.##\n##-##Your dodge is increased by ##10## points.",
+		["menu_st_spec_21_desc_sc"] = "Using your sharp mind and gear, you can bring any security system to its knees with the push of a button. You are never caught unaware by a camera or security guard, but if things do go awry, you can just as easily brute-force your way into enemy comms to deliver a nasty surprise for anyone listening.\n\nBenefits from a full perk deck:\n##-##Unlocks and equips the Pocket ECM Device. Activating the Pocket ECM device before the alarm is raised will trigger the jamming effect, disabling all electronics and pagers for a ##10## second duration. Activating the Pocket ECM after the alarm is raised will trigger the feedback effect. The feedback loop lasts ##10## seconds and has a radius of ##15## meters. The ##first## feedback loop has a ##100%## chance to stun most enemies, with every ##1.5## seconds afterwards having a ##60%## chance to stun. The Pocket ECM device has ##1## charge with an ##80## second cooldown timer, but each kill you perform will shorten the cooldown timer by ##2## seconds.\n##-##While the feedback effect is active:\nWhen you kill and enemy, you will regenerate ##5## health.\nWhen crew members kill enemies, they will regenerate ##2.5## health.\n##-##Your armor recovery rate is increased by ##10%.##\n##-##Your dodge is increased by ##10## points.",
 		["menu_st_spec_21_desc_sc_short"] = "Using your sharp mind and gear, you can bring any security system to its knees with the push of a button. You are never caught unaware by a camera or security guard, but if things do go awry, you can just as easily brute-force your way into enemy comms to deliver a nasty surprise for anyone listening.",
-		["menu_deck21_1_desc_sc"] = "Unlocks and equips the ##Pocket ECM Device.##\n\nWhile in game you can use the throwable key to activate the Pocket ECM Device.\n\nActivating the Pocket ECM Device before the alarm is raised will trigger the jamming effect, disabling all electronics and pagers for a ##10## second duration.\n\nActivating the Pocket ECM Device after the alarm is raised will trigger the feedback effect, stunning enemies in a ##15## meter radius every ##1.5## seconds for a ##10## second duration.\n\nThe Pocket ECM Device has ##1## charge with a ##80## second cooldown timer, but each kill you perform will shorten the cooldown timer by ##2## seconds.",
+		["menu_deck21_1_desc_sc"] = "Unlocks and equips the ##Pocket ECM Device.##\n\nWhile in game you can use the throwable key to activate the Pocket ECM Device.\n\nActivating the Pocket ECM Device before the alarm is raised will trigger the jamming effect, disabling all electronics and pagers for a ##10## second duration.\n\nActivating the Pocket ECM Device after the alarm is raised will trigger the feedback effect, lasting ##10## seconds with a radius of ##15## meters. The ##first## feedback loop has a ##100%## chance to stun most enemies, with every ##1.5## seconds afterwards having a ##60%## chance to stun.\n\nThe Pocket ECM Device has ##1## charge with a ##80## second cooldown timer, but each kill you perform will shorten the cooldown timer by ##2## seconds.",
 		["menu_deck21_3_desc_sc"] = "Your dodge is increased by ##5## points.",
 		["menu_deck21_5_desc_sc"] = "Killing an enemy while the feedback effect is active will regenerate ##5## health.",
 		["menu_deck21_7_desc_sc"] = "Your armor recovery rate is increased by ##10%.##\n\nYour dodge is increased by an additional ##5## points.",

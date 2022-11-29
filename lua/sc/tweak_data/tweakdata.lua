@@ -31,22 +31,22 @@ tweak_data.bow = {
 }
 tweak_data.crossbow = {
 	swap_bonus = 1,
-	ads_move_speed_mult = 0.45
+	ads_move_speed_mult = 0.5
 }
 	tweak_data.crossbow_pistol = {
-		ads_move_speed_mult = 1.7777,
+		ads_move_speed_mult = 1.6,
 		swap_bonus = 1.75
 	}
 
 tweak_data.grenade_launcher = {
-	ads_move_speed_mult = 0.45,
+	ads_move_speed_mult = 0.5,
 }
 	tweak_data.gl_pistol = {
-		ads_move_speed_mult = 1.7777,
+		ads_move_speed_mult = 1.6,
 		swap_bonus = 1.75
 	}
 	tweak_data.rocket_launcher = {
-		ads_move_speed_mult = 0.5,
+		ads_move_speed_mult = 0.4, --lowered to 0.2
 	}
 
 tweak_data.shotgun = {
@@ -67,11 +67,11 @@ tweak_data.smg = {
 	hipfire_spread_mult = 0.9
 }
 	tweak_data.pdw = {
-		ads_move_speed_mult = 0.6428,
+		ads_move_speed_mult = 0.7142857, --lowered to 0.5
 	}
 	tweak_data.lmg = {
 		swap_bonus = 0.8,
-		ads_move_speed_mult = 0.55,
+		ads_move_speed_mult = 0.428571, --lowered to 0.3
 		moving_spread_mult = 5,
 		hipfire_spread_mult = 4.4444
 	}
@@ -80,37 +80,42 @@ tweak_data.smg = {
 		}
 	tweak_data.minigun = {
 		swap_bonus = 0.8,
-		ads_move_speed_mult = 0.55,
+		ads_move_speed_mult = 0.428571, --lowered to 0.3
 		moving_spread_mult = 5,
 		hipfire_spread_mult = 4.4444
 	}
 
 tweak_data.snp = {
 	swap_bonus = 1,
-	ads_move_speed_mult = 0.45,
+	ads_move_speed_mult = 0.5,
 	hipfire_moving_spread_mult = 2
 }
 	tweak_data.semi_snp = {
-		hipfire_spread_mult = 1.5,
-		hipfire_moving_spread_mult = 1.5
+		hipfire_spread_mult = 2,
+		hipfire_moving_spread_mult = 1.5,
+		ads_move_speed_mult = 0.6 --lowered to 0.3
+	}
+	tweak_data.amr = {
+		ads_move_speed_mult = 0.5
 	}
 
 tweak_data.assault_rifle = {
 	swap_bonus = 1,
-	ads_move_speed_mult = 0.45
+	ads_move_speed_mult = 0.5
 }
 	tweak_data.crb = {
 		swap_bonus = 1.1,
-		ads_move_speed_mult = 1.111111
+		ads_move_speed_mult = 1.2 --raised to 0.6
 	}
 	tweak_data.dmr = {
-		hipfire_spread_mult = 1.5,
-		hipfire_moving_spread_mult = 1.5
+		hipfire_spread_mult = 1.2,
+		hipfire_moving_spread_mult = 1.5,
+		ads_move_speed_mult = 0.7 --lowered to 0.4
 	}
 
 tweak_data.akimbo = {
 	swap_bonus = 0.8,
-	ads_move_speed_mult = 0.75,
+	ads_move_speed_mult = 0.8,
 	hipfire_spread_mult = 1.5
 }
 
@@ -183,7 +188,7 @@ for i, proj_id in ipairs(poison_40mm) do
 	tweak_data.projectiles[proj_id].curve_pow = 0
 	tweak_data.projectiles[proj_id].range = 0
 	tweak_data.projectiles[proj_id].poison_gas_range = 600
-	tweak_data.projectiles[proj_id].poison_gas_duration = 16
+	tweak_data.projectiles[proj_id].poison_gas_duration = 10
 	tweak_data.projectiles[proj_id].poison_gas_fade_time = 0.1
 	tweak_data.projectiles[proj_id].poison_gas_tick_time = 0.3
 	tweak_data.projectiles[proj_id].poison_gas_dot_data = {
@@ -222,7 +227,7 @@ tweak_data.projectiles.launcher_poison_arbiter.player_damage = 0
 tweak_data.projectiles.launcher_poison_arbiter.curve_pow = 0
 tweak_data.projectiles.launcher_poison_arbiter.range = 0
 tweak_data.projectiles.launcher_poison_arbiter.poison_gas_range = 600
-tweak_data.projectiles.launcher_poison_arbiter.poison_gas_duration = 12
+tweak_data.projectiles.launcher_poison_arbiter.poison_gas_duration = 8
 tweak_data.projectiles.launcher_poison_arbiter.poison_gas_fade_time = 0.1
 tweak_data.projectiles.launcher_poison_arbiter.poison_gas_tick_time = 0.3
 tweak_data.projectiles.launcher_poison_arbiter.poison_gas_dot_data = {
@@ -277,6 +282,27 @@ tweak_data.projectiles.launcher_electric_osipr = {
 	sound_event = "gl_explode",
 	name_id = "bm_launcher_frag"
 }
+tweak_data.projectiles.launcher_poison_osipr = {
+	launch_speed = 2500,
+	init_timer = 2.5,
+	mass_look_up_modifier = 0,
+	sound_event = "gl_explode",
+	name_id = "bm_launcher_frag",
+	damage = 0,
+	player_damage = 0,
+	curve_pow = 0,
+	range = 0,
+	poison_gas_range = 600,
+	poison_gas_duration = 8,
+	poison_gas_fade_time = 0.1,
+	poison_gas_tick_time = 0.3,
+	poison_gas_dot_data = {
+		hurt_animation_chance = 1,
+		dot_damage = 1.5,
+		dot_length = 6.15,
+		dot_tick_period = 0.5
+	}
+}
 
 --3GL
 tweak_data.projectiles.launcher_frag_ms3gl.damage = 36
@@ -302,7 +328,7 @@ tweak_data.projectiles.launcher_poison.player_damage = 0
 tweak_data.projectiles.launcher_poison.curve_pow = 0
 tweak_data.projectiles.launcher_poison.range = 0
 tweak_data.projectiles.launcher_poison.poison_gas_range = 600
-tweak_data.projectiles.launcher_poison.poison_gas_duration = 8
+tweak_data.projectiles.launcher_poison.poison_gas_duration = 6
 tweak_data.projectiles.launcher_poison.poison_gas_fade_time = 0.1
 tweak_data.projectiles.launcher_poison.poison_gas_tick_time = 0.3
 tweak_data.projectiles.launcher_poison.poison_gas_dot_data = {
@@ -318,7 +344,7 @@ tweak_data.projectiles.launcher_poison_ms3gl_conversion.player_damage = 0
 tweak_data.projectiles.launcher_poison_ms3gl_conversion.curve_pow = 0
 tweak_data.projectiles.launcher_poison_ms3gl_conversion.range = 0
 tweak_data.projectiles.launcher_poison_ms3gl_conversion.poison_gas_range = 600
-tweak_data.projectiles.launcher_poison_ms3gl_conversion.poison_gas_duration = 8
+tweak_data.projectiles.launcher_poison_ms3gl_conversion.poison_gas_duration = 6
 tweak_data.projectiles.launcher_poison_ms3gl_conversion.poison_gas_fade_time = 0.1
 tweak_data.projectiles.launcher_poison_ms3gl_conversion.poison_gas_tick_time = 0.3
 tweak_data.projectiles.launcher_poison_ms3gl_conversion.poison_gas_dot_data = {
@@ -443,7 +469,7 @@ tweak_data.projectiles.poison_gas_grenade.curve_pow = 0
 tweak_data.projectiles.poison_gas_grenade.range = 0
 tweak_data.projectiles.poison_gas_grenade.name_id = "bm_poison_gas_grenade"
 tweak_data.projectiles.poison_gas_grenade.poison_gas_range = 600
-tweak_data.projectiles.poison_gas_grenade.poison_gas_duration = 20
+tweak_data.projectiles.poison_gas_grenade.poison_gas_duration = 12
 tweak_data.projectiles.poison_gas_grenade.poison_gas_fade_time = 0.1
 tweak_data.projectiles.poison_gas_grenade.poison_gas_tick_time = 0.3
 tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data = {
@@ -591,14 +617,14 @@ for i, proj_id in ipairs(velocity) do
 end
 tweak_data.projectiles.rocket_frag.launch_speed = 30000 * velocity_mult
 
-velocity_mult = 0.65
+velocity_mult = 0.75
 velocity = {
 	'west_arrow','bow_poison_arrow','west_arrow_exp',
 	'crossbow_arrow','crossbow_poison_arrow','crossbow_arrow_exp',
 	'frankish_arrow','frankish_poison_arrow','frankish_arrow_exp'
 }
 for i, proj_id in ipairs(velocity) do
-	tweak_data.projectiles[proj_id].launch_speed = 3800 * velocity_mult
+	tweak_data.projectiles[proj_id].launch_speed = 3500 * velocity_mult
 	tweak_data.projectiles[proj_id].adjust_z = tweak_data.projectiles[proj_id].launch_speed / 100 * velocity_mult
 	tweak_data.projectiles[proj_id].mass_look_up_modifier = 0
 end
@@ -607,7 +633,7 @@ velocity = {
 	'arblast_arrow','arblast_poison_arrow','arblast_arrow_exp'
 }
 for i, proj_id in ipairs(velocity) do
-	tweak_data.projectiles[proj_id].launch_speed = 5500 * velocity_mult
+	tweak_data.projectiles[proj_id].launch_speed = 6000 * velocity_mult
 	tweak_data.projectiles[proj_id].adjust_z = tweak_data.projectiles[proj_id].launch_speed / 100 * velocity_mult
 	tweak_data.projectiles[proj_id].mass_look_up_modifier = 0
 end
@@ -616,7 +642,7 @@ velocity = {
 	'ecp_arrow','ecp_arrow_poison','ecp_arrow_exp'
 }
 for i, proj_id in ipairs(velocity) do
-	tweak_data.projectiles[proj_id].launch_speed = 8000 * velocity_mult
+	tweak_data.projectiles[proj_id].launch_speed = 8500 * velocity_mult
 	tweak_data.projectiles[proj_id].adjust_z = tweak_data.projectiles[proj_id].launch_speed / 100 * velocity_mult
 	tweak_data.projectiles[proj_id].mass_look_up_modifier = 0
 end
@@ -747,13 +773,6 @@ tweak_data.casino = {
 	infamous_chance = 3
 }	
 
-tweak_data.money_manager.weapon_cost = {}
-local cost = 42000
-for i = 1, 10000, 1 do
-	table.insert( tweak_data.money_manager.weapon_cost, tostring(cost) )
-	cost = cost + 23000
-end
-
 tweak_data.experience_manager.stage_failed_multiplier = 0.5
 -- From update 34
 tweak_data.experience_manager.stage_completion = {
@@ -815,51 +834,83 @@ local dyslexia = { --for reference, I actually am diagnosed with Dyslexia
 		}
 	},
 	[2] = {
-		primaries = {
-			{ "light_pis" },
-			{ "heavy_pis" },
-			
-			{ "light_smg" },
-			{ "heavy_smg" },
-
-			{ "light_shot" },
-			{ "heavy_shot" },
-			{ "break_shot" },
-			
-			{ "light_ar" },
-			{ "heavy_ar" },
-			{ "dmr_ar" },
-
-			{ "light_snp" },
-			{ "heavy_snp" },
-			{ "antim_snp" },
-			
-			{ "light_mg" },
-			{ "heavy_mg" },
-			{ "miniguns" },
-		
-			{ "wpn_special" }
-		},
-		secondaries = {
-			{ "light_pis" },
-			{ "heavy_pis" },
-			
-			{ "light_smg" },
-			{ "heavy_smg" },
-			
-			{ "light_shot" },
-			{ "heavy_shot" },
-			{ "break_shot" },
-			
-			{ "light_ar" },
-			{ "heavy_ar" },
-
-			{ "light_snp" },
-			
-			{ "wpn_special" }
-		}
+		primaries = {},
+		secondaries = {}
 	}
 }
+
+--Fuck this is ugly
+--PRIMARIES
+table.insert(dyslexia[2].primaries, { "light_pis" })
+table.insert(dyslexia[2].primaries, { "heavy_pis" })
+		
+table.insert(dyslexia[2].primaries, { "light_smg" })
+table.insert(dyslexia[2].primaries, { "heavy_smg" })
+
+table.insert(dyslexia[2].primaries, { "light_shot" })
+table.insert(dyslexia[2].primaries, { "heavy_shot" })
+table.insert(dyslexia[2].primaries, { "break_shot" })
+		
+table.insert(dyslexia[2].primaries, { "light_ar" })
+table.insert(dyslexia[2].primaries, { "heavy_ar" })
+table.insert(dyslexia[2].primaries, { "dmr_ar" })
+
+table.insert(dyslexia[2].primaries, { "light_snp" })
+table.insert(dyslexia[2].primaries, { "heavy_snp" })
+table.insert(dyslexia[2].primaries, { "antim_snp" })
+		
+table.insert(dyslexia[2].primaries, { "light_mg" })
+table.insert(dyslexia[2].primaries, { "heavy_mg" })
+table.insert(dyslexia[2].primaries, { "miniguns" })
+		
+table.insert(dyslexia[2].primaries, { "wpn_special" })
+
+for i, weap in pairs(tweak_data.weapon) do
+	local is_secondary = weap.use_data and weap.use_data.selection_index and weap.use_data.selection_index == 2
+	if is_secondary and weap.recategorize and weap.recategorize[1] == "unsupported" then
+		table.insert(dyslexia[2].primaries, { "unsupported" })
+		break
+	end
+end
+
+--SECONDARIES
+table.insert(dyslexia[2].secondaries, { "light_pis" })
+table.insert(dyslexia[2].secondaries, { "heavy_pis" })
+
+table.insert(dyslexia[2].secondaries, { "light_smg" })
+table.insert(dyslexia[2].secondaries, { "heavy_smg" })
+
+table.insert(dyslexia[2].secondaries, { "light_shot" })
+table.insert(dyslexia[2].secondaries, { "heavy_shot" })
+table.insert(dyslexia[2].secondaries, { "break_shot" })
+
+table.insert(dyslexia[2].secondaries, { "light_ar" })
+table.insert(dyslexia[2].secondaries, { "heavy_ar" })
+for i, weap in pairs(tweak_data.weapon) do
+	local is_secondary = weap.use_data and weap.use_data.selection_index and weap.use_data.selection_index == 1
+	if is_secondary and weap.recategorize and weap.recategorize[1] == "dmr_ar" then
+		table.insert(dyslexia[2].secondaries, { "dmr_ar" })
+		break
+	end
+end
+
+table.insert(dyslexia[2].secondaries, { "light_snp" })
+for i, weap in pairs(tweak_data.weapon) do
+	local is_secondary = weap.use_data and weap.use_data.selection_index and weap.use_data.selection_index == 1
+	if is_secondary and weap.recategorize and weap.recategorize[1] == "heavy_snp" then
+		table.insert(dyslexia[2].secondaries, { "heavy_snp" })
+		break
+	end
+end
+
+table.insert(dyslexia[2].secondaries, { "wpn_special" })
+for i, weap in pairs(tweak_data.weapon) do
+	local is_secondary = weap.use_data and weap.use_data.selection_index and weap.use_data.selection_index == 1
+	if is_secondary and weap.recategorize and weap.recategorize[1] == "unsupported" then
+		table.insert(dyslexia[2].secondaries, { "unsupported" })
+		break
+	end
+end
 
 if restoration.Options:GetValue("OTHER/WpnCat") then
 	tweak_data.gui.buy_weapon_categories = dyslexia[restoration.Options:GetValue("OTHER/WpnCat")]
@@ -1027,15 +1078,26 @@ local blight = {
 }
 table.insert(tweak_data.achievement.complete_heist_achievements, blight)
 
-tweak_data.player.stances.msr.steelsight.shakers.breathing.amplitude = 0
-tweak_data.player.stances.r93.steelsight.shakers.breathing.amplitude = 0
-tweak_data.player.stances.m95.steelsight.shakers.breathing.amplitude = 0
-tweak_data.player.stances.mosin.steelsight.shakers.breathing.amplitude = 0
-tweak_data.player.stances.winchester1874.steelsight.shakers.breathing.amplitude = 0
-tweak_data.player.stances.wa2000.steelsight.shakers.breathing.amplitude = 0
-tweak_data.player.stances.model70.steelsight.shakers.breathing.amplitude = 0
-tweak_data.player.stances.tti.steelsight.shakers.breathing.amplitude = 0
-tweak_data.player.stances.siltstone.steelsight.shakers.breathing.amplitude = 0
-tweak_data.player.stances.r700.steelsight.shakers.breathing.amplitude = 0
-tweak_data.player.stances.sbl.steelsight.shakers.breathing.amplitude = 0
-tweak_data.player.stances.desertfox.steelsight.shakers.breathing.amplitude = 0
+local twp = tweak_data.player
+local pivot_shoulder_translation
+local pivot_shoulder_rotation
+local pivot_head_translation
+local pivot_head_rotation
+--Can't get this shit to work in PlayerTweakData
+if twp.stances.m6d then
+	pivot_shoulder_translation = Vector3(8.47169, 40.6363, -2.73086)
+	pivot_shoulder_rotation = Rotation(0.100026, -0.68821, 0.629665)
+	pivot_head_translation = Vector3(4.5, 28, -6.25)
+	pivot_head_rotation = Rotation(0, 0, 0)
+	twp.stances.m6d.standard.shoulders.translation = pivot_head_translation - pivot_shoulder_translation:rotate_with(pivot_shoulder_rotation:inverse()):rotate_with(pivot_head_rotation)
+	twp.stances.m6d.standard.shoulders.rotation = pivot_head_rotation * pivot_shoulder_rotation:inverse()
+	pivot_head_translation = Vector3(-0.02, 35, 0.25)
+	pivot_head_rotation = Rotation(0, 0.5, 0)
+	twp.stances.m6d.steelsight.shoulders.translation = pivot_head_translation - pivot_shoulder_translation:rotate_with(pivot_shoulder_rotation:inverse()):rotate_with(pivot_head_rotation)
+	twp.stances.m6d.steelsight.shoulders.rotation = pivot_head_rotation * pivot_shoulder_rotation:inverse()
+	pivot_head_translation = Vector3(4.25, 26, -6.25)
+	pivot_head_rotation = Rotation(0, 0, 0)
+	twp.stances.m6d.crouched.shoulders.translation = pivot_head_translation - pivot_shoulder_translation:rotate_with(pivot_shoulder_rotation:inverse()):rotate_with(pivot_head_rotation)
+	twp.stances.m6d.crouched.shoulders.rotation = pivot_head_rotation * pivot_shoulder_rotation:inverse()
+end
+

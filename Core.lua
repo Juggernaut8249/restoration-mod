@@ -42,7 +42,6 @@ function restoration:Init()
 	    --Winters
 		arena = restoration.captain_types.winter, --Alesso
 		welcome_to_the_jungle_1 = restoration.captain_types.winter, --Big Oil Day 1
-		welcome_to_the_jungle_1_night = restoration.captain_types.winter, --Big Oil Day 1 Night
 		stage_1 = restoration.captain_types.winter, --Big Oil Day 1 EDIT
 		welcome_to_the_jungle_2 = restoration.captain_types.winter, --Big Oil Day 2
 		stage_2 = restoration.captain_types.winter, --Big Oil Day 2 EDIT
@@ -84,6 +83,7 @@ function restoration:Init()
 		jolly = restoration.captain_types.summer, --aftershock
 		rvd1 = restoration.captain_types.summer, --highland mortuary 
 		watchdogs_2_day = restoration.captain_types.summer, --Watchdogs Day 2 Daytime
+		trai = restoration.captain_types.summer, --Lost In Transit
 		jolly_CD = restoration.captain_types.summer, --jolly crackdown edit
 		--Custom Heists--	
 		alex_2_res = restoration.captain_types.summer, --Rats Day 2 edit
@@ -94,6 +94,7 @@ function restoration:Init()
 		firestarter_3_res = restoration.captain_types.summer, --firestarter day 3 res edit version
 		bag_sim_2 = restoration.captain_types.summer, --Bag Simulator 2
 		RogueCompany = restoration.captain_types.summer, --Rogue Company
+		Security_Avenue = restoration.captain_types.summer, --Gensec HQ Raid day 1
 
 		--Spring
 		xmn_hox2 = restoration.captain_types.spring, --Hoxout Day 2, christmas
@@ -149,6 +150,7 @@ function restoration:Init()
 		constantine_apartment_lvl = restoration.captain_types.autumn,  --Concrete Jungle 
 		tj_htsb = restoration.captain_types.autumn,  --harvest and trustee - southern branch
 		hidden_vault = restoration.captain_types.autumn, --Hidden Vault
+		Gensec_HQ = restoration.captain_types.autumn, --Gensec HQ Raid day 2
 
 		--I'm not typing out the whole name
 		help = restoration.captain_types.hvh, --Prison Nightmare
@@ -182,26 +184,31 @@ function restoration:Init()
 	--[[restoration.captain_viper = {
 		"jackal_zero_day_stage7" --Zero Day 7
 	}]]--
-
+	
 	restoration.global_spawn_multiplier = 1
 	restoration.always_bravos = false
 	restoration.disco_inferno = false
 	restoration.force_halloween = false
+	restoration.sonic_mod = false
 		
 	--Increased spawns, should only be reserved for larger maps.
 	restoration.very_large_levels = {
 		--Custom Heists below--
 		"bnktower", --Gensec HIVVVVVVVVVVVVVVEEEEEEEEEEEEEEEEE
 		"bag_sim_2", --Bag Simulator 2
-		"finsternis" --Projekt Finsternis
+		"finsternis", --Projekt Finsternis
+		"funbank" --suffer
 	}
 	--Increased spawns, slightly less. Ditto
 	restoration.large_levels = {
 		"crojob2", --Bomb Dockyard
 		"friend", --Scarface Mansion
-		"dah", --Diamond Heist
-		"chca", --Black Cat Heist
 		"peta", --Goatsim 1
+		"mad", --Boiling Point
+		"watchdogs_2_day", --Watchdogs Day 2 
+		"watchdogs_2", --Watchdogs Day 2 but night
+		"bex", --San Martin Bank
+		"trai", --Lost in Transit
 		--Custom Heists below--
 		"hardware_store", --Hardware Store  
 		"lit1", --California's restoration
@@ -219,7 +226,8 @@ function restoration:Init()
 		"santas_hardware_store", --Hardware Store but Xmas
 		"ascension_III", --Ascension (project eclipse 3)
 		"RogueCompany", --Rogue Company
-		"battlearena" --Five-G
+		"battlearena", --Five-G
+		"Security_Avenue" --GenSec HQ Day 1
 	}			
 	--Slightly reduced spawns, generally use for heists with lengthy sections where players typically hold out in one smallish position, or 'early game' heists.
 	restoration.tiny_levels = {
@@ -228,6 +236,7 @@ function restoration:Init()
 		"brb", --Brooklyn Bank
 		"mus", --The Diamond
 		"run", --Heat Street
+		"ranc", --Midland Ranch
 		"run_res", --Whurr's Heat Street Edit
 		"glace", --Green Bridge
 		"pbr", --Beneath the Mountain
@@ -241,15 +250,13 @@ function restoration:Init()
 		"man_res", --Undercover resmod edit		
 		"jolly", --Aftershock
 		"firestarter_3", --firestarter day 3
-		"mex_cooking", --Border Crystals
 		"roberts", --Go Bank
 		"family", --Diamond Store
+		"chca", --Black Cat Heist
 		"jewelry_store", --Ukrainian job left off since its bag moving is optional, to compensate for the extra easiness.
 		"rat", --Cook Off
 		"chas", --Dragon Heist	
 		"pent", --Mountain Master Heist
-		"ranc", --Midland Ranch
-		"mad", --Boiling Point
 		"rvd1", --Reservoir Dogs Day 1, lots of scripted spawns and little cover
 		"crojob3", --Bomb: Forest, slightly reduced spawns to offset little cover/heist difficulty
 		"crojob3_night", --Ditto
@@ -279,8 +286,6 @@ function restoration:Init()
 		"rvd2", --Reservoir Dogs 2, has very aggressive scripted spawns.
 		"vit", --White House
 		"nmh", --No Mercy
-		"hox_1",
-		"xmn_hox_1",
 		"bph", --Hell's Island
 		"born", --Biker 1		
 		"fex", --Buluc's Mansion	
@@ -299,7 +304,7 @@ function restoration:Init()
 		"constantine_smackdown_lvl", --Smackdown
 		"nmh_res" --Resmod edit of no mercy.
 	}	
-	--Mostly for stuff like Cursed Killed Room and other crap puny heists
+	--Mostly for stuff like Cursed Killed Room and other crap puny heists or heists with a *massive* amount of scripted spawns like Texas/Mexico arc heists
 	restoration.extremely_tiny_levels = {
 		"hvh", --CKR
 		"peta2", --Goats day 2. Fuck this heist too	
@@ -309,6 +314,8 @@ function restoration:Init()
 		"help", --Prison Nightmare		
 		"nail",	--Lab Rats. Fuck this heist		
 		"chill_combat",	--Safehouse Raid	
+		"mex", --Border Crossing
+		"mex_cooking", --Border Crystals		
 		"sand", --The Ukrainian Prisoner			
 		--Skirmish heists below
 		"skm_nightmare_lvl", --Safehouse Nightmare SKM
@@ -338,6 +345,7 @@ function restoration:Init()
 		"ukrainian_job", --uk joj
 		"ukrainian_job_res", --ditto
 		"sah", --shacklethorne
+		"chca", --black cat
 		"pent", --Mountain Master 
 		"lvl_friday", --Mallbank / Crashing Capitol
 		--"hox_1", --Hoxout D1

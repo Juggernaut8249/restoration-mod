@@ -227,7 +227,7 @@ function UnitNetworkHandler:sync_throw_projectile(unit, pos, dir, projectile_typ
 	local thrower_unit = member and member:unit()
 
 	if alive(thrower_unit) then
-		unit:base():set_thrower_unit(thrower_unit, true)
+		unit:base():set_thrower_unit(thrower_unit, true, false)
 
 		if not tweak_entry.throwable and thrower_unit:movement() and thrower_unit:movement():current_state() then
 			unit:base():set_weapon_unit(thrower_unit:movement():current_state()._equipped_unit)
@@ -471,6 +471,39 @@ function UnitNetworkHandler:sync_explosion_to_client(unit, position, normal, dam
 	managers.explosion:explode_on_client(position, normal, unit, damage, range, curve_pow)
 end 
 
+
+function UnitNetworkHandler:sync_body_damage_melee(body, attacker, normal, position, direction, damage, object_damage, sender)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_sender(sender) then
+		return
+	end
+
+	if not alive(body) then
+		return
+	end
+
+	if not body:extension() then
+		print("[UnitNetworkHandler:sync_body_damage_melee] body has no extension", body:name(), body:unit():name())
+
+		return
+	end
+
+	if not body:extension().damage then
+		print("[UnitNetworkHandler:sync_body_damage_melee] body has no damage extension", body:name(), body:unit():name())
+
+		return
+	end
+
+	if not body:extension().damage.damage_melee then
+		print("[UnitNetworkHandler:sync_body_damage_melee] body has no damage damage_melee function", body:name(), body:unit():name())
+
+		return
+	end
+
+	if object_damage then
+		body:extension().damage:damage_damage(attacker, normal, position, direction, object_damage)
+	end
+	body:extension().damage:damage_melee(attacker, normal, position, direction, damage)
+end
 
 -- Ignore duplicate grenade sync
 function UnitNetworkHandler:sync_smoke_grenade(detonate_pos, shooter_pos, duration, flashbang)

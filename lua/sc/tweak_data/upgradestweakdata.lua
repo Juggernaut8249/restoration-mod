@@ -63,7 +63,7 @@ Hooks:PostHook(UpgradesTweakData, "init", "ResLevelTableInit", function(self, tw
 					"spoon",
 					"x_mac10",
 					"x_packrat",
-					"x_scorpion",
+					"x_scorpion"
 				}
 			},	
 		l10 = {
@@ -83,7 +83,17 @@ Hooks:PostHook(UpgradesTweakData, "init", "ResLevelTableInit", function(self, tw
 					"groza_underbarrel",
 					"m590"
 				}
-			},			
+			},
+		l13 = {
+				name_id = "weapons",
+				upgrades = {
+					"new_mp5",
+					"serbu",
+					"microphone",
+					"selfie",
+					"sko12"
+				}
+			},
 		l14 = {
 				name_id = "weapons",
 				upgrades = {
@@ -129,7 +139,8 @@ Hooks:PostHook(UpgradesTweakData, "init", "ResLevelTableInit", function(self, tw
 					"pugio",
 					"ballistic",
 					"maxim9",
-					"scout"
+					"scout",
+					"korth"
 				}
 			},
 		l20 = {
@@ -154,6 +165,20 @@ Hooks:PostHook(UpgradesTweakData, "init", "ResLevelTableInit", function(self, tw
 					"brick",
 					"ostry",
 					"r700"
+				}
+			},
+		l24 = {
+				name_id = "weapons",
+				upgrades = {
+					"model24",
+					"l85a2",
+					"scalper",
+					"switchblade",
+					"x_m1911",
+					"x_maxim9",
+					"type54",
+					"x_type54",
+					"x_sko12"
 				}
 			},
 		l25 = {
@@ -198,7 +223,8 @@ Hooks:PostHook(UpgradesTweakData, "init", "ResLevelTableInit", function(self, tw
 				upgrades = {
 					"shuno",
 					"holt",
-					"x_holt"
+					"x_holt",
+					"x_korth"
 				}
 			},
 		l32 = {
@@ -239,6 +265,14 @@ Hooks:PostHook(UpgradesTweakData, "init", "ResLevelTableInit", function(self, tw
 					"fal",
 					"tomahawk",
 					"coal"
+				}
+			},
+		l48 = {
+				name_id = "weapons",
+				upgrades = {
+					"dingdong",
+					"tenderizer",
+					"hailstorm"
 				}
 			},
 		l50 = {
@@ -750,8 +784,13 @@ Hooks:PostHook(UpgradesTweakData, "_init_pd2_values", "ResSkillsInit", function(
 				--Iron Man
 					--Basic
 						--Unlock ICTV
-					--Ace
 						self.values.player.shield_knock = {true}
+					--Ace						
+						self.values.player.bullet_shield_knock = {true}
+						self.values.player.shield_knock_bullet = {
+							max_damage = 200,
+							chance = 0.8
+						}						
 						self.values.player.armor_regen_timer_multiplier = {0.9}
 			
 		--Support--
@@ -932,7 +971,7 @@ Hooks:PostHook(UpgradesTweakData, "_init_pd2_values", "ResSkillsInit", function(
 			--Ammo Efficiency
 				self.values.player.head_shot_ammo_return = {
 					{ ammo = 0.03, time = 8, headshots = 3, to_magazine = false }, --Basic
-					{ ammo = 0.03, time = 8, headshots = 2, to_magazine = true } --Ace
+					{ ammo = 0.03, time = 12, headshots = 2, to_magazine = false } --Ace
 				}
 				
 			--Mind Blown, formerly Explosive Headshot, formerly Graze
@@ -1432,7 +1471,7 @@ Hooks:PostHook(UpgradesTweakData, "_init_pd2_values", "ResSkillsInit", function(
 	self.melee_to_hot_data = {
 		armors_allowed = {"level_1", "level_2", "level_3", "level_4", "level_5", "level_6", "level_7"},
 		works_with_armor_kit = true,
-		tick_time = 2,
+		tick_time = 1,
 		total_ticks = 5,
 		max_stacks = 5,
 		stacking_cooldown = 0.1,
@@ -1502,7 +1541,7 @@ Hooks:PostHook(UpgradesTweakData, "_init_pd2_values", "ResSkillsInit", function(
 		tick_time = 1,
 		total_ticks = 3,
 		max_stacks = 5,
-		stacking_cooldown = 0.5,
+		stacking_cooldown = 0.75,
 		add_stack_sources = {
 			bullet = true,
 			explosion = true,
@@ -1537,7 +1576,7 @@ Hooks:PostHook(UpgradesTweakData, "_init_pd2_values", "ResSkillsInit", function(
 	self.dodge_to_hot_data = {
 		armors_allowed = {"level_1", "level_2", "level_3", "level_4", "level_5", "level_6", "level_7"},
 		works_with_armor_kit = true,
-		tick_time = 2,
+		tick_time = 1,
 		total_ticks = 5,
 		max_stacks = 67,
 		stacking_cooldown = 0.0,
@@ -1599,6 +1638,7 @@ Hooks:PostHook(UpgradesTweakData, "_init_pd2_values", "ResSkillsInit", function(
 	self.values.player.melee_kill_life_leech = {0.02}
 	self.on_killshot_cooldown = 5
 	self.on_killshot_cooldown_reduction = 0.5
+	self.on_killshot_cooldown_reduction_melee = 1.5
 
 	--Anarchist stuff--
 	self.values.player.armor_grinding = {
@@ -1627,9 +1667,9 @@ Hooks:PostHook(UpgradesTweakData, "_init_pd2_values", "ResSkillsInit", function(
 			{4.0, 5},
 			{4.5, 5},
 			{5.0, 5},
-			{5.3, 5},
-			{5.7, 5},
-			{6.0, 5}
+			{6.0, 5},
+			{6.5, 5},
+			{7.5, 5}
 		}
 	}
 	
@@ -1644,13 +1684,13 @@ Hooks:PostHook(UpgradesTweakData, "_init_pd2_values", "ResSkillsInit", function(
 	}
 
 	self.values.player.body_armor.skill_max_health_store = {
-		4.8,
-		4.4,
 		4.0,
 		3.6,
 		3.2,
 		2.8,
-		2.4
+		2.4,
+		2.0,
+		1.6
 	}
 	self.kill_change_regenerate_speed_percentage = true
 	self.values.player.body_armor.skill_kill_change_regenerate_speed = {
@@ -1666,15 +1706,15 @@ Hooks:PostHook(UpgradesTweakData, "_init_pd2_values", "ResSkillsInit", function(
 	--I AM A BAD MOTHERFUCKA--
 	--maniac
 	self.cocaine_stacks_convert_levels = {
-		40,
-		30
+		120,
+		90
 	}	
 	self.cocaine_stacks_dmg_absorption_value = 0.1
 	self.cocaine_stacks_tick_t = 0
-	self.max_cocaine_stacks_per_tick = 240
-	self.max_total_cocaine_stacks = 240
+	self.max_cocaine_stacks_per_tick = 720
+	self.max_total_cocaine_stacks = 720
 	self.cocaine_stacks_decay_t = 8
-	self.cocaine_stacks_decay_amount_per_tick = 40
+	self.cocaine_stacks_decay_amount_per_tick = 120
 	self.cocaine_stacks_decay_percentage_per_tick = 0
 	self.values.player.cocaine_stacking = {1}
 	self.values.player.sync_cocaine_stacks = {true}
@@ -1745,7 +1785,7 @@ Hooks:PostHook(UpgradesTweakData, "_init_pd2_values", "ResSkillsInit", function(
 	}
 
 	self.values.player.melee_kill_dodge_regen = {
-		1.00
+		0.75
 	}
 
 	self.values.player.kill_dodge_regen = {
@@ -1837,7 +1877,11 @@ Hooks:PostHook(UpgradesTweakData, "_init_pd2_values", "ResSkillsInit", function(
 	self.values.player.pocket_ecm_jammer_base = {
 		{
 			cooldown_drain = 2,
-			duration = 10
+			duration = 10,
+			affects_cameras = true,
+			affects_pagers = true,
+			feedback_interval = 1.5,
+			feedback_range = 1500
 		}
 	}	
 	self.values.player.pocket_ecm_heal_on_kill = {
@@ -2975,6 +3019,15 @@ function UpgradesTweakData:_player_definitions()
 		upgrade = {
 			value = 1,
 			upgrade = "steelsight_move_speed_multiplier",
+			category = "player"
+		}
+	}
+	self.definitions.player_bullet_shield_knock = {
+		name_id = "menu_player_bullet_shield_knock",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "bullet_shield_knock",
 			category = "player"
 		}
 	}
