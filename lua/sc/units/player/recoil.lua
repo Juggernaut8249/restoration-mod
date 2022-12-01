@@ -15,19 +15,6 @@ local mvec3_rotate_with = mvector3.rotate_with
 local mrot_set_zero = mrotation.set_zero
 local mrot_multiply = mrotation.multiply
 
---[[
-local old_init = FPCameraPlayerBase.init
-function FPCameraPlayerBase:init( unit )
-	old_init(self, unit)
-	
-	self._view_kick = {
-		velocity = 0,
-		direction = Vector3(),
-		delta = Vector3()
-	}
-end
---]]
-
 --Add limit constraints to recoil, to allow for recoil to occur with a bipod.
 function FPCameraPlayerBase:_update_movement(t, dt)
 	local data = self._camera_properties
@@ -247,7 +234,7 @@ function FPCameraPlayerBase:_horizonatal_recoil_kick(t, dt)
 	local r_value = 0
 
 	if self._recoil_kick.h.accumulated and self._episilon < math.abs(self._recoil_kick.h.accumulated) then
-		local degrees_to_move = 60 * dt 
+		local degrees_to_move = 80 * dt --Track horizontal recoil twice as aggressively, since it tends to self compensate unlike vertical recoil.
 		r_value = math.min(self._recoil_kick.h.accumulated, degrees_to_move)
 		self._recoil_kick.h.accumulated = self._recoil_kick.h.accumulated - r_value
 	elseif self._recoil_wait then

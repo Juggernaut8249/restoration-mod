@@ -261,10 +261,9 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 		end
 	end
 
-	local killshot_cooldown_reduction = (variant and variant == "melee" and tweak_data.upgrades.on_killshot_cooldown_reduction_melee) or tweak_data.upgrades.on_killshot_cooldown_reduction or 0
-	
+
 	if self._on_killshot_t and t < self._on_killshot_t then
-		self._on_killshot_t = self._on_killshot_t - killshot_cooldown_reduction
+		self._on_killshot_t = self._on_killshot_t - (tweak_data.upgrades.on_killshot_cooldown_reduction or 0)
 		return
 	end
 
@@ -1030,9 +1029,9 @@ end
 
 --Professional aced extra ammo when killing specials.
 function PlayerManager:_on_spawn_special_ammo_event(equipped_unit, variant, killed_unit)
-	if killed_unit.base and tweak_data.character[killed_unit:base()._tweak_table].priority_shout and variant and variant == "bullet" then
-		local tracker = killed_unit.movement and killed_unit:movement():nav_tracker()
-	    local position = tracker and tracker:lost() and tracker:field_position() or tracker:position()
+	if killed_unit.base and tweak_data.character[killed_unit:base()._tweak_table].priority_shout and variant == "bullet" then
+		local tracker = killed_unit:movement():nav_tracker()
+	    local position = tracker:lost() and tracker:field_position() or tracker:position()
 	    local rotation = killed_unit:rotation()
 		if Network:is_client() then
 			managers.network:session():send_to_host("sync_spawn_extra_ammo", position, rotation)
@@ -1121,12 +1120,12 @@ function PlayerManager:check_enduring()
 			self._assaults_to_extra_revive = math.max(self._assaults_to_extra_revive - 1, 0)
 			if self._assaults_to_extra_revive == 0 then
 				damage_ext:add_revive()
-				managers.hud:show_hint( { text = managers.localization:text("hud_assault_restored_down") } )
+				managers.hud:show_hint( { text = "Assaults Survived- Restoring 1 Down" } )
 				self._assaults_to_extra_revive = Global.game_settings.single_player and 1 or 2
 			elseif self._assaults_to_extra_revive == 1 then
-				managers.hud:show_hint( { text = managers.localization:text("hud_assault_remaining_single") } )
+				managers.hud:show_hint( { text = "1 Assault Remaining Until Down Restore." } )
 			else
-				managers.hud:show_hint( { text = tostring(self._assaults_to_extra_revive) .. managers.localization:text("hud_assault_remaining_plural") } )
+				managers.hud:show_hint( { text = tostring(self._assaults_to_extra_revive) .. " Assaults Remaining Until Down Restore." } )
 			end
 		end
 	end

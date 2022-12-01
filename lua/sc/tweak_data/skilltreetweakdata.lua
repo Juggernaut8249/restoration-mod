@@ -704,14 +704,13 @@ function SkillTreeTweakData:init(tweak_data)
 				["icon_xy"] = {3, 1},
 				[1] = {
 					upgrades = {
-						"body_armor6",
-						"player_shield_knock"
+						"body_armor6"
 					},
 					cost = self.costs.hightier
 				},
 				[2] = {
 					upgrades = {
-						"player_bullet_shield_knock",
+						"player_shield_knock",
 						"player_armor_regen_timer_multiplier"
 					},
 					cost = self.costs.hightierpro
@@ -2697,8 +2696,7 @@ function SkillTreeTweakData:init(tweak_data)
 			deck6,
 			{
 				upgrades = {
-					"player_damage_to_hot_3",
-					"bodybags_bag_quantity"
+					"player_damage_to_hot_3"
 				},
 				cost = 2400,
 				icon_xy = {4, 0},

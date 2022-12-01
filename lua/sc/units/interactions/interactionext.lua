@@ -73,7 +73,7 @@ function BaseInteractionExt:selected(player, locator, hand_id,...)
 		local tid = self.tweak_data or "none"
 		if self._unit:base() and self._unit:base().blackout_active then 
 			managers.hud:show_interact({
-				text = managers.localization:text("hud_interact_autumn_disable")
+				text = "Disabled by Captain Autumn!"
 			})
 		end
 	end

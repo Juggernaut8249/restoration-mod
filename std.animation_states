@@ -1,17 +1,5 @@
 <?xml version="1.0"?>
 <tweaks>
-	<!-- Actually set base_need_upd otherwise stand actions end too soon -->
-	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
-		<search>
-			<xml/>
-			<state name="std/stand/still/std_from_crh"/>
-			<keys/>
-		</search>
-		<target mode="attach">
-			<key at="enter" set_extension="anim_data" extension_key="base_need_upd" extension_value="true"/>
-			<key at="exit" set_extension="anim_data" extension_key="base_need_upd" extension_value="false"/>
-		</target>
-	</tweak>
 	<!-- Give akimbo pistol users a neutral idle animation -->
 	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
 		<search>
@@ -64,18 +52,6 @@
 			<attr name="blend" value="3"/>
 		</target>
 	</tweak>
-	<!-- Actually set base_need_upd otherwise crouch actions end too soon -->
-	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
-		<search>
-			<xml/>
-			<state name="std/crouch/still/crh_from_std"/>
-			<keys/>
-		</search>
-		<target mode="attach">
-			<key at="enter" set_extension="anim_data" extension_key="base_need_upd" extension_value="true"/>
-			<key at="exit" set_extension="anim_data" extension_key="base_need_upd" extension_value="false"/>
-		</target>
-	</tweak>
 	<!-- has to be done twice -->
 	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
 		<search>
@@ -106,10 +82,6 @@
 			<!-- The state should have these regardless of whether the actual copaction forces updating -->
 			<key at="enter" set_extension="anim_data" extension_key="base_need_upd" extension_value="true"/>
 			<key at="exit" set_extension="anim_data" extension_key="base_need_upd" extension_value="false"/>
-
-			<!-- Recoil anims cause bugey head rotation -->
-			<key at="enter" set_extension="anim_data" extension_key="base_no_recoil" extension_value="true"/>
-			<key at="exit" set_extension="anim_data" extension_key="base_no_recoil" extension_value="false"/>
 		</target>
 	</tweak>
 	<!-- Shield navlink displacement fix -->
@@ -169,22 +141,39 @@
 			<xml/>
 			<state name="std/heal/heal"/>
 		</search>
+		<target mode="attributes">
+			<attr name="name" value="upper_body/heal"/>
+			<attr name="segment" value="upper_body"/>
+			<attr name="mute" value="upper_body_ext"/>
+		</target>
+	</tweak>
+	<!-- has to be done twice -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="upper_body/heal"/>
+			<keys/>
+			<key extension_key="pose"/>
+		</search>
 		<target mode="replace"/>
 	</tweak>
 	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
 		<search>
 			<xml/>
-			<state name="upper_body"/>
+			<state name="upper_body/heal"/>
+			<keys/>
+			<key extension_key="pose"/>
 		</search>
-		<target mode="append">
-			<state name="upper_body/heal" type="mix" segment="upper_body" mute="upper_body_ext">
-				<anim name="heal" weight="rifle"/>
-				<keys>
-					<key at="enter" set_extension="anim_data" extension_key="healing" extension_value="true"/>
-					<key at="exit" set_extension="anim_data" extension_key="healing" extension_value="false"/>
-				</keys>
-				<exit name="upper_body/empty"/>
-			</state>
+		<target mode="replace"/>
+	</tweak>
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="upper_body/heal"/>
+			<exit/>
+		</search>
+		<target mode="replace">
+			<exit name="upper_body/empty"/>
 		</target>
 	</tweak>
 	<!-- Suppressed state fixes -->
@@ -452,27 +441,6 @@
 		</search>
 		<target mode="attributes">
 			<attr name="name" value="std/stand/still/idle/look"/>
-		</target>
-	</tweak>
-	<!-- Upper body blend fixes -->
-	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
-		<search>
-			<xml/>
-			<state name="upper_body/empty"/>
-			<from_group name="upper_body/stand_reload"/>
-		</search>
-		<target mode="replace">
-			<from name="upper_body/stand_reload" blend="0"/>
-		</target>
-	</tweak>
-	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
-		<search>
-			<xml/>
-			<state name="upper_body/empty"/>
-			<from_group name="upper_body/crouch_reload"/>
-		</search>
-		<target mode="replace">
-			<from name="upper_body/crouch_reload" blend="0"/>
 		</target>
 	</tweak>
 	<!-- Fix recoil flag not being set on crouch autofire -->
